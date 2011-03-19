@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:alwaysDrawnWithCache="false" android:baselineAligned="true" android:clipChildren="true" xmlns:android="http://schemas.android.com/apk/res/android">
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" >		
+		<TextView
+			android:id="@+id/ActivityName"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:textSize="20sp" 
+		    android:textStyle="bold">
+		</TextView>
+		<TextView
+			android:id="@+id/LastActivity"
+			android:text="Last occured: \n xx h xx min ago"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:textSize="16sp" >
+		</TextView>
+		<Button
+			android:id="@+id/Now"
+			android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:text="Mark now" 
+		    android:onClick="onClick">
+	    </Button>
+	</LinearLayout>
+</LinearLayout>

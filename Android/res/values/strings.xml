@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, BabyScheduleMain!</string>
+    <string name="app_name">BabySchedule</string>
+    <string-array
+    	name="activity_names">
+    	<item name="eat">Eat</item>
+    	<item name="go_to_sleep">Go to sleep</item>
+    	<item name="woke_up">Woke up</item>
+    	<item name="nap">Nap</item>
+    	<item name="woke_up_from_nap">Woke up from nap</item>
+    	<item name="bath">Bath</item>
+    	<item name="soother">Soother</item>
+    	<item name="milk">Milk</item>
+    	<item name="crying_calmed_down">Crying, calmed down</item>
+    	<item name="diaper_pee_only">Diaper: pee only</item>
+    	<item name="diaper_poop">Diaper: poop</item>
+    	</string-array>
+</resources>
