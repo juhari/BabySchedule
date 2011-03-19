@@ -55,10 +55,10 @@ public class MainListAdapter extends BaseAdapter {
 			
 			Date current = new Date();
 			long diff = current.getTime() - date.getTime();
-			long diffInDays = diff/(1000*3600*24);
-			long diffInHours = (diff - diffInDays*(1000*3600*24))/(1000*3600);
-			long diffInMinutes = (diff - diffInHours*(1000*3600))/(1000*60);
-			long diffInSeconds = (diff - diffInMinutes*(1000*60))/(1000);
+			long diffInSeconds = (diff/1000) % 60;
+			long diffInMinutes = (diff/(1000*60)) % 60;
+			long diffInHours = (diff/(1000*3600)) % 24;
+			long diffInDays = (diff/(1000*3600*24));
 			
 			String timeDiff = "\n" + diffInDays + " days, " + diffInHours + " hours, " + diffInMinutes +
 							  " minutes and " + diffInSeconds + " seconds ago";
