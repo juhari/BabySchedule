@@ -17,11 +17,14 @@ import android.util.Log;
 
 public class ScheduleDatabase {
    
-   private static final String DATABASE_CREATE_BABY_SCHEDULE = "create table babyschedule (_id integer primary key autoincrement, activityname text not null, time text not null );";
+   private static final String DATABASE_CREATE_BABY_SCHEDULE = "create table babyschedule (_id integer primary key autoincrement, babyname text not null, activityname text not null, time text not null );";
    
+   private static final int BABY_NAME_COLUMN = 1;
+   private static final int ACTIVITY_NAME_COLUMN = 2;
+   private static final int TIME_COLUMN = 3;
    
    private static final String DATABASE_NAME = "BabySchedule";
-   private static final int DATABASE_VERSION = 2;
+   private static final int DATABASE_VERSION = 3;
    private static final String TABLE_BABY_SCHEDULE = "babyschedule";
    
    
@@ -71,10 +74,11 @@ public class ScheduleDatabase {
         }
     }
 	   
-    public static long insertBabyActivity(String name) {
-    	Log.i("Babyschedule", "creating baby schedule to with activity name: " + name);
+    public static long insertBabyAction(String babyName, String actionname) {
+    	Log.i("Babyschedule", "creating baby schedule to with activity name: " + actionname);
         ContentValues values = new ContentValues();
-        values.put("activityname", name);
+        values.put("babyname", babyName);
+        values.put("activityname", actionname);
         Date now = new Date();
         values.put("time", now.toLocaleString());
         
@@ -82,7 +86,7 @@ public class ScheduleDatabase {
     }	     
     
     public static Cursor fetchEntireTable(){
-    	return mDb.query(TABLE_BABY_SCHEDULE, new String[] {"_id", "activityname", "time"},  null, null, null, null, null);
+    	return mDb.query(TABLE_BABY_SCHEDULE, new String[] {"_id", "babyname", "activityname", "time"},  null, null, null, null, null);
     }   
     
     public static void removeFromDb(Cursor cursor) {
@@ -90,11 +94,18 @@ public class ScheduleDatabase {
     	Log.i("Babyschedule", "Deleted " + amountDeleted + " rows from db.");
     }        
     
-    public static ArrayList<BabyActivity> getAllBabyActivities(String[] activityNames) {   
-    	ArrayList<BabyActivity> activityList = new ArrayList<BabyActivity>();
-    	for( String activityName : activityNames ) {
-    		ArrayList<Date> currentActivityDates = getActivityDatesForActivity(activityName);
-    		BabyActivity currentActivity = new BabyActivity(activityName, currentActivityDates);
+    public static void deleteEntryBasedOnDate(Date date) {
+    	String dateString = date.toLocaleString();
+    	int deleted = mDb.delete(TABLE_BABY_SCHEDULE, "time = '" + dateString + "'", null);
+  
+    	Log.i("Babyschedule", "found " + deleted + " rows to be deleted in db.");						  
+    }
+    
+    public static ArrayList<BabyAction> getAllBabyActions(String[] actionNames) {   
+    	ArrayList<BabyAction> activityList = new ArrayList<BabyAction>();
+    	for( String activityName : actionNames ) {
+    		ArrayList<Date> currentActivityDates = getActionDatesForAction(activityName);
+    		BabyAction currentActivity = new BabyAction(activityName, currentActivityDates);
     		Log.i("Babyschedule", "Added baby activity: " + activityName + ":\n" + currentActivityDates);
     		activityList.add(currentActivity);
     	}
@@ -102,10 +113,10 @@ public class ScheduleDatabase {
 		return activityList;    	
     }
     
-    private static ArrayList<Date> getActivityDatesForActivity(String activityName){
+    public static ArrayList<Date> getActionDatesForAction(String activityName){
     	Log.i("Babyschedule", "requesting dates for activity " + activityName);
     	Cursor cursor = mDb.query(TABLE_BABY_SCHEDULE, 
-    							  new String[] {"_id", "activityname", "time"}, 
+    							  new String[] {"_id", "babyname", "activityname", "time"}, 
     							  "activityname = '" + activityName + "'", 
     							  null, null, null, null);
     	
@@ -124,7 +135,7 @@ public class ScheduleDatabase {
     }
     
     private static Date getRowTime(Cursor cursor) {	
-    	String time = cursor.getString(2);
+    	String time = cursor.getString(TIME_COLUMN);
     	Log.i("Babyschedule", "trying to parse row time with time string: " + time);
     	Date date = null;
     	DateFormat format = DateFormat.getDateTimeInstance();

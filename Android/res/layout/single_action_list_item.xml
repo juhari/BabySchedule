@@ -3,34 +3,23 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent" android:alwaysDrawnWithCache="false" android:baselineAligned="true" android:clipChildren="true" xmlns:android="http://schemas.android.com/apk/res/android">
 	<LinearLayout
-		android:orientation="vertical"
-		android:layout_width="fill_parent"
+		android:orientation="horizontal"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
 		android:layout_marginBottom="2px" 
 		android:layout_marginTop="2px">	
 		<TextView
-			android:id="@+id/ActivityName"
+			android:id="@+id/ActionTime"
+			android:text="Datetime"
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
-		    android:textSize="20sp" 
-		    android:textStyle="bold"
-		    android:clickable="true"
-			android:onClick="onClick">
-		</TextView>
-		<TextView
-			android:id="@+id/LastActivity"
-			android:text="Last occured: \n xx h xx min ago"
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent"
-		    android:textSize="16sp" 
-		    android:clickable="true"
-			android:onClick="onClick">
+		    android:textSize="16sp">
 		</TextView>
 		<Button
-			android:id="@+id/Now"
+			android:id="@+id/Delete"
 			android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
-		    android:text="Mark now" 
+		    android:text="Delete" 
 		    android:onClick="onClick">
 	    </Button>
 	</LinearLayout>

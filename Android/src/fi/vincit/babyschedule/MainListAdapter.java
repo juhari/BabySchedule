@@ -14,10 +14,15 @@ import android.widget.TextView;
 
 public class MainListAdapter extends BaseAdapter {
 
-	private final ArrayList<BabyActivity> mActivities;
+	private ArrayList<BabyAction> mActivities;
 	
-	public MainListAdapter(Context c, ArrayList<BabyActivity> activities) {
+	public MainListAdapter(ArrayList<BabyAction> activities) {
 		mActivities = activities;
+	}
+	
+	public void setActionList(ArrayList<BabyAction> actions) {
+		mActivities = actions;
+		notifyDataSetChanged();
 	}
 	
 	public int getCount() {
@@ -33,7 +38,7 @@ public class MainListAdapter extends BaseAdapter {
 	}
 
 	public View getView(int position, View convertView, ViewGroup group) {			
-		BabyActivity activity = mActivities.get(position);
+		BabyAction activity = mActivities.get(position);
 		View activityView = null;
 		
 		if(convertView == null) {
@@ -44,40 +49,42 @@ public class MainListAdapter extends BaseAdapter {
 		}
 		
 		TextView name = (TextView)activityView.findViewById(R.id.ActivityName);
-		name.setText(activity.getActivityName());	
+		name.setText(activity.getActionName());	
 		
 		TextView timePassed = (TextView)activityView.findViewById(R.id.LastActivity);
 		Log.d("Babyschedule", "ListAdapter, getting activity time.");
-		Date date = activity.getLastActivity();
+		Date date = activity.getLastAction();
 		Log.d("Babyschedule", "ListAdapter, got time: " + date);
 		if( date != null ) {	
 			String time = "Last occurred at: " + date.toLocaleString();
 			
 			Date current = new Date();
 			long diff = current.getTime() - date.getTime();
-			long diffInSeconds = (diff/1000) % 60;
 			long diffInMinutes = (diff/(1000*60)) % 60;
 			long diffInHours = (diff/(1000*3600)) % 24;
 			long diffInDays = (diff/(1000*3600*24));
 			
 			String timeDiff = "\n" + diffInDays + " days, " + diffInHours + " hours, " + diffInMinutes +
-							  " minutes and " + diffInSeconds + " seconds ago";
+							  " minutes ago";
 			
-			timePassed.setText(time + timeDiff);
+			timePassed.setText(time + timeDiff);			
 		} else {
-			timePassed.setText("No \"" + activity.getActivityName() + "\" events occurred");
+			timePassed.setText("No \"" + activity.getActionName() + "\" events occurred");
 		}
 		
 		// Remember the activity for each button so that we can refer to it when the button is clicked
 		Button nowButton = (Button)activityView.findViewById(R.id.Now);
-		nowButton.setTag(activity);
+		nowButton.setText("Mark " + activity.getActionName() + "!");
 		
+		name.setTag(activity);
+		nowButton.setTag(activity);		
+		timePassed.setTag(activity);
 		return activityView;
 	}
 	
-	public void updateActivityTimeNow(BabyActivity activity)
+	public void updateActivityTimeNow(BabyAction activity)
 	{
-		activity.addActivityNow();
+		activity.addActionNow();
 		notifyDataSetChanged();
 	}
 
