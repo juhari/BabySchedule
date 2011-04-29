@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+    <Spinner 
+    	android:layout_width="fill_parent" 
+   		android:layout_height="wrap_content" 
+   		android:id="@+id/actionsSpinner"
+   		android:prompt="@string/add_event_prompt">
+	</Spinner>
+  	<DatePicker
+  		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content"
+ 		android:id="@+id/datePick">
+  	</DatePicker>
+	<TimePicker
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/timePick">
+	</TimePicker>
+	<Button
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/addButton"
+		android:text="@string/add_activity"
+		android:onClick="onClick">
+	</Button>
+</LinearLayout>

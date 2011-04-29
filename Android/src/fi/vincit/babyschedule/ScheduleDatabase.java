@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
-import android.app.Application;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -19,7 +18,9 @@ public class ScheduleDatabase {
    
    private static final String DATABASE_CREATE_BABY_SCHEDULE = "create table babyschedule (_id integer primary key autoincrement, babyname text not null, activityname text not null, time text not null );";
    
+   @SuppressWarnings("unused")
    private static final int BABY_NAME_COLUMN = 1;
+   @SuppressWarnings("unused")
    private static final int ACTIVITY_NAME_COLUMN = 2;
    private static final int TIME_COLUMN = 3;
    
@@ -74,13 +75,12 @@ public class ScheduleDatabase {
         }
     }
 	   
-    public static long insertBabyAction(String babyName, String actionname) {
+    public static long insertBabyAction(String babyName, String actionname, Date time) {
     	Log.i("Babyschedule", "creating baby schedule to with activity name: " + actionname);
         ContentValues values = new ContentValues();
         values.put("babyname", babyName);
         values.put("activityname", actionname);
-        Date now = new Date();
-        values.put("time", now.toLocaleString());
+        values.put("time", time.toLocaleString());
         
         return mDb.insert(TABLE_BABY_SCHEDULE, null, values);
     }	     

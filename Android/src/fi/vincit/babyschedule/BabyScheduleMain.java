@@ -1,5 +1,7 @@
 package fi.vincit.babyschedule;
 
+import java.util.Date;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +9,8 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 public class BabyScheduleMain extends ListActivity
 							  implements View.OnClickListener {		
@@ -62,10 +64,10 @@ public class BabyScheduleMain extends ListActivity
     @Override
     public void onClick(View v){
     	BabyAction action = (BabyAction)v.getTag();
-    	
+    	    	
     	if( v.getId() == R.id.Now ) {	    
 	    	Log.d("Babyschedule", "Clicked button" + action.getActionName());	    	
-	    	ScheduleDatabase.insertBabyAction("Verneri", action.getActionName());	    	
+	    	ScheduleDatabase.insertBabyAction("Verneri", action.getActionName(), new Date());	    	
 	    	mListAdapter.updateActivityTimeNow(action);    	    
     	} else if( ScheduleDatabase.getActionDatesForAction(action.getActionName()).size() > 0 ) {
     		// show list of actions for the specified type
@@ -75,5 +77,12 @@ public class BabyScheduleMain extends ListActivity
     		showSingleList.putExtras(actionBundle);
     		startActivity(showSingleList);
     	}
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	Intent showAddAction = new Intent(BabyScheduleMain.this, AddActionActivity.class);
+    	startActivity(showAddAction);
+    	return super.onOptionsItemSelected(item);
     }
 }
