@@ -12,6 +12,12 @@ public class BabyAction {
 		this.actions = activities;
 	}		
 	
+	public BabyAction(String name, Date actionDate) {
+		this.actionName = name;
+		this.actions = new ArrayList<Date>();
+		this.actions.add(actionDate);
+	}		
+	
 	public void addActionNow()
 	{
 		actions.add(new Date());

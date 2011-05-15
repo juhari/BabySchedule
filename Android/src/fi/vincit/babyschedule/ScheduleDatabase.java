@@ -113,6 +113,20 @@ public class ScheduleDatabase {
 		return activityList;    	
     }
     
+    public static ArrayList<BabyAction> getAllDbActions(String[] actionNames) {
+    	ArrayList<BabyAction> actions = new ArrayList<BabyAction>();
+    	for( String activityName : actionNames ) {
+    		ArrayList<Date> currentActivityDates = getActionDatesForAction(activityName);
+    		for( Date actionDate : currentActivityDates ) {
+	    		BabyAction currentActivity = new BabyAction(activityName, actionDate);
+	    		Log.i("Babyschedule", "Added baby activity: " + activityName + ":\n" + currentActivityDates);
+	    		actions.add(currentActivity);
+    		}
+    	}
+    	    	    	
+		return actions;  
+    }
+    
     public static ArrayList<Date> getActionDatesForAction(String activityName){
     	Log.i("Babyschedule", "requesting dates for activity " + activityName);
     	Cursor cursor = mDb.query(TABLE_BABY_SCHEDULE, 

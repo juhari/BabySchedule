@@ -2,4 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
   	<item android:id="@+id/add_activity"
   		  android:title="@string/add_activity" />
+    <item android:id="@+id/all_events"
+    	  android:title="@string/events_list" />
 </menu>

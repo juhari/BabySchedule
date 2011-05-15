@@ -15,6 +15,9 @@
         <activity android:name=".SingleActionList"
         		  android:label="@string/single_action">
 		</activity>
+		<activity android:name=".AllActionsList"
+        		  android:label="@string/events_list">
+		</activity>
 		<activity android:name=".AddActionActivity"
         		  android:label="@string/single_action">
 		</activity>

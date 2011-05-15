@@ -2,8 +2,9 @@
 <resources>
     <string name="hello">Hello World, BabyScheduleMain!</string>
     <string name="app_name">BabySchedule</string>
-    <string name="single_action">BabySchedule: single action list</string>
-    <string name="add_activity">Add activity</string>
+    <string name="single_action">BabySchedule: single event list</string>
+    <string name="add_activity">Add event</string>
+    <string name="events_list">Show all events</string>
     <string name="add_event_prompt">Choose an event to add</string>
     <string name="go_to_sleep">Go to sleep</string>
     <string name="woke_up">Woke up</string>

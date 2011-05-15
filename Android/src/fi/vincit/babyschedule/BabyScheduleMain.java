@@ -84,8 +84,13 @@ public class BabyScheduleMain extends ListActivity
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-    	Intent showAddAction = new Intent(BabyScheduleMain.this, AddActionActivity.class);
-    	startActivity(showAddAction);
+    	if( item.getItemId() == R.id.add_activity ) {
+	    	Intent showAddAction = new Intent(BabyScheduleMain.this, AddActionActivity.class);
+	    	startActivity(showAddAction);
+    	} else if( item.getItemId() == R.id.all_events ) {
+    		Intent showEventsList = new Intent(BabyScheduleMain.this, AllActionsList.class);
+    		startActivity(showEventsList);
+    	}
     	return super.onOptionsItemSelected(item);
     }
     
