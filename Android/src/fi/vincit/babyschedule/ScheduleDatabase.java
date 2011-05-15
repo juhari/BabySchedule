@@ -20,7 +20,6 @@ public class ScheduleDatabase {
    
    @SuppressWarnings("unused")
    private static final int BABY_NAME_COLUMN = 1;
-   @SuppressWarnings("unused")
    private static final int ACTIVITY_NAME_COLUMN = 2;
    private static final int TIME_COLUMN = 3;
    
@@ -113,18 +112,19 @@ public class ScheduleDatabase {
 		return activityList;    	
     }
     
-    public static ArrayList<BabyAction> getAllDbActions(String[] actionNames) {
+    public static ArrayList<BabyAction> getAllDbActionsSortedByDate() {
+    	Cursor everything = fetchEntireTable();
+    	
     	ArrayList<BabyAction> actions = new ArrayList<BabyAction>();
-    	for( String activityName : actionNames ) {
-    		ArrayList<Date> currentActivityDates = getActionDatesForAction(activityName);
-    		for( Date actionDate : currentActivityDates ) {
-	    		BabyAction currentActivity = new BabyAction(activityName, actionDate);
-	    		Log.i("Babyschedule", "Added baby activity: " + activityName + ":\n" + currentActivityDates);
-	    		actions.add(currentActivity);
-    		}
+    	if( everything.moveToFirst() ) {
+	    	while( !everything.isAfterLast() ) {
+	    		actions.add(new BabyAction(getRowActionName(everything), getRowTime(everything)));
+	    		everything.moveToNext();
+	    	}
     	}
-    	    	    	
-		return actions;  
+    	
+    	Collections.sort(actions);
+    	return actions;
     }
     
     public static ArrayList<Date> getActionDatesForAction(String activityName){
@@ -161,5 +161,9 @@ public class ScheduleDatabase {
     		// do nothing, return null
     	}
     	return date;
-    }       
+    }      
+    
+    private static String getRowActionName(Cursor cursor) {
+    	return cursor.getString(ACTIVITY_NAME_COLUMN);
+    }
 }

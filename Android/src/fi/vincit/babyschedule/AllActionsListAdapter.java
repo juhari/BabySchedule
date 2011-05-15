@@ -14,7 +14,7 @@ public class AllActionsListAdapter extends BaseAdapter {
 
 	private ArrayList<BabyAction> mActionList;
 	
-	public AllActionsListAdapter(ArrayList<BabyAction> actions) {
+	public AllActionsListAdapter(ArrayList<BabyAction> actions) {		
 		mActionList = actions;
 	}
 	

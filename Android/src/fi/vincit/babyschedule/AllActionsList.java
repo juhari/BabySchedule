@@ -21,13 +21,13 @@ public class AllActionsList extends ListActivity
     	
     	setTitle("List of all events");    
     	
-    	mListAdapter = new AllActionsListAdapter(ScheduleDatabase.getAllDbActions(getResources().getStringArray(R.array.activity_names)));
+    	mListAdapter = new AllActionsListAdapter(ScheduleDatabase.getAllDbActionsSortedByDate());
     	setListAdapter(mListAdapter);
 	}
 	
 	@Override
     public void onClick(View v){
     	ScheduleDatabase.deleteEntryBasedOnDate((Date)v.getTag());
-    	mListAdapter.setActionsList(ScheduleDatabase.getAllDbActions(getResources().getStringArray(R.array.activity_names)));
+    	mListAdapter.setActionsList(ScheduleDatabase.getAllDbActionsSortedByDate());
     }
 }

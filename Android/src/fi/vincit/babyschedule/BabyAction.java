@@ -3,7 +3,7 @@ package fi.vincit.babyschedule;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class BabyAction {
+public class BabyAction implements Comparable<BabyAction>{
 	private String actionName;
 	private ArrayList<Date> actions;
 	
@@ -37,5 +37,16 @@ public class BabyAction {
 			lastActivity = actions.get(actions.size()-1); 
 		}
 		return lastActivity;
+	}
+
+	@Override
+	public int compareTo(BabyAction another) {
+		if( getLastAction().equals(another.getLastAction())) {
+			return 0;
+		} else if( getLastAction().after(another.getLastAction())) {
+			return -1;
+		} else {
+			return 1;
+		}
 	}
 }
