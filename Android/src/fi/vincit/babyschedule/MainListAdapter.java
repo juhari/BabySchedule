@@ -20,6 +20,9 @@ public class MainListAdapter extends BaseAdapter {
 		mActivities = activities;
 	}
 	
+	public MainListAdapter() {	
+	}
+	
 	public void setActionList(ArrayList<BabyAction> actions) {
 		mActivities = actions;
 		notifyDataSetChanged();

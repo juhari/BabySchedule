@@ -1,5 +1,6 @@
 package fi.vincit.babyschedule;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import android.app.ListActivity;
@@ -27,8 +28,9 @@ public class BabyScheduleMain extends ListActivity
     	
     	ScheduleDatabase.open(getApplicationContext());
     	
-    	String[] activityNames = getResources().getStringArray(R.array.activity_names);
-    	mListAdapter = new MainListAdapter(ScheduleDatabase.getAllBabyActions(activityNames));
+    	mListAdapter = new MainListAdapter();    	
+    	
+    	updateMainListAdapter();    	    	
     	setListAdapter(mListAdapter);
     	
     	this.mListUpdatetimer = new CountDownTimer(60000, 60000) {
@@ -50,8 +52,7 @@ public class BabyScheduleMain extends ListActivity
     @Override
     public void onStart() {
     	super.onStart();
-    	String[] activityNames = getResources().getStringArray(R.array.activity_names);
-    	mListAdapter.setActionList(ScheduleDatabase.getAllBabyActions(activityNames));
+    	updateMainListAdapter();
     }
     
     @Override
@@ -77,6 +78,8 @@ public class BabyScheduleMain extends ListActivity
     		showSingleList.putExtras(actionBundle);
     		startActivity(showSingleList);
     	}
+    	
+    	updateMainListAdapter();
     }
     
     @Override
@@ -84,5 +87,32 @@ public class BabyScheduleMain extends ListActivity
     	Intent showAddAction = new Intent(BabyScheduleMain.this, AddActionActivity.class);
     	startActivity(showAddAction);
     	return super.onOptionsItemSelected(item);
+    }
+    
+    public boolean isCurrentlyAsleep() {
+    	ArrayList<Date> toSleepDates = ScheduleDatabase.getActionDatesForAction(getResources().getString(R.string.go_to_sleep));
+    	ArrayList<Date> wakeUpDates = ScheduleDatabase.getActionDatesForAction(getResources().getString(R.string.woke_up));
+    	
+    	if( !toSleepDates.isEmpty() && !wakeUpDates.isEmpty() ) {
+    		Date latestToSleep = toSleepDates.get(toSleepDates.size()-1);
+    		Date latestWakeUp = wakeUpDates.get(wakeUpDates.size()-1);    	
+    		return latestToSleep.after(latestWakeUp);
+    	}
+    	else {
+    		return toSleepDates.size() > wakeUpDates.size();
+    	}
+    }
+    
+    private void updateMainListAdapter() {
+    	String[] activityNames;
+    	if( isCurrentlyAsleep() ) {
+    		setTitle(getResources().getString(R.string.app_name) + ": Baby is now asleep");
+    		activityNames = getResources().getStringArray(R.array.sleep_activities); 
+    	} else {
+    		setTitle(getResources().getString(R.string.app_name) + ": Baby is now awake");
+    		activityNames = getResources().getStringArray(R.array.awake_activities);
+    	}    	
+    	
+    	mListAdapter.setActionList(ScheduleDatabase.getAllBabyActions(activityNames));    	    	
     }
 }
