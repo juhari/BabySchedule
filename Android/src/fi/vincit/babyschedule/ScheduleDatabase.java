@@ -100,11 +100,11 @@ public class ScheduleDatabase {
     	Log.i("Babyschedule", "found " + deleted + " rows to be deleted in db.");						  
     }
     
-    public static ArrayList<BabyAction> getAllBabyActions(String[] actionNames) {   
-    	ArrayList<BabyAction> activityList = new ArrayList<BabyAction>();
+    public static ArrayList<BabyEvent> getAllBabyActions(String[] actionNames) {   
+    	ArrayList<BabyEvent> activityList = new ArrayList<BabyEvent>();
     	for( String activityName : actionNames ) {
     		ArrayList<Date> currentActivityDates = getActionDatesForAction(activityName);
-    		BabyAction currentActivity = new BabyAction(activityName, currentActivityDates);
+    		BabyEvent currentActivity = new BabyEvent(activityName, currentActivityDates);
     		Log.i("Babyschedule", "Added baby activity: " + activityName + ":\n" + currentActivityDates);
     		activityList.add(currentActivity);
     	}
@@ -112,13 +112,13 @@ public class ScheduleDatabase {
 		return activityList;    	
     }
     
-    public static ArrayList<BabyAction> getAllDbActionsSortedByDate() {
+    public static ArrayList<BabyEvent> getAllDbActionsSortedByDate() {
     	Cursor everything = fetchEntireTable();
     	
-    	ArrayList<BabyAction> actions = new ArrayList<BabyAction>();
+    	ArrayList<BabyEvent> actions = new ArrayList<BabyEvent>();
     	if( everything.moveToFirst() ) {
 	    	while( !everything.isAfterLast() ) {
-	    		actions.add(new BabyAction(getRowActionName(everything), getRowTime(everything)));
+	    		actions.add(new BabyEvent(getRowActionName(everything), getRowTime(everything)));
 	    		everything.moveToNext();
 	    	}
     	}

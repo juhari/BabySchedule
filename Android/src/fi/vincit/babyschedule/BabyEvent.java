@@ -1,18 +1,24 @@
 package fi.vincit.babyschedule;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class BabyAction implements Comparable<BabyAction>{
+public class BabyEvent implements Comparable<BabyEvent>
+								   ,Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7385675124548040589L;
 	private String actionName;
 	private ArrayList<Date> actions;
 	
-	public BabyAction(String name, ArrayList<Date> activities) {
+	public BabyEvent(String name, ArrayList<Date> activities) {
 		this.actionName = name;
 		this.actions = activities;
 	}		
 	
-	public BabyAction(String name, Date actionDate) {
+	public BabyEvent(String name, Date actionDate) {
 		this.actionName = name;
 		this.actions = new ArrayList<Date>();
 		this.actions.add(actionDate);
@@ -40,7 +46,7 @@ public class BabyAction implements Comparable<BabyAction>{
 	}
 
 	@Override
-	public int compareTo(BabyAction another) {
+	public int compareTo(BabyEvent another) {
 		if( getLastAction().equals(another.getLastAction())) {
 			return 0;
 		} else if( getLastAction().after(another.getLastAction())) {

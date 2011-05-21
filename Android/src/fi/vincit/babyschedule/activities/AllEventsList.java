@@ -1,16 +1,18 @@
-package fi.vincit.babyschedule;
+package fi.vincit.babyschedule.activities;
 
 import java.util.Date;
+
+import fi.vincit.babyschedule.ScheduleDatabase;
 
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-public class AllActionsList extends ListActivity 
+public class AllEventsList extends ListActivity 
 							implements View.OnClickListener {
 	
-	private AllActionsListAdapter mListAdapter;
+	private AllEventsListAdapter mListAdapter;
 	
 	@Override
 	public void onCreate(Bundle b) {
@@ -21,7 +23,7 @@ public class AllActionsList extends ListActivity
     	
     	setTitle("List of all events");    
     	
-    	mListAdapter = new AllActionsListAdapter(ScheduleDatabase.getAllDbActionsSortedByDate());
+    	mListAdapter = new AllEventsListAdapter(ScheduleDatabase.getAllDbActionsSortedByDate());
     	setListAdapter(mListAdapter);
 	}
 	

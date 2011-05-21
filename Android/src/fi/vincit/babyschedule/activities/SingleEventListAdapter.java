@@ -1,4 +1,4 @@
-package fi.vincit.babyschedule;
+package fi.vincit.babyschedule.activities;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,12 +11,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import fi.vincit.babyschedule.R;
 
-public class SingleActionListAdapter extends BaseAdapter {
+public class SingleEventListAdapter extends BaseAdapter {
 
 	private ArrayList<Date> mDateList;
 	
-	public SingleActionListAdapter(ArrayList<Date> dates) {
+	public SingleEventListAdapter(ArrayList<Date> dates) {
 		// TODO Auto-generated constructor stub
 		Log.d("Babyschedule", "SingleActionListAdapter, dateList: " + dates);
 		mDateList = dates;

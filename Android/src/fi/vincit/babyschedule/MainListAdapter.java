@@ -14,16 +14,16 @@ import android.widget.TextView;
 
 public class MainListAdapter extends BaseAdapter {
 
-	private ArrayList<BabyAction> mActivities;
+	private ArrayList<BabyEvent> mActivities;
 	
-	public MainListAdapter(ArrayList<BabyAction> activities) {
+	public MainListAdapter(ArrayList<BabyEvent> activities) {
 		mActivities = activities;
 	}
 	
 	public MainListAdapter() {	
 	}
 	
-	public void setActionList(ArrayList<BabyAction> actions) {
+	public void setActionList(ArrayList<BabyEvent> actions) {
 		mActivities = actions;
 		notifyDataSetChanged();
 	}
@@ -41,7 +41,7 @@ public class MainListAdapter extends BaseAdapter {
 	}
 
 	public View getView(int position, View convertView, ViewGroup group) {			
-		BabyAction activity = mActivities.get(position);
+		BabyEvent activity = mActivities.get(position);
 		View activityView = null;
 		
 		if(convertView == null) {
@@ -85,7 +85,7 @@ public class MainListAdapter extends BaseAdapter {
 		return activityView;
 	}
 	
-	public void updateActivityTimeNow(BabyAction activity)
+	public void updateActivityTimeNow(BabyEvent activity)
 	{
 		activity.addActionNow();
 		notifyDataSetChanged();

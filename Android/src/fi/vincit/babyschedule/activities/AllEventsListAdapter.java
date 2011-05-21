@@ -1,4 +1,4 @@
-package fi.vincit.babyschedule;
+package fi.vincit.babyschedule.activities;
 
 import java.util.ArrayList;
 
@@ -9,16 +9,18 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import fi.vincit.babyschedule.BabyEvent;
+import fi.vincit.babyschedule.R;
 
-public class AllActionsListAdapter extends BaseAdapter {
+public class AllEventsListAdapter extends BaseAdapter {
 
-	private ArrayList<BabyAction> mActionList;
+	private ArrayList<BabyEvent> mActionList;
 	
-	public AllActionsListAdapter(ArrayList<BabyAction> actions) {		
+	public AllEventsListAdapter(ArrayList<BabyEvent> actions) {		
 		mActionList = actions;
 	}
 	
-	public void setActionsList(ArrayList<BabyAction> actions) {
+	public void setActionsList(ArrayList<BabyEvent> actions) {
 		mActionList = actions;
 		notifyDataSetChanged();
 	}
@@ -40,7 +42,7 @@ public class AllActionsListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup group) {
-		BabyAction action = mActionList.get(position);
+		BabyEvent action = mActionList.get(position);
 		View actionView = null;
 		
 		if(convertView == null) {

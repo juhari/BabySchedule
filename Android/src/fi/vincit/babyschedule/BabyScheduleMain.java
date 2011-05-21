@@ -3,6 +3,10 @@ package fi.vincit.babyschedule;
 import java.util.ArrayList;
 import java.util.Date;
 
+import fi.vincit.babyschedule.activities.AllEventsList;
+import fi.vincit.babyschedule.activities.EventDetailsEditor;
+import fi.vincit.babyschedule.activities.SingleEventList;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -64,7 +68,7 @@ public class BabyScheduleMain extends ListActivity
     
     @Override
     public void onClick(View v){
-    	BabyAction action = (BabyAction)v.getTag();
+    	BabyEvent action = (BabyEvent)v.getTag();
     	    	
     	if( v.getId() == R.id.Now ) {	    
 	    	Log.d("Babyschedule", "Clicked button" + action.getActionName());	    	
@@ -72,7 +76,7 @@ public class BabyScheduleMain extends ListActivity
 	    	mListAdapter.updateActivityTimeNow(action);    	    
     	} else if( ScheduleDatabase.getActionDatesForAction(action.getActionName()).size() > 0 ) {
     		// show list of actions for the specified type
-    		Intent showSingleList = new Intent(BabyScheduleMain.this, SingleActionList.class);   
+    		Intent showSingleList = new Intent(BabyScheduleMain.this, SingleEventList.class);   
     		Bundle actionBundle = new Bundle();
     		actionBundle.putString("ACTIONNAME", action.getActionName());
     		showSingleList.putExtras(actionBundle);
@@ -85,10 +89,10 @@ public class BabyScheduleMain extends ListActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
     	if( item.getItemId() == R.id.add_activity ) {
-	    	Intent showAddAction = new Intent(BabyScheduleMain.this, AddActionActivity.class);
+	    	Intent showAddAction = new Intent(BabyScheduleMain.this, EventDetailsEditor.class);
 	    	startActivity(showAddAction);
     	} else if( item.getItemId() == R.id.all_events ) {
-    		Intent showEventsList = new Intent(BabyScheduleMain.this, AllActionsList.class);
+    		Intent showEventsList = new Intent(BabyScheduleMain.this, AllEventsList.class);
     		startActivity(showEventsList);
     	}
     	return super.onOptionsItemSelected(item);

@@ -3,8 +3,7 @@
       package="fi.vincit.babyschedule"
       android:versionCode="1"
       android:versionName="1.0" >
-    <application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="true">
-    
+    <application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="true">    
         <activity android:name=".BabyScheduleMain"
                   android:label="@string/app_name">
             <intent-filter>
@@ -12,13 +11,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>        
-        <activity android:name=".SingleActionList"
+        <activity android:name=".activities.SingleEventList"
         		  android:label="@string/single_action">
 		</activity>
-		<activity android:name=".AllActionsList"
+		<activity android:name=".activities.AllEventsList"
         		  android:label="@string/events_list">
 		</activity>
-		<activity android:name=".AddActionActivity"
+		<activity android:name=".activities.EventDetailsEditor"
         		  android:label="@string/single_action">
 		</activity>
 		

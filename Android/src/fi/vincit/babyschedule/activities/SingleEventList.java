@@ -1,16 +1,18 @@
-package fi.vincit.babyschedule;
+package fi.vincit.babyschedule.activities;
 
 import java.util.Date;
+
+import fi.vincit.babyschedule.ScheduleDatabase;
 
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-public class SingleActionList extends ListActivity 
+public class SingleEventList extends ListActivity 
 						      implements View.OnClickListener {
 
-	private SingleActionListAdapter mListAdapter;
+	private SingleEventListAdapter mListAdapter;
 	private String mActionName;
 	
 	@Override
@@ -27,7 +29,7 @@ public class SingleActionList extends ListActivity
     	
     	Log.d("Babyschedule", "Single action onCreate(): action name: " + mActionName);
     	
-    	mListAdapter = new SingleActionListAdapter(ScheduleDatabase.getActionDatesForAction(mActionName));
+    	mListAdapter = new SingleEventListAdapter(ScheduleDatabase.getActionDatesForAction(mActionName));
     	setListAdapter(mListAdapter);
 	}
 	
