@@ -17,7 +17,10 @@
 		<activity android:name=".activities.AllEventsList"
         		  android:label="@string/events_list">
 		</activity>
-		<activity android:name=".activities.EventDetailsEditor"
+		<activity android:name=".activities.EventAdder"
+        		  android:label="@string/single_action">
+		</activity>
+		<activity android:name=".activities.EventEditor"
         		  android:label="@string/single_action">
 		</activity>
 		

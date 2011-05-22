@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import fi.vincit.babyschedule.BabyEvent;
 import fi.vincit.babyschedule.R;
@@ -42,7 +42,7 @@ public class AllEventsListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup group) {
-		BabyEvent action = mActionList.get(position);
+		BabyEvent action = mActionList.get(mActionList.size() - 1 - position);
 		View actionView = null;
 		
 		if(convertView == null) {
@@ -58,9 +58,9 @@ public class AllEventsListAdapter extends BaseAdapter {
 		TextView actionTime = (TextView)actionView.findViewById(R.id.ActionTime);
 		actionTime.setText("Marked at: " + action.getLastAction().toLocaleString());
 		
-		// Remember the activity for each button so that we can refer to it when the button is clicked
-		Button deleteButton = (Button)actionView.findViewById(R.id.Delete);
-		deleteButton.setTag(action.getLastAction());		
+		// Remember the activity for each item so that we can refer to it when the item is clicked
+		LinearLayout lo = (LinearLayout)actionView.findViewById(R.id.eventItem);
+		lo.setTag(action);			
 		
 		return actionView;
 	}

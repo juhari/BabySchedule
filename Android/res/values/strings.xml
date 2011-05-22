@@ -4,6 +4,7 @@
     <string name="app_name">BabySchedule</string>
     <string name="single_action">BabySchedule: single event list</string>
     <string name="add_activity">Add event</string>
+    <string name="edit_event">Edit event</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="events_list">Show all events</string>

@@ -146,7 +146,7 @@ public class ScheduleDatabase {
     	
     	Collections.sort(dateList);
     	return dateList;
-    }        
+    }           
     
     private static Date getRowTime(Cursor cursor) {	
     	String time = cursor.getString(TIME_COLUMN);

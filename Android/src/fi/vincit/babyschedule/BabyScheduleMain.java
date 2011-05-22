@@ -3,10 +3,6 @@ package fi.vincit.babyschedule;
 import java.util.ArrayList;
 import java.util.Date;
 
-import fi.vincit.babyschedule.activities.AllEventsList;
-import fi.vincit.babyschedule.activities.EventDetailsEditor;
-import fi.vincit.babyschedule.activities.SingleEventList;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +12,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import fi.vincit.babyschedule.activities.AllEventsList;
+import fi.vincit.babyschedule.activities.EventAdder;
+import fi.vincit.babyschedule.activities.SingleEventList;
 
 public class BabyScheduleMain extends ListActivity
 							  implements View.OnClickListener {		
@@ -89,7 +88,7 @@ public class BabyScheduleMain extends ListActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
     	if( item.getItemId() == R.id.add_activity ) {
-	    	Intent showAddAction = new Intent(BabyScheduleMain.this, EventDetailsEditor.class);
+	    	Intent showAddAction = new Intent(BabyScheduleMain.this, EventAdder.class);
 	    	startActivity(showAddAction);
     	} else if( item.getItemId() == R.id.all_events ) {
     		Intent showEventsList = new Intent(BabyScheduleMain.this, AllEventsList.class);

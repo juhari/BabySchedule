@@ -2,12 +2,14 @@ package fi.vincit.babyschedule.activities;
 
 import java.util.Date;
 
-import fi.vincit.babyschedule.ScheduleDatabase;
-
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import fi.vincit.babyschedule.BabyEvent;
+import fi.vincit.babyschedule.R;
+import fi.vincit.babyschedule.ScheduleDatabase;
 
 public class SingleEventList extends ListActivity 
 						      implements View.OnClickListener {
@@ -29,14 +31,26 @@ public class SingleEventList extends ListActivity
     	
     	Log.d("Babyschedule", "Single action onCreate(): action name: " + mActionName);
     	
-    	mListAdapter = new SingleEventListAdapter(ScheduleDatabase.getActionDatesForAction(mActionName));
+    	mListAdapter = new SingleEventListAdapter(ScheduleDatabase.getActionDatesForAction(mActionName), mActionName);
     	setListAdapter(mListAdapter);
 	}
 	
 	@Override
-    public void onClick(View v){
-    	ScheduleDatabase.deleteEntryBasedOnDate((Date)v.getTag());
+    public void onStart() {
+    	super.onStart();
     	mListAdapter.setDateList(ScheduleDatabase.getActionDatesForAction(mActionName));
+    }
+	
+	@Override
+    public void onClick(View v){
+		if( v.getId() == R.id.eventItem ) {
+			Intent i = new Intent(this, EventEditor.class);
+			Bundle b = new Bundle();
+			BabyEvent event = new BabyEvent(mActionName, (Date)v.getTag());
+			b.putSerializable("EVENT", event);
+			i.putExtras(b);
+			startActivity(i);
+		}
     }
 
 }

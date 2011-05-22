@@ -7,7 +7,10 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
 		android:layout_marginBottom="2px" 
-		android:layout_marginTop="2px">	
+		android:layout_marginTop="2px"
+		android:clickable="true"
+		android:id="@+id/eventItem"
+		android:onClick="onClick">	
 		<TextView
 			android:id="@+id/ActionName"
 		    android:layout_width="fill_parent"
@@ -23,5 +26,4 @@
 		    android:textSize="16sp">
 		</TextView>
 	</LinearLayout>
-	<Button android:id="@+id/Delete" android:layout_width="fill_parent" android:onClick="onClick" android:text="Delete" android:layout_height="fill_parent"></Button>
 </LinearLayout>

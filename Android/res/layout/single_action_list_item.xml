@@ -3,11 +3,14 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent" android:alwaysDrawnWithCache="false" android:baselineAligned="true" android:clipChildren="true" xmlns:android="http://schemas.android.com/apk/res/android">
 	<LinearLayout
-		android:orientation="horizontal"
+		android:orientation="vertical"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
 		android:layout_marginBottom="2px" 
-		android:layout_marginTop="2px">	
+		android:layout_marginTop="2px"
+		android:clickable="true"
+		android:onClick="onClick"
+		android:id="@+id/singleTypeEventItem">	
 		<TextView
 			android:id="@+id/ActionTime"
 			android:text="Datetime"
@@ -15,12 +18,5 @@
 		    android:layout_height="fill_parent"
 		    android:textSize="16sp">
 		</TextView>
-		<Button
-			android:id="@+id/Delete"
-			android:layout_width="fill_parent"
-		    android:layout_height="fill_parent"
-		    android:text="Delete" 
-		    android:onClick="onClick">
-	    </Button>
 	</LinearLayout>
 </LinearLayout>

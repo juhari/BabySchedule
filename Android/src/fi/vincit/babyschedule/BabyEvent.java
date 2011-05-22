@@ -50,9 +50,9 @@ public class BabyEvent implements Comparable<BabyEvent>
 		if( getLastAction().equals(another.getLastAction())) {
 			return 0;
 		} else if( getLastAction().after(another.getLastAction())) {
-			return -1;
-		} else {
 			return 1;
+		} else {
+			return -1;
 		}
 	}
 }

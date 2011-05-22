@@ -9,18 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 import fi.vincit.babyschedule.R;
 
 public class SingleEventListAdapter extends BaseAdapter {
 
 	private ArrayList<Date> mDateList;
+	private String mEventName;
 	
-	public SingleEventListAdapter(ArrayList<Date> dates) {
+	public SingleEventListAdapter(ArrayList<Date> dates, String eventName) {
 		// TODO Auto-generated constructor stub
 		Log.d("Babyschedule", "SingleActionListAdapter, dateList: " + dates);
 		mDateList = dates;
+		mEventName = eventName;
 	}
 	
 	public void setDateList(ArrayList<Date> dates) {
@@ -45,22 +46,25 @@ public class SingleEventListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup group) {
-		Date date = mDateList.get(position);
+		Date date = mDateList.get(mDateList.size() - 1 - position);
 		View dateView = null;
 		
 		if(convertView == null) {
 			LayoutInflater inflater = (LayoutInflater) group.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			dateView = inflater.inflate(R.layout.single_action_list_item, null);
+			dateView = inflater.inflate(R.layout.all_actions_list_item, null);
 		} else {
 			dateView = convertView;
 		}
 		
+		TextView actionName = (TextView)dateView.findViewById(R.id.ActionName);
+		actionName.setText(mEventName);	
+		
 		TextView dateTime = (TextView)dateView.findViewById(R.id.ActionTime);
 		dateTime.setText(date.toLocaleString());	
 		
-		// Remember the activity for each button so that we can refer to it when the button is clicked
-		Button deleteButton = (Button)dateView.findViewById(R.id.Delete);
-		deleteButton.setTag(date);		
+		View item = dateView.findViewById(R.id.eventItem);
+		item.setTag(date);
+			
 		return dateView;
 	}
 

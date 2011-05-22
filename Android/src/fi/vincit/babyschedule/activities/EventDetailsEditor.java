@@ -25,7 +25,7 @@ public class EventDetailsEditor extends Activity
 
 	private DatePicker mDatePicker;
 	private TimePicker mTimePicker;
-	private Spinner mSpinner;
+	private Spinner mSpinner;	
 	private TextView mDescription;
 	
 	@Override
@@ -62,9 +62,7 @@ public class EventDetailsEditor extends Activity
 	
 	@Override
 	public void onClick(View v) {
-		if( v.getId() == R.id.saveButton ) {
-			Date dateTime = getDateTimeFromSpinners();
-			ScheduleDatabase.insertBabyAction("Verneri", (String)mSpinner.getSelectedItem(), dateTime);			
+		if( v.getId() == R.id.saveButton ) {		
 			finish();
 		}
 		else if( v.getId() == R.id.cancelButton ) {
@@ -83,7 +81,7 @@ public class EventDetailsEditor extends Activity
 		updateDescription();		
 	}
 	
-	public void updateDescription() {
+	protected void updateDescription() {
 		Date dateTime = getDateTimeFromSpinners();
 		
 		mDescription.setText("Add event: " + 
@@ -92,7 +90,7 @@ public class EventDetailsEditor extends Activity
 						   dateTime.toLocaleString());
 	}
 	
-	public Date getDateTimeFromSpinners() {
+	protected Date getDateTimeFromSpinners() {
 		Date dateTime = new Date();
 		dateTime.setYear(mDatePicker.getYear()-1900);
 		dateTime.setMonth(mDatePicker.getMonth());
@@ -113,4 +111,37 @@ public class EventDetailsEditor extends Activity
 	public void onNothingSelected(AdapterView<?> arg0) {
 		updateDescription();		
 	}
+	
+	protected DatePicker getmDatePicker() {
+		return mDatePicker;
+	}
+
+	protected void setmDatePicker(DatePicker mDatePicker) {
+		this.mDatePicker = mDatePicker;
+	}
+
+	protected TimePicker getmTimePicker() {
+		return mTimePicker;
+	}
+
+	protected void setmTimePicker(TimePicker mTimePicker) {
+		this.mTimePicker = mTimePicker;
+	}
+
+	protected Spinner getmSpinner() {
+		return mSpinner;
+	}
+
+	protected void setmSpinner(Spinner mSpinner) {
+		this.mSpinner = mSpinner;
+	}
+
+	protected TextView getmDescription() {
+		return mDescription;
+	}
+
+	protected void setmDescription(TextView mDescription) {
+		this.mDescription = mDescription;
+	}
+
 }
