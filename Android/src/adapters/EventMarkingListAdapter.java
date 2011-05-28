@@ -1,4 +1,4 @@
-package fi.vincit.babyschedule;
+package adapters;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,16 +11,18 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import fi.vincit.babyschedule.BabyEvent;
+import fi.vincit.babyschedule.R;
 
-public class MainListAdapter extends BaseAdapter {
+public class EventMarkingListAdapter extends BaseAdapter {
 
 	private ArrayList<BabyEvent> mActivities;
 	
-	public MainListAdapter(ArrayList<BabyEvent> activities) {
+	public EventMarkingListAdapter(ArrayList<BabyEvent> activities) {
 		mActivities = activities;
 	}
 	
-	public MainListAdapter() {	
+	public EventMarkingListAdapter() {	
 	}
 	
 	public void setActionList(ArrayList<BabyEvent> actions) {

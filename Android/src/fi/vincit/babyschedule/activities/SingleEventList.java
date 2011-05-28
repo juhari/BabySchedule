@@ -2,6 +2,7 @@ package fi.vincit.babyschedule.activities;
 
 import java.util.Date;
 
+import adapters.SingleEventListAdapter;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;

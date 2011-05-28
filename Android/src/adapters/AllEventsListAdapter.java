@@ -1,4 +1,4 @@
-package fi.vincit.babyschedule.activities;
+package adapters;
 
 import java.util.ArrayList;
 
