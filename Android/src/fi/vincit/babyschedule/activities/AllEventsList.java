@@ -1,6 +1,5 @@
 package fi.vincit.babyschedule.activities;
 
-import adapters.AllEventsListAdapter;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +8,7 @@ import android.view.View;
 import fi.vincit.babyschedule.BabyEvent;
 import fi.vincit.babyschedule.R;
 import fi.vincit.babyschedule.ScheduleDatabase;
+import fi.vincit.babyschedule.adapters.AllEventsListAdapter;
 
 public class AllEventsList extends ListActivity 
 							implements View.OnClickListener {

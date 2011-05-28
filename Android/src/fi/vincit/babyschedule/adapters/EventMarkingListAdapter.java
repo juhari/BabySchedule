@@ -1,4 +1,4 @@
-package adapters;
+package fi.vincit.babyschedule.adapters;
 
 import java.util.ArrayList;
 import java.util.Date;
