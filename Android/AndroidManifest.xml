@@ -24,7 +24,7 @@
 		<activity android:name=".activities.EventAdder"
         		  android:label="@string/single_action">
 		</activity>
-		<activity android:name="activities.EventEditor"
+		<activity android:name=".activities.EventEditor"
         		  android:label="@string/single_action">
 		</activity>
 		
