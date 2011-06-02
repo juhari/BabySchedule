@@ -37,7 +37,7 @@ public class MainTabWidget extends TabActivity {
 	    // Do the same for the other tabs
 	    intent = new Intent().setClass(this, AllEventsList.class);
 	    spec = tabHost.newTabSpec("Show events").setIndicator("Show Events",
-	                      res.getDrawable(R.drawable.ic_main_tab_mark_events))
+	                      res.getDrawable(R.drawable.ic_main_tab_show_events))
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 	
