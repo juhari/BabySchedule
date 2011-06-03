@@ -78,13 +78,13 @@ public class EventMarkingList extends ListActivity
     	ArrayList<Date> toSleepDates = ScheduleDatabase.getActionDatesForAction(getResources().getString(R.string.go_to_sleep));
     	ArrayList<Date> wakeUpDates = ScheduleDatabase.getActionDatesForAction(getResources().getString(R.string.woke_up));
     	
-    	if( !toSleepDates.isEmpty() && !wakeUpDates.isEmpty() ) {
+    	if( toSleepDates.isEmpty() || wakeUpDates.isEmpty() ) {
+    		return toSleepDates.size() > wakeUpDates.size();    		
+    	}
+    	else {
     		Date latestToSleep = toSleepDates.get(toSleepDates.size()-1);
     		Date latestWakeUp = wakeUpDates.get(wakeUpDates.size()-1);    	
     		return latestToSleep.after(latestWakeUp);
-    	}
-    	else {
-    		return toSleepDates.size() > wakeUpDates.size();
     	}
     }
     

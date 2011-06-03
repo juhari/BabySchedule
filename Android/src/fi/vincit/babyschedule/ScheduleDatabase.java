@@ -24,7 +24,7 @@ public class ScheduleDatabase {
    private static final int TIME_COLUMN = 3;
    
    private static final String DATABASE_NAME = "BabySchedule";
-   private static final int DATABASE_VERSION = 3;
+   private static final int DATABASE_VERSION = 4;
    private static final String TABLE_BABY_SCHEDULE = "babyschedule";
    
    
@@ -62,6 +62,7 @@ public class ScheduleDatabase {
         @Override
         public void onCreate(SQLiteDatabase db) {
         	// Create tables
+        	Log.w("Babyschedule", "Creating database!!!");
         	db.execSQL(DATABASE_CREATE_BABY_SCHEDULE);
         };
 
