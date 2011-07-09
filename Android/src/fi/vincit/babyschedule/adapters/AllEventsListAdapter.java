@@ -56,12 +56,9 @@ public class AllEventsListAdapter extends BaseAdapter {
 		actionName.setText(action.getActionName());	
 		
 		TextView actionTime = (TextView)actionView.findViewById(R.id.ActionTime);
-		actionTime.setText("Marked at: " + action.getLastAction().toLocaleString());
+		actionTime.setText(action.getLastAction().toLocaleString());
 		
-		// Remember the activity for each item so that we can refer to it when the item is clicked
-		LinearLayout lo = (LinearLayout)actionView.findViewById(R.id.eventItem);
-		lo.setTag(action);			
-		
+		actionView.setTag(action);
 		return actionView;
 	}
 

@@ -62,8 +62,7 @@ public class SingleEventListAdapter extends BaseAdapter {
 		TextView dateTime = (TextView)dateView.findViewById(R.id.ActionTime);
 		dateTime.setText(date.toLocaleString());	
 		
-		View item = dateView.findViewById(R.id.eventItem);
-		item.setTag(date);
+		dateView.setTag(date);
 			
 		return dateView;
 	}
