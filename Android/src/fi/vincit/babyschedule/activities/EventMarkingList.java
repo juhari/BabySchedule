@@ -33,7 +33,7 @@ public class EventMarkingList extends ListActivity
     	Log.d("Babyschedule", "Main view onCreate()");
     	super.onCreate(savedInstanceState);    	    	
     	
-    	mListAdapter = new EventMarkingListAdapter();    	
+    	mListAdapter = new EventMarkingListAdapter(getBaseContext());    	
     	
     	updateMainListAdapter();    	    	
     	setListAdapter(mListAdapter);
@@ -113,10 +113,11 @@ public class EventMarkingList extends ListActivity
     private void updateMainListAdapter() {
     	String[] activityNames;
     	if( isCurrentlyAsleep() ) {
-    		setTitle(getResources().getString(R.string.app_name) + ": Baby is now asleep");
+    		// setting the title is disabled, as it is not visible within tabbed widgets
+    		//setTitle(getResources().getString(R.string.app_name) + ": Baby is now asleep");
     		activityNames = getResources().getStringArray(R.array.sleep_activities); 
     	} else {
-    		setTitle(getResources().getString(R.string.app_name) + ": Baby is now awake");
+    		//setTitle(getResources().getString(R.string.app_name) + ": Baby is now awake");
     		activityNames = getResources().getStringArray(R.array.awake_activities);
     	}    	
     	

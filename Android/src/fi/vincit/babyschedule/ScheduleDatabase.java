@@ -149,6 +149,11 @@ public class ScheduleDatabase {
     	return dateList;
     }           
     
+    public static Date getLastActionOfType(String actionName){
+    	ArrayList<Date> dates = getActionDatesForAction(actionName);
+    	return (Date) dates.get(dates.size()-1);
+    }
+    
     private static Date getRowTime(Cursor cursor) {	
     	String time = cursor.getString(TIME_COLUMN);
     	Log.i("Babyschedule", "trying to parse row time with time string: " + time);
