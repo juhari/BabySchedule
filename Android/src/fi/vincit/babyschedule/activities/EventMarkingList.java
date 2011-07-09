@@ -63,6 +63,12 @@ public class EventMarkingList extends ListActivity
     }
 
     @Override
+    public void onResume() {
+    	super.onResume();
+    	updateMainListAdapter();
+    }
+    
+    @Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 									ContextMenuInfo menuInfo) {
     	super.onCreateContextMenu(menu, v, menuInfo);
