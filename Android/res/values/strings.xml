@@ -12,6 +12,7 @@
     <string name="go_to_sleep">Go to sleep</string>
     <string name="woke_up">Woke up</string>
     <string name="delete">Delete event</string>
+    <string name="mark">Mark now</string>
     <string-array name="activity_names">
     	<item name="eat">Eat</item>
     	<item name="go_to_sleep">Go to sleep</item>

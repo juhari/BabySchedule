@@ -8,14 +8,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.ListView;
 import fi.vincit.babyschedule.BabyEvent;
 import fi.vincit.babyschedule.R;
 import fi.vincit.babyschedule.ScheduleDatabase;
 import fi.vincit.babyschedule.adapters.EventMarkingListAdapter;
 
 public class EventMarkingList extends ListActivity
-							  implements View.OnClickListener {		
+							  implements View.OnCreateContextMenuListener {		
 	
 	private EventMarkingListAdapter mListAdapter;
 	@SuppressWarnings("unused")
@@ -31,6 +37,8 @@ public class EventMarkingList extends ListActivity
     	
     	updateMainListAdapter();    	    	
     	setListAdapter(mListAdapter);
+    	
+    	registerForContextMenu(getListView());
     	
     	this.mListUpdatetimer = new CountDownTimer(60000, 60000) {
 			
@@ -55,14 +63,30 @@ public class EventMarkingList extends ListActivity
     }
 
     @Override
-    public void onClick(View v){
+	public void onCreateContextMenu(ContextMenu menu, View v,
+									ContextMenuInfo menuInfo) {
+    	super.onCreateContextMenu(menu, v, menuInfo);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.markeventscontext, menu);
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		BabyEvent action = (BabyEvent)info.targetView.getTag();	    
+    	Log.d("Babyschedule", "Clicked button" + action.getActionName());	    	
+    	ScheduleDatabase.insertBabyAction("Verneri", action.getActionName(), new Date());	    	
+    	mListAdapter.updateActivityTimeNow(action);    	    
+    	
+    	updateMainListAdapter();
+    	return true;
+	}
+    
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
     	BabyEvent action = (BabyEvent)v.getTag();
     	    	
-    	if( v.getId() == R.id.Now ) {	    
-	    	Log.d("Babyschedule", "Clicked button" + action.getActionName());	    	
-	    	ScheduleDatabase.insertBabyAction("Verneri", action.getActionName(), new Date());	    	
-	    	mListAdapter.updateActivityTimeNow(action);    	    
-    	} else if( ScheduleDatabase.getActionDatesForAction(action.getActionName()).size() > 0 ) {
+    	if( ScheduleDatabase.getActionDatesForAction(action.getActionName()).size() > 0 ) {
     		// show list of actions for the specified type
     		Intent showSingleList = new Intent(EventMarkingList.this, SingleEventList.class);   
     		Bundle actionBundle = new Bundle();
@@ -70,8 +94,6 @@ public class EventMarkingList extends ListActivity
     		showSingleList.putExtras(actionBundle);
     		startActivity(showSingleList);
     	}
-    	
-    	updateMainListAdapter();
     }
 
     public boolean isCurrentlyAsleep() {

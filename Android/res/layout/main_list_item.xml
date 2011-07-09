@@ -13,25 +13,14 @@
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
 		    android:textSize="20sp" 
-		    android:textStyle="bold"
-		    android:clickable="true"
-			android:onClick="onClick">
+		    android:textStyle="bold">
 		</TextView>
 		<TextView
 			android:id="@+id/LastActivity"
 			android:text="Last occured: \n xx h xx min ago"
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
-		    android:textSize="16sp" 
-		    android:clickable="true"
-			android:onClick="onClick">
+		    android:textSize="16sp">
 		</TextView>
-		<Button
-			android:id="@+id/Now"
-			android:layout_width="fill_parent"
-		    android:layout_height="fill_parent"
-		    android:text="Mark now" 
-		    android:onClick="onClick">
-	    </Button>
 	</LinearLayout>
 </LinearLayout>

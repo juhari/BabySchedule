@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 import fi.vincit.babyschedule.BabyEvent;
 import fi.vincit.babyschedule.R;
@@ -77,13 +76,7 @@ public class EventMarkingListAdapter extends BaseAdapter {
 			timePassed.setText("No \"" + activity.getActionName() + "\" events occurred");
 		}
 		
-		// Remember the activity for each button so that we can refer to it when the button is clicked
-		Button nowButton = (Button)activityView.findViewById(R.id.Now);
-		nowButton.setText("Mark " + activity.getActionName() + "!");
-		
-		name.setTag(activity);
-		nowButton.setTag(activity);		
-		timePassed.setTag(activity);
+		activityView.setTag(activity);
 		return activityView;
 	}
 	
