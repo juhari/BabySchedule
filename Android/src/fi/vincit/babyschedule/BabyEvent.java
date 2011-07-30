@@ -17,7 +17,7 @@ public class BabyEvent implements Comparable<BabyEvent>
 		this.actionName = name;
 		this.actions = activities;
 	}		
-	
+			
 	public BabyEvent(String name, Date actionDate) {
 		this.actionName = name;
 		this.actions = new ArrayList<Date>();
