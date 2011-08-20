@@ -79,19 +79,34 @@ public class EventMarkingList extends ListActivity
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-		BabyEvent action = (BabyEvent)info.targetView.getTag();	    
-    	Log.d("Babyschedule", "Clicked button" + action.getActionName());	    	
-    	ScheduleDatabase.insertBabyAction("Verneri", action.getActionName(), new Date());	    	
-    	mListAdapter.updateActivityTimeNow(action);    	    
-    	
-    	updateMainListAdapter();
-    	return true;
+		BabyEvent action = (BabyEvent)info.targetView.getTag();	  
+		
+		switch (item.getItemId()) {
+			case R.id.mark_activity:
+			{				  
+		    	Log.d("Babyschedule", "Clicked button" + action.getActionName());	    	
+		    	ScheduleDatabase.insertBabyAction("Verneri", action.getActionName(), new Date());	    	
+		    	mListAdapter.updateActivityTimeNow(action);    	    
+		    	
+		    	updateMainListAdapter();
+		    	return true;
+			}
+			case R.id.show_these_events:
+			{    
+		    	showSelectedEventList(action);
+		    	return true;
+			}
+			default:
+				return super.onContextItemSelected(item);
+			}
 	}
     
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-    	BabyEvent action = (BabyEvent)v.getTag();
-    	    	
+    	v.performLongClick();
+    }
+    
+    private void showSelectedEventList(BabyEvent action) {
     	if( ScheduleDatabase.getActionDatesForAction(action.getActionName()).size() > 0 ) {
     		// show list of actions for the specified type
     		Intent showSingleList = new Intent(EventMarkingList.this, SingleEventList.class);   

@@ -8,6 +8,7 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="events_list">Show all events</string>
+    <string name="show_events">Show all events of this type</string>
     <string name="add_event_prompt">Choose an event to add</string>
     <string name="go_to_sleep">Go to sleep</string>
     <string name="woke_up">Woke up</string>

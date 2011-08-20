@@ -38,7 +38,7 @@ public class AllEventsList extends ListActivity
 	
 	@Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-		openEditViewForEvent((BabyEvent)v.getTag());
+		v.performLongClick();
     }
 	
 	@Override

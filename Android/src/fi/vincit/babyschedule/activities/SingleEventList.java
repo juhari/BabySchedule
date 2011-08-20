@@ -51,8 +51,7 @@ public class SingleEventList extends ListActivity
     }
 	
     public void onListItemClick(ListView l, View v, int position, long id) {
-    	BabyEvent event = new BabyEvent(mActionName, (Date)v.getTag());
-    	openEditViewForEvent(event);
+    	v.performLongClick();
     }
 	
 	@Override
