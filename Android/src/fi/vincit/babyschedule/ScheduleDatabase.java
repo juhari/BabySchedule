@@ -24,7 +24,7 @@ public class ScheduleDatabase {
    private static final int TIME_COLUMN = 3;
    
    private static final String DATABASE_NAME = "BabySchedule";
-   private static final int DATABASE_VERSION = 4;
+   private static final int DATABASE_VERSION = 5;
    private static final String TABLE_BABY_SCHEDULE = "babyschedule";
    
    
@@ -151,7 +151,11 @@ public class ScheduleDatabase {
     
     public static Date getLastActionOfType(String actionName){
     	ArrayList<Date> dates = getActionDatesForAction(actionName);
-    	return (Date) dates.get(dates.size()-1);
+    	if( dates.size() > 0 ) {    		
+    		return (Date) dates.get(dates.size()-1);
+    	} else {
+    		return null;
+    	}
     }
     
     private static Date getRowTime(Cursor cursor) {	

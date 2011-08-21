@@ -1,6 +1,7 @@
 package fi.vincit.babyschedule.activities;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 import android.app.ListActivity;
@@ -15,17 +16,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
-import fi.vincit.babyschedule.BabyEvent;
 import fi.vincit.babyschedule.R;
 import fi.vincit.babyschedule.ScheduleDatabase;
 import fi.vincit.babyschedule.adapters.EventMarkingListAdapter;
 
 public class EventMarkingList extends ListActivity
-							  implements View.OnCreateContextMenuListener {		
+							  implements View.OnCreateContextMenuListener
+							  			,View.OnLongClickListener {		
 	
 	private EventMarkingListAdapter mListAdapter;
 	@SuppressWarnings("unused")
 	private CountDownTimer mListUpdatetimer;
+	private String mSelectedEventName = null;
 	
     /** Called when the activity is first created. */
     @Override
@@ -70,48 +72,77 @@ public class EventMarkingList extends ListActivity
     
     @Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
-									ContextMenuInfo menuInfo) {
-    	super.onCreateContextMenu(menu, v, menuInfo);
+									ContextMenuInfo menuInfo) {    	
+    	super.onCreateContextMenu(menu, v, menuInfo);    	
+    	
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.markeventscontext, menu);
+		if( mSelectedEventName.equalsIgnoreCase(getString(R.string.go_to_sleep)) ) {
+			inflater.inflate(R.menu.marksleepeventscontext, menu);
+		} else {
+			inflater.inflate(R.menu.markeventscontext, menu);
+		}		
 	}
 	
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-		BabyEvent action = (BabyEvent)info.targetView.getTag();	  
+		String actionName = (String)info.targetView.getTag();	  
 		
 		switch (item.getItemId()) {
+			case R.id.mark_nightsleep_activity:
+			{
+				eventMarkedNow(getString(R.string.go_to_sleep));	    	
+				return true;
+			}
+			case R.id.mark_nap_activity:
+			{
+				eventMarkedNow(getString(R.string.go_to_nap));	    	
+				return true;
+			}
 			case R.id.mark_activity:
 			{				  
-		    	Log.d("Babyschedule", "Clicked button" + action.getActionName());	    	
-		    	ScheduleDatabase.insertBabyAction("Verneri", action.getActionName(), new Date());	    	
-		    	mListAdapter.updateActivityTimeNow(action);    	    
-		    	
-		    	updateMainListAdapter();
+		    	eventMarkedNow(actionName);
 		    	return true;
 			}
 			case R.id.show_these_events:
 			{    
-		    	showSelectedEventList(action);
+		    	showSelectedEventList(actionName);
 		    	return true;
 			}
 			default:
 				return super.onContextItemSelected(item);
 			}
 	}
+	
+	private void eventMarkedNow(String eventName) {
+		Log.d("Babyschedule", "Marked event" + eventName);	    	
+    	ScheduleDatabase.insertBabyAction("Verneri", eventName, new Date());	    	
+    	mListAdapter.notifyDataSetChanged();     
+    	
+    	updateMainListAdapter();
+	}
     
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
+    	mSelectedEventName = (String)v.getTag();
+    	Log.d("Babyschedule", "Clicked button" + mSelectedEventName);
     	v.performLongClick();
     }
     
-    private void showSelectedEventList(BabyEvent action) {
-    	if( ScheduleDatabase.getActionDatesForAction(action.getActionName()).size() > 0 ) {
+	@Override
+	public boolean onLongClick(View v) {
+		// consume long clicks, so that we'll just get the clicks to list items
+		// For some reason, the v.performLongClick in onListItemClick will still
+		// bring up the context menu
+		return true;
+	}
+    
+    private void showSelectedEventList(String actionName) {
+    	if( ScheduleDatabase.getActionDatesForAction(actionName).size() > 0 ) {
     		// show list of actions for the specified type
     		Intent showSingleList = new Intent(EventMarkingList.this, SingleEventList.class);   
     		Bundle actionBundle = new Bundle();
-    		actionBundle.putString("ACTIONNAME", action.getActionName());
+    		actionBundle.putString("ACTIONNAME", actionName);
     		showSingleList.putExtras(actionBundle);
     		startActivity(showSingleList);
     	}
@@ -119,7 +150,10 @@ public class EventMarkingList extends ListActivity
 
     public boolean isCurrentlyAsleep() {
     	ArrayList<Date> toSleepDates = ScheduleDatabase.getActionDatesForAction(getResources().getString(R.string.go_to_sleep));
+    	toSleepDates.addAll(ScheduleDatabase.getActionDatesForAction(getResources().getString(R.string.go_to_nap)));
     	ArrayList<Date> wakeUpDates = ScheduleDatabase.getActionDatesForAction(getResources().getString(R.string.woke_up));
+    	
+    	Collections.sort(toSleepDates);
     	
     	if( toSleepDates.isEmpty() || wakeUpDates.isEmpty() ) {
     		return toSleepDates.size() > wakeUpDates.size();    		
@@ -142,6 +176,6 @@ public class EventMarkingList extends ListActivity
     		activityNames = getResources().getStringArray(R.array.awake_activities);
     	}    	
     	
-    	mListAdapter.setActionList(ScheduleDatabase.getAllBabyActions(activityNames));    	    	
+    	mListAdapter.setActionList(activityNames);    	    	
     }
 }

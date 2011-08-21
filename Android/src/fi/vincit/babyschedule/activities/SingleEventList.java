@@ -1,5 +1,7 @@
 package fi.vincit.babyschedule.activities;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 import android.app.ListActivity;
@@ -11,8 +13,8 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.ListView;
 import fi.vincit.babyschedule.BabyEvent;
 import fi.vincit.babyschedule.R;
 import fi.vincit.babyschedule.ScheduleDatabase;
@@ -38,7 +40,7 @@ public class SingleEventList extends ListActivity
     	
     	Log.d("Babyschedule", "Single action onCreate(): action name: " + mActionName);
     	
-    	mListAdapter = new SingleEventListAdapter(ScheduleDatabase.getActionDatesForAction(mActionName), mActionName);
+    	mListAdapter = new SingleEventListAdapter(getMyActionDates(), mActionName);
     	setListAdapter(mListAdapter);
     	
     	registerForContextMenu(getListView());
@@ -47,8 +49,19 @@ public class SingleEventList extends ListActivity
 	@Override
     public void onStart() {
     	super.onStart();
-    	mListAdapter.setDateList(ScheduleDatabase.getActionDatesForAction(mActionName));
+    	mListAdapter.setDateList(getMyActionDates());
     }
+	
+	private ArrayList<Date> getMyActionDates() {
+		if( mActionName == getString(R.string.go_to_sleep) ){
+    		ArrayList<Date> dates = ScheduleDatabase.getActionDatesForAction(mActionName);
+    		dates.addAll(ScheduleDatabase.getActionDatesForAction(getString(R.string.go_to_nap)));
+    		Collections.sort(dates);
+    		return dates;
+    	} else {
+    		return ScheduleDatabase.getActionDatesForAction(mActionName);
+    	}
+	}
 	
     public void onListItemClick(ListView l, View v, int position, long id) {
     	v.performLongClick();

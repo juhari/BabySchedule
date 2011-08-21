@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  	<item android:id="@+id/mark_nightsleep_activity"
+  		  android:title="@string/mark_nightsleep" />
+  	<item android:id="@+id/mark_nap_activity"
+  		  android:title="@string/mark_nap" />
+	<item android:id="@+id/show_these_events"
+		  android:title="@string/show_events" />
+</menu>

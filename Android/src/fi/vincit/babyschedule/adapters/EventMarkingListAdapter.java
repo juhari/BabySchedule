@@ -1,6 +1,5 @@
 package fi.vincit.babyschedule.adapters;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import android.content.Context;
@@ -9,17 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import fi.vincit.babyschedule.BabyEvent;
 import fi.vincit.babyschedule.R;
 import fi.vincit.babyschedule.ScheduleDatabase;
 
 public class EventMarkingListAdapter extends BaseAdapter {
 
-	private ArrayList<BabyEvent> mActivities;
+	private String[] mActivityNames;
 	private Context mContext;
 	
-	public EventMarkingListAdapter(ArrayList<BabyEvent> activities, Context context) {
-		mActivities = activities;
+	public EventMarkingListAdapter(String[] activities, Context context) {
+		mActivityNames = activities;
 		mContext = context;
 	}
 	
@@ -27,17 +25,17 @@ public class EventMarkingListAdapter extends BaseAdapter {
 		mContext = context;
 	}
 	
-	public void setActionList(ArrayList<BabyEvent> actions) {
-		mActivities = actions;
+	public void setActionList(String[] actions) {
+		mActivityNames = actions;
 		notifyDataSetChanged();
 	}
 	
 	public int getCount() {
-		return mActivities.size();
+		return mActivityNames.length;
 	}
 
 	public Object getItem(int arg0) {
-		return mActivities.get(arg0);
+		return mActivityNames[arg0];
 	}
 
 	public long getItemId(int arg0) {
@@ -45,7 +43,7 @@ public class EventMarkingListAdapter extends BaseAdapter {
 	}
 
 	public View getView(int position, View convertView, ViewGroup group) {			
-		BabyEvent activity = mActivities.get(position);
+		String activityName = mActivityNames[position];
 		View activityView = null;
 		
 		if(convertView == null) {
@@ -56,29 +54,29 @@ public class EventMarkingListAdapter extends BaseAdapter {
 		}
 		
 		TextView name = (TextView)activityView.findViewById(R.id.ActivityName);
-		name.setText(activity.getActionName());	
+		name.setText(activityName);	
 		TextView timePassed = (TextView)activityView.findViewById(R.id.LastActivity);
 		
-		if(activity.getActionName().equalsIgnoreCase(mContext.getString(R.string.go_to_sleep)) ) {
+		if(activityName.equalsIgnoreCase(mContext.getString(R.string.go_to_sleep))) {
 			timePassed.setText(getFormattedTimeTextForGotToSleepEvent());
-		} else if( activity.getActionName().equalsIgnoreCase(mContext.getString(R.string.woke_up)) ) {
+		} else if( activityName.equalsIgnoreCase(mContext.getString(R.string.woke_up)) ) {
 			timePassed.setText(getFormattedTimeTextForWokeUpEvent());
 		} else {
-			timePassed.setText(getFormattedTimeTextForNormalEvent(activity));
+			timePassed.setText(getFormattedTimeTextForNormalEvent(activityName));
 		}
 		
-		activityView.setTag(activity);
+		activityView.setTag(activityName);
 		return activityView;
 	}
 	
-	private String getFormattedTimeTextForNormalEvent(BabyEvent event) {
-		Date date = event.getLastAction();
+	private String getFormattedTimeTextForNormalEvent(String eventName) {
+		Date date = ScheduleDatabase.getLastActionOfType(eventName);
 		if( date != null ) {	
 			String time = "Last occurred at: " + date.toLocaleString() + "\n";								
 			String timeDiff = getTimeDiffFromDate(date);				
 			return time + timeDiff + " ago";
 		} else {
-			return "No \"" + event.getActionName() + "\" events occurred";
+			return "No \"" + eventName + "\" events occurred";
 		}
 	}
 	
@@ -94,10 +92,14 @@ public class EventMarkingListAdapter extends BaseAdapter {
 	}
 	
 	private String getFormattedTimeTextForWokeUpEvent() {
-		Date lastWokeUp = ScheduleDatabase.getLastActionOfType(mContext.getString(R.string.go_to_sleep));
-		if( lastWokeUp != null ){
+		Date lastFellAsleep = ScheduleDatabase.getLastActionOfType(mContext.getString(R.string.go_to_sleep));
+		Date lastNap = ScheduleDatabase.getLastActionOfType(mContext.getString(R.string.go_to_nap));
+		if( lastNap != null && (lastFellAsleep == null || lastNap.after(lastFellAsleep)) ) {
+			lastFellAsleep = lastNap;
+		}
+		if( lastFellAsleep != null ){
 			String time = "Baby has now been sleeping for \n";
-			String timeDiff = getTimeDiffFromDate(lastWokeUp);
+			String timeDiff = getTimeDiffFromDate(lastFellAsleep);
 			return time + timeDiff;
 		} else {
 			return "Baby is now sleeping, no previous awake events marked.";
@@ -115,11 +117,4 @@ public class EventMarkingListAdapter extends BaseAdapter {
 						  " minutes";	
 		return timeDiff;
 	}
-	
-	public void updateActivityTimeNow(BabyEvent activity)
-	{
-		activity.addActionNow();
-		notifyDataSetChanged();
-	}
-
 }
