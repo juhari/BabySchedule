@@ -1,5 +1,7 @@
 package fi.vincit.babyschedule.activities;
 
+import utils.BabyEvent;
+import utils.ScheduleDatabase;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
-import fi.vincit.babyschedule.BabyEvent;
 import fi.vincit.babyschedule.R;
-import fi.vincit.babyschedule.ScheduleDatabase;
 import fi.vincit.babyschedule.adapters.AllEventsListAdapter;
 
 public class AllEventsList extends ListActivity 

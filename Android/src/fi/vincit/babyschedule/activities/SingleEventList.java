@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
+import utils.BabyEvent;
+import utils.ScheduleDatabase;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
-import fi.vincit.babyschedule.BabyEvent;
 import fi.vincit.babyschedule.R;
-import fi.vincit.babyschedule.ScheduleDatabase;
 import fi.vincit.babyschedule.adapters.SingleEventListAdapter;
 
 public class SingleEventList extends ListActivity 

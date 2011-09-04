@@ -2,13 +2,14 @@ package fi.vincit.babyschedule.adapters;
 
 import java.util.ArrayList;
 
+import utils.BabyEvent;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import fi.vincit.babyschedule.BabyEvent;
 import fi.vincit.babyschedule.R;
 
 public class AllEventsListAdapter extends BaseAdapter {

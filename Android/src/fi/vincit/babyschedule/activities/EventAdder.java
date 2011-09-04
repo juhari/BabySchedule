@@ -2,9 +2,10 @@ package fi.vincit.babyschedule.activities;
 
 import java.util.Date;
 
+import utils.ScheduleDatabase;
+
 import android.view.View;
 import fi.vincit.babyschedule.R;
-import fi.vincit.babyschedule.ScheduleDatabase;
 
 public class EventAdder extends EventDetailsEditor {
 

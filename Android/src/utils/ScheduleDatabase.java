@@ -1,4 +1,4 @@
-package fi.vincit.babyschedule;
+package utils;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -13,6 +13,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import fi.vincit.babyschedule.R;
 
 public class ScheduleDatabase {
    

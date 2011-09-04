@@ -1,4 +1,4 @@
-package fi.vincit.babyschedule;
+package utils;
 
 import java.io.Serializable;
 import java.util.ArrayList;

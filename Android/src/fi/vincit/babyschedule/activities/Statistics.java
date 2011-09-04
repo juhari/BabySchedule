@@ -3,13 +3,14 @@ package fi.vincit.babyschedule.activities;
 import java.util.ArrayList;
 import java.util.Date;
 
+import utils.ConsumedTime;
+import utils.ScheduleDatabase;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
-import fi.vincit.babyschedule.ConsumedTime;
 import fi.vincit.babyschedule.R;
-import fi.vincit.babyschedule.ScheduleDatabase;
 
 public class Statistics extends Activity {
 			

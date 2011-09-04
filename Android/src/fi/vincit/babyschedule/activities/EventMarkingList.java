@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
+import utils.ScheduleDatabase;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +19,6 @@ import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
 import fi.vincit.babyschedule.R;
-import fi.vincit.babyschedule.ScheduleDatabase;
 import fi.vincit.babyschedule.adapters.EventMarkingListAdapter;
 
 public class EventMarkingList extends ListActivity
