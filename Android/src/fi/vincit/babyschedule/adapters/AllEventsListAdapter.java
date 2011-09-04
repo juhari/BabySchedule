@@ -56,7 +56,7 @@ public class AllEventsListAdapter extends BaseAdapter {
 		actionName.setText(action.getActionName());	
 		
 		TextView actionTime = (TextView)actionView.findViewById(R.id.ActionTime);
-		actionTime.setText(action.getLastAction().toLocaleString());
+		actionTime.setText(action.getActionDate().toLocaleString());
 		
 		actionView.setTag(action);
 		return actionView;

@@ -121,9 +121,11 @@ public class ScheduleDatabase {
     	ArrayList<BabyEvent> activityList = new ArrayList<BabyEvent>();
     	for( String activityName : actionNames ) {
     		ArrayList<Date> currentActivityDates = getActionDatesForAction(activityName);
-    		BabyEvent currentActivity = new BabyEvent(activityName, currentActivityDates);
-    		Log.i("Babyschedule", "Added baby activity: " + activityName + ":\n" + currentActivityDates);
-    		activityList.add(currentActivity);
+    		for( Date actionDate : currentActivityDates ) {
+    			BabyEvent currentActivity = new BabyEvent(activityName, actionDate);
+    			Log.i("Babyschedule", "Added baby activity: " + activityName + ":\n" + currentActivityDates);
+    			activityList.add(currentActivity);
+    		}
     	}
     	    	    	
 		return activityList;    	

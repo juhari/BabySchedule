@@ -16,6 +16,10 @@ import fi.vincit.babyschedule.activities.Statistics;
 
 public class MainTabWidget extends TabActivity {
 	
+	public static class StaticResources {
+	    public static Resources res;
+	}
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		ScheduleDatabase.open(getApplicationContext());
@@ -23,6 +27,7 @@ public class MainTabWidget extends TabActivity {
 	    setContentView(R.layout.main);
 	
 	    Resources res = getResources(); // Resource object to get Drawables
+	    StaticResources.res = res;
 	    TabHost tabHost = getTabHost();  // The activity TabHost
 	    TabHost.TabSpec spec;  // Resusable TabSpec for each tab
 	    Intent intent;  // Reusable Intent for each tab

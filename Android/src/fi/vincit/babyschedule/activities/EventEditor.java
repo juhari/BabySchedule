@@ -26,12 +26,12 @@ public class EventEditor extends EventDetailsEditor {
     	
     	Log.d("Babyschedule", "Editing event: " + mEvent.getActionName());
     	
-    	getmDatePicker().updateDate(mEvent.getLastAction().getYear() + 1900, 
-    						  		mEvent.getLastAction().getMonth(), 
-						  			mEvent.getLastAction().getDate());
+    	getmDatePicker().updateDate(mEvent.getActionDate().getYear() + 1900, 
+    						  		mEvent.getActionDate().getMonth(), 
+						  			mEvent.getActionDate().getDate());
     	
-    	getmTimePicker().setCurrentHour(mEvent.getLastAction().getHours());
-    	getmTimePicker().setCurrentMinute(mEvent.getLastAction().getMinutes());
+    	getmTimePicker().setCurrentHour(mEvent.getActionDate().getHours());
+    	getmTimePicker().setCurrentMinute(mEvent.getActionDate().getMinutes());
     	
     	String[] activityNames = getResources().getStringArray(R.array.activity_names); 
     	int correctPosition = 0;
@@ -54,7 +54,7 @@ public class EventEditor extends EventDetailsEditor {
 		if( v.getId() == R.id.saveButton ) {			
 			Date dateTime = getDateTimeFromSpinners();
 			ScheduleDatabase.insertBabyAction("Verneri", (String)getmSpinner().getSelectedItem(), dateTime);
-			ScheduleDatabase.deleteEntryBasedOnDate(mEvent.getLastAction());
+			ScheduleDatabase.deleteEntryBasedOnDate(mEvent.getActionDate());
 			finish();
 		}
 		else if( v.getId() == R.id.cancelButton ) {

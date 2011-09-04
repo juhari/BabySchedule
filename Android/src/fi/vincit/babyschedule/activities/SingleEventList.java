@@ -82,7 +82,7 @@ public class SingleEventList extends ListActivity
 		BabyEvent event = new BabyEvent(mActionName, (Date)info.targetView.getTag());
 		switch (item.getItemId()) {
 		case R.id.delete_activity:			
-			ScheduleDatabase.deleteEntryBasedOnDate(event.getLastAction());
+			ScheduleDatabase.deleteEntryBasedOnDate(event.getActionDate());
 			mListAdapter.setDateList(ScheduleDatabase.getActionDatesForAction(mActionName));
 			return true;
 		case R.id.edit_activity:

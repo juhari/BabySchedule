@@ -67,7 +67,7 @@ public class AllEventsList extends ListActivity
 		BabyEvent event = (BabyEvent)info.targetView.getTag();
 		switch (item.getItemId()) {
 		case R.id.delete_activity:			
-			ScheduleDatabase.deleteEntryBasedOnDate(event.getLastAction());
+			ScheduleDatabase.deleteEntryBasedOnDate(event.getActionDate());
 			mListAdapter.setActionsList(ScheduleDatabase.getAllDbActionsSortedByDate());
 			return true;
 		case R.id.edit_activity:
