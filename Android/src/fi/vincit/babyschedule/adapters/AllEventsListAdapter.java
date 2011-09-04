@@ -3,26 +3,45 @@ package fi.vincit.babyschedule.adapters;
 import java.util.ArrayList;
 
 import utils.BabyEvent;
-
+import utils.ConsumedTime;
+import utils.ScheduleDatabase;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import fi.vincit.babyschedule.MainTabWidget;
 import fi.vincit.babyschedule.R;
 
 public class AllEventsListAdapter extends BaseAdapter {
 
 	private ArrayList<BabyEvent> mActionList;
+	private String mSleepString;
+	private String mNapString;
+	private String mWokeUpString;
 	
 	public AllEventsListAdapter(ArrayList<BabyEvent> actions) {		
 		mActionList = actions;
+		removeWokeUps();
+		
+		mNapString = MainTabWidget.StaticResources.res.getString(R.string.go_to_nap);
+		mSleepString = MainTabWidget.StaticResources.res.getString(R.string.go_to_sleep);
+		mWokeUpString = MainTabWidget.StaticResources.res.getString(R.string.woke_up);
 	}
 	
 	public void setActionsList(ArrayList<BabyEvent> actions) {
 		mActionList = actions;
+		removeWokeUps();
 		notifyDataSetChanged();
+	}
+	
+	private void removeWokeUps() {
+		for( int i = 0; i < mActionList.size(); i++ ) {
+			if(mActionList.get(i).getActionName().equals(mWokeUpString) ) {
+				mActionList.remove(i);
+			}
+		}
 	}
 	
 	@Override
@@ -56,10 +75,23 @@ public class AllEventsListAdapter extends BaseAdapter {
 		actionName.setText(action.getActionName());	
 		
 		TextView actionTime = (TextView)actionView.findViewById(R.id.ActionTime);
-		actionTime.setText(action.getActionDate().toLocaleString());
+		if( action.getActionName().equals(mNapString) || action.getActionName().equals(mSleepString) ) {
+			actionTime.setText(getTimeTextForSleepOrNap(action));
+		} else {			
+			actionTime.setText(action.getActionDate().toLocaleString());
+		}
 		
 		actionView.setTag(action);
 		return actionView;
+	}
+	
+	private String getTimeTextForSleepOrNap(BabyEvent event) {
+		ConsumedTime duration = ScheduleDatabase.getDurationOfSleepStartedAt(event.getActionDate());
+		if( duration != null ) {
+			return (event.getActionDate().toLocaleString() + "\nDuration: " + duration.toString());
+		} else {
+			return (event.getActionDate().toLocaleString());
+		}
 	}
 
 }

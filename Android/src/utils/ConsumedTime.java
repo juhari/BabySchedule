@@ -40,7 +40,13 @@ public class ConsumedTime {
 	}
 	
 	public String toString() {
-		return this.getDays() + " days, " + this.getHours() + " hours, " + this.getMinutes() + " minutes";
+		if( this.getDays() > 0 ) {
+			return this.getDays() + " days, " + this.getHours() + " hours, " + this.getMinutes() + " minutes";
+		} else if( this.getHours() > 0 ) {
+			return this.getHours() + " hours, " + this.getMinutes() + " minutes";
+		} else {
+			return this.getMinutes() + " minutes";
+		}
 	}
 	
 	public long getDays() {
