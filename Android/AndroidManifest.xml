@@ -27,6 +27,9 @@
 		<activity android:name=".activities.EventEditor"
         		  android:label="@string/single_action">
 		</activity>
+		<activity android:name=".activities.Statistics"
+        		  android:label="@string/show_stats">
+		</activity>
 		
     </application>
 </manifest>

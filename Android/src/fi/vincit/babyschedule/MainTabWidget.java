@@ -11,6 +11,7 @@ import android.widget.TabHost;
 import fi.vincit.babyschedule.activities.AllEventsList;
 import fi.vincit.babyschedule.activities.EventAdder;
 import fi.vincit.babyschedule.activities.EventMarkingList;
+import fi.vincit.babyschedule.activities.Statistics;
 
 public class MainTabWidget extends TabActivity {
 	
@@ -55,6 +56,9 @@ public class MainTabWidget extends TabActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
     	if( item.getItemId() == R.id.add_activity ) {
 	    	Intent showAddAction = new Intent(this, EventAdder.class);
+	    	startActivity(showAddAction);
+    	} else if( item.getItemId() == R.id.show_statistics ) {
+    		Intent showAddAction = new Intent(this, Statistics.class);
 	    	startActivity(showAddAction);
     	}
     	return super.onOptionsItemSelected(item);

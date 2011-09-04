@@ -101,6 +101,21 @@ public class ScheduleDatabase {
     	Log.i("Babyschedule", "found " + deleted + " rows to be deleted in db.");						  
     }
     
+    public static BabyEvent getEventBasedOnDate(Date date) {
+    	String dateString = date.toLocaleString();
+    	BabyEvent event = null;
+    	Cursor cursor = mDb.query(TABLE_BABY_SCHEDULE, 
+				  new String[] {"_id", "babyname", "activityname", "time"}, 
+				  "time = '" + dateString + "'", 
+				  null, null, null, null);
+    	
+    	if( cursor.moveToFirst() ) {
+    		event = new BabyEvent(getRowActionName(cursor), getRowTime(cursor));
+    	} 
+    	
+    	return event;
+    }
+    
     public static ArrayList<BabyEvent> getAllBabyActions(String[] actionNames) {   
     	ArrayList<BabyEvent> activityList = new ArrayList<BabyEvent>();
     	for( String activityName : actionNames ) {
@@ -156,6 +171,30 @@ public class ScheduleDatabase {
     	} else {
     		return null;
     	}
+    }
+            
+    public static ConsumedTime getDurationOfSleepStartedAt(Date sleepStartTime) {
+    	Date wakeUpDate = getWakeUpDateFromSleepDate(sleepStartTime);
+    	if( wakeUpDate == null ) {
+    		return null;
+    		//wakeUpDate = new Date();
+    	}
+    	BabyEvent sleepOrNapEvent = getEventBasedOnDate(sleepStartTime);
+		assert(sleepOrNapEvent != null);
+    	
+		return new ConsumedTime(wakeUpDate, sleepStartTime);
+    }
+    
+    public static Date getWakeUpDateFromSleepDate(Date sleepStartDate) {
+    	ArrayList<Date> dates = getActionDatesForAction(mCtx.getString(R.string.woke_up));
+    	
+    	for( Date current : dates ) {
+    		if( current.after(sleepStartDate) ) {
+    			return current;
+    		}
+    	}
+    	
+    	return null;
     }
     
     private static Date getRowTime(Cursor cursor) {	

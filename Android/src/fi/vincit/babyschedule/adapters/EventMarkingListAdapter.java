@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import fi.vincit.babyschedule.ConsumedTime;
 import fi.vincit.babyschedule.R;
 import fi.vincit.babyschedule.ScheduleDatabase;
 
@@ -107,14 +108,7 @@ public class EventMarkingListAdapter extends BaseAdapter {
 	}
 	
 	private String getTimeDiffFromDate(Date oldDate) {
-		Date current = new Date();
-		long diff = current.getTime() - oldDate.getTime();
-		long diffInMinutes = (diff/(1000*60)) % 60;
-		long diffInHours = (diff/(1000*3600)) % 24;
-		long diffInDays = (diff/(1000*3600*24));
-											
-		String timeDiff = "" + diffInDays + " days, " + diffInHours + " hours, " + diffInMinutes +
-						  " minutes";	
-		return timeDiff;
+		ConsumedTime timeDiff = new ConsumedTime(new Date(), oldDate);	
+		return timeDiff.toString();
 	}
 }
