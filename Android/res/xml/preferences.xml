@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory android:title="@string/choose_baby">
+  <ListPreference
+      android:title="@string/babynames"
+      android:summary="@string/choose_baby_summary"
+      android:key="chooseList" />
+  
+  </PreferenceCategory>
+    
+</PreferenceScreen>

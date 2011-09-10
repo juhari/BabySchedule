@@ -19,7 +19,6 @@ public class ScheduleDatabase {
    private static final String DATABASE_CREATE_BABY_NAMES = "create table babynames (_id integer primary key autoincrement, babyname text not null );";
    private static final String DATABASE_CREATE_BABY_SCHEDULE = "(_id integer primary key autoincrement, babyname text not null, activityname text not null, time text not null );";
    
-   @SuppressWarnings("unused")
    private static final int BABY_NAME_COLUMN = 1;
    private static final int ACTIVITY_NAME_COLUMN = 2;
    private static final int TIME_COLUMN = 3;

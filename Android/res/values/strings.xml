@@ -18,6 +18,10 @@
     <string name="mark">Mark now</string>
     <string name="mark_nightsleep">Mark night sleep now</string>
     <string name="mark_nap">Mark nap now</string>
+    <string name="choose_baby">Choose baby</string>
+    <string name="settings">Settings</string>
+    <string name="babynames">Baby names</string>
+    <string name="choose_baby_summary">Choose for which baby to mark events for</string>
     <string-array name="activity_names">
     	<item name="eat">Eat</item>
     	<item name="go_to_sleep">Go to sleep</item>

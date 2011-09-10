@@ -12,6 +12,7 @@ import android.widget.TabHost;
 import fi.vincit.babyschedule.activities.AllEventsList;
 import fi.vincit.babyschedule.activities.EventAdder;
 import fi.vincit.babyschedule.activities.EventMarkingList;
+import fi.vincit.babyschedule.activities.Settings;
 import fi.vincit.babyschedule.activities.Statistics;
 
 public class MainTabWidget extends TabActivity {
@@ -67,6 +68,9 @@ public class MainTabWidget extends TabActivity {
     	} else if( item.getItemId() == R.id.show_statistics ) {
     		Intent showAddAction = new Intent(this, Statistics.class);
 	    	startActivity(showAddAction);
+    	} else if( item.getItemId() == R.id.show_settings ) {
+    		Intent showSettingsAction = new Intent(this, Settings.class);
+    		startActivity(showSettingsAction);
     	}
     	return super.onOptionsItemSelected(item);
     }
