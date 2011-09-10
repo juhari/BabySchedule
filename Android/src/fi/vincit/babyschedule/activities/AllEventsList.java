@@ -1,5 +1,7 @@
 package fi.vincit.babyschedule.activities;
 
+import java.util.Date;
+
 import utils.BabyEvent;
 import utils.ScheduleDatabase;
 import android.app.ListActivity;
@@ -68,6 +70,11 @@ public class AllEventsList extends ListActivity
 		switch (item.getItemId()) {
 		case R.id.delete_activity:			
 			ScheduleDatabase.deleteEntryBasedOnDate(event.getActionDate());
+			if( event.getActionName().equals(getString(R.string.go_to_nap)) ||
+				event.getActionName().equals(getString(R.string.go_to_nap)) ) {
+				Date wokeupDate = ScheduleDatabase.getWakeUpDateFromSleepDate(event.getActionDate());
+				ScheduleDatabase.deleteEntryBasedOnDate(wokeupDate);
+			}
 			mListAdapter.setActionsList(ScheduleDatabase.getAllDbActionsSortedByDate());
 			return true;
 		case R.id.edit_activity:
