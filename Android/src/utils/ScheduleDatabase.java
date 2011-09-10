@@ -16,8 +16,8 @@ import android.util.Log;
 import fi.vincit.babyschedule.R;
 
 public class ScheduleDatabase {
-   
-   private static final String DATABASE_CREATE_BABY_SCHEDULE = "create table babyschedule (_id integer primary key autoincrement, babyname text not null, activityname text not null, time text not null );";
+   private static final String DATABASE_CREATE_BABY_NAMES = "create table babynames (_id integer primary key autoincrement, babyname text not null );";
+   private static final String DATABASE_CREATE_BABY_SCHEDULE = "(_id integer primary key autoincrement, babyname text not null, activityname text not null, time text not null );";
    
    @SuppressWarnings("unused")
    private static final int BABY_NAME_COLUMN = 1;
@@ -25,8 +25,8 @@ public class ScheduleDatabase {
    private static final int TIME_COLUMN = 3;
    
    private static final String DATABASE_NAME = "BabySchedule";
-   private static final int DATABASE_VERSION = 5;
-   private static final String TABLE_BABY_SCHEDULE = "babyschedule";
+   private static final int DATABASE_VERSION = 6;
+   private static final String TABLE_BABY_NAMES = "babynames";
    
    
    private static Context mCtx = null;
@@ -64,18 +64,45 @@ public class ScheduleDatabase {
         public void onCreate(SQLiteDatabase db) {
         	// Create tables
         	Log.w("Babyschedule", "Creating database!!!");
-        	db.execSQL(DATABASE_CREATE_BABY_SCHEDULE);
+        	db.execSQL(DATABASE_CREATE_BABY_NAMES);
         };
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w("Babyschedule", "Upgrading database from version " + oldVersion + " to "
-                    + newVersion + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS babyschedule");
-            onCreate(db);
+                    + newVersion);
+            db.execSQL("DROP TABLE IF EXISTS babynames");
+            db.execSQL(DATABASE_CREATE_BABY_NAMES);
+            db.execSQL("ALTER TABLE babyschedule RENAME TO verneri;");
         }
     }
 	   
+	public static ArrayList<String> getBabyNames() {
+		Log.w("Babyschedule", "getBabyNames()");
+		ArrayList<String> nameList = new ArrayList<String>();
+    	Cursor names = mDb.query(TABLE_BABY_NAMES, new String[] {"_id", "babyname"},  null, null, null, null, null);
+    	
+    	if( names.moveToFirst() ) {
+	    	while( !names.isAfterLast() ) {
+	    		Log.w("Babyschedule", "getBabyNames(): " + names.getString(BABY_NAME_COLUMN));
+	    		nameList.add(names.getString(BABY_NAME_COLUMN));	    				
+	    		names.moveToNext();
+	    	}
+    	}
+    	return nameList;
+	}
+	
+	public static void addNewBaby(String babyName) {
+		Cursor nameCursor = mDb.query(TABLE_BABY_NAMES, new String[] {"_id", "babyname"}, 
+										"babyname = '" + babyName + "'", null, null, null, null);
+		if( nameCursor.getCount() == 0 ) {
+			ContentValues values = new ContentValues();
+			values.put("babyname", babyName);
+			mDb.insert(TABLE_BABY_NAMES, null, values);
+			mDb.execSQL("create table " + babyName + " " + DATABASE_CREATE_BABY_SCHEDULE);
+		}
+	}
+	
     public static long insertBabyAction(String babyName, String actionname, Date time) {
     	Log.i("Babyschedule", "creating baby schedule to with activity name: " + actionname);
         ContentValues values = new ContentValues();
@@ -83,29 +110,29 @@ public class ScheduleDatabase {
         values.put("activityname", actionname);
         values.put("time", time.toLocaleString());
         
-        return mDb.insert(TABLE_BABY_SCHEDULE, null, values);
+        return mDb.insert(babyName, null, values);
     }	     
     
-    public static Cursor fetchEntireTable(){
-    	return mDb.query(TABLE_BABY_SCHEDULE, new String[] {"_id", "babyname", "activityname", "time"},  null, null, null, null, null);
+    public static Cursor fetchEntireTable(String tableName){
+    	return mDb.query(tableName, new String[] {"_id", "babyname", "activityname", "time"},  null, null, null, null, null);
     }   
     
-    public static void removeFromDb(Cursor cursor) {
-    	int amountDeleted = mDb.delete(TABLE_BABY_SCHEDULE, ""+cursor.getPosition(), null);
+    public static void removeFromDb(String tableName, Cursor cursor) {
+    	int amountDeleted = mDb.delete(tableName, ""+cursor.getPosition(), null);
     	Log.i("Babyschedule", "Deleted " + amountDeleted + " rows from db.");
     }        
     
-    public static void deleteEntryBasedOnDate(Date date) {
+    public static void deleteEntryBasedOnDate(String babyName, Date date) {
     	String dateString = date.toLocaleString();
-    	int deleted = mDb.delete(TABLE_BABY_SCHEDULE, "time = '" + dateString + "'", null);
+    	int deleted = mDb.delete(babyName, "time = '" + dateString + "'", null);
   
     	Log.i("Babyschedule", "found " + deleted + " rows to be deleted in db.");						  
     }
     
-    public static BabyEvent getEventBasedOnDate(Date date) {
+    public static BabyEvent getEventBasedOnDate(String babyName, Date date) {
     	String dateString = date.toLocaleString();
     	BabyEvent event = null;
-    	Cursor cursor = mDb.query(TABLE_BABY_SCHEDULE, 
+    	Cursor cursor = mDb.query(babyName, 
 				  new String[] {"_id", "babyname", "activityname", "time"}, 
 				  "time = '" + dateString + "'", 
 				  null, null, null, null);
@@ -117,10 +144,10 @@ public class ScheduleDatabase {
     	return event;
     }
     
-    public static ArrayList<BabyEvent> getAllBabyActions(String[] actionNames) {   
+    public static ArrayList<BabyEvent> getAllBabyActions(String babyName, String[] actionNames) {   
     	ArrayList<BabyEvent> activityList = new ArrayList<BabyEvent>();
     	for( String activityName : actionNames ) {
-    		ArrayList<Date> currentActivityDates = getActionDatesForAction(activityName);
+    		ArrayList<Date> currentActivityDates = getActionDatesForAction(babyName, activityName);
     		for( Date actionDate : currentActivityDates ) {
     			BabyEvent currentActivity = new BabyEvent(activityName, actionDate);
     			Log.i("Babyschedule", "Added baby activity: " + activityName + ":\n" + currentActivityDates);
@@ -131,8 +158,8 @@ public class ScheduleDatabase {
 		return activityList;    	
     }
     
-    public static ArrayList<BabyEvent> getAllDbActionsSortedByDate() {
-    	Cursor everything = fetchEntireTable();
+    public static ArrayList<BabyEvent> getAllDbActionsSortedByDate(String babyName) {
+    	Cursor everything = fetchEntireTable(babyName);
     	
     	ArrayList<BabyEvent> actions = new ArrayList<BabyEvent>();
     	if( everything.moveToFirst() ) {
@@ -146,9 +173,9 @@ public class ScheduleDatabase {
     	return actions;
     }
     
-    public static ArrayList<Date> getActionDatesForAction(String activityName){
+    public static ArrayList<Date> getActionDatesForAction(String babyName, String activityName){
     	Log.i("Babyschedule", "requesting dates for activity " + activityName);
-    	Cursor cursor = mDb.query(TABLE_BABY_SCHEDULE, 
+    	Cursor cursor = mDb.query(babyName, 
     							  new String[] {"_id", "babyname", "activityname", "time"}, 
     							  "activityname = '" + activityName + "'", 
     							  null, null, null, null);
@@ -167,8 +194,8 @@ public class ScheduleDatabase {
     	return dateList;
     }           
     
-    public static Date getLastActionOfType(String actionName){
-    	ArrayList<Date> dates = getActionDatesForAction(actionName);
+    public static Date getLastActionOfType(String babyName, String actionName){
+    	ArrayList<Date> dates = getActionDatesForAction(babyName, actionName);
     	if( dates.size() > 0 ) {    		
     		return (Date) dates.get(dates.size()-1);
     	} else {
@@ -176,20 +203,20 @@ public class ScheduleDatabase {
     	}
     }
             
-    public static ConsumedTime getDurationOfSleepStartedAt(Date sleepStartTime) {
-    	Date wakeUpDate = getWakeUpDateFromSleepDate(sleepStartTime);
+    public static ConsumedTime getDurationOfSleepStartedAt(String babyName, Date sleepStartTime) {
+    	Date wakeUpDate = getWakeUpDateFromSleepDate(babyName, sleepStartTime);
     	if( wakeUpDate == null ) {
     		return null;
     		//wakeUpDate = new Date();
     	}
-    	BabyEvent sleepOrNapEvent = getEventBasedOnDate(sleepStartTime);
+    	BabyEvent sleepOrNapEvent = getEventBasedOnDate(babyName, sleepStartTime);
 		assert(sleepOrNapEvent != null);
     	
 		return new ConsumedTime(wakeUpDate, sleepStartTime);
     }
     
-    public static Date getWakeUpDateFromSleepDate(Date sleepStartDate) {
-    	ArrayList<Date> dates = getActionDatesForAction(mCtx.getString(R.string.woke_up));
+    public static Date getWakeUpDateFromSleepDate(String babyname, Date sleepStartDate) {
+    	ArrayList<Date> dates = getActionDatesForAction(babyname, mCtx.getString(R.string.woke_up));
     	
     	for( Date current : dates ) {
     		if( current.after(sleepStartDate) ) {

@@ -32,7 +32,7 @@ public class AllEventsList extends ListActivity
     	
     	setTitle("List of all events");    
     	
-    	mListAdapter = new AllEventsListAdapter(ScheduleDatabase.getAllDbActionsSortedByDate());
+    	mListAdapter = new AllEventsListAdapter(ScheduleDatabase.getAllDbActionsSortedByDate("verneri"));
     	setListAdapter(mListAdapter);
     	
     	registerForContextMenu(getListView());
@@ -46,13 +46,13 @@ public class AllEventsList extends ListActivity
 	@Override
     public void onStart() {
     	super.onStart();
-    	mListAdapter.setActionsList(ScheduleDatabase.getAllDbActionsSortedByDate());
+    	mListAdapter.setActionsList(ScheduleDatabase.getAllDbActionsSortedByDate("verneri"));
     }
 	
 	@Override
     public void onResume() {
     	super.onResume();
-    	mListAdapter.setActionsList(ScheduleDatabase.getAllDbActionsSortedByDate());
+    	mListAdapter.setActionsList(ScheduleDatabase.getAllDbActionsSortedByDate("verneri"));
     }
 	
 	@Override
@@ -69,13 +69,13 @@ public class AllEventsList extends ListActivity
 		BabyEvent event = (BabyEvent)info.targetView.getTag();
 		switch (item.getItemId()) {
 		case R.id.delete_activity:			
-			ScheduleDatabase.deleteEntryBasedOnDate(event.getActionDate());
+			ScheduleDatabase.deleteEntryBasedOnDate("verneri", event.getActionDate());
 			if( event.getActionName().equals(getString(R.string.go_to_nap)) ||
 				event.getActionName().equals(getString(R.string.go_to_nap)) ) {
-				Date wokeupDate = ScheduleDatabase.getWakeUpDateFromSleepDate(event.getActionDate());
-				ScheduleDatabase.deleteEntryBasedOnDate(wokeupDate);
+				Date wokeupDate = ScheduleDatabase.getWakeUpDateFromSleepDate("verneri", event.getActionDate());
+				ScheduleDatabase.deleteEntryBasedOnDate("verneri", wokeupDate);
 			}
-			mListAdapter.setActionsList(ScheduleDatabase.getAllDbActionsSortedByDate());
+			mListAdapter.setActionsList(ScheduleDatabase.getAllDbActionsSortedByDate("verneri"));
 			return true;
 		case R.id.edit_activity:
 			openEditViewForEvent(event);

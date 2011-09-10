@@ -21,20 +21,20 @@ public class Statistics extends Activity {
     	ScheduleDatabase.open(getApplicationContext());            	
     	setContentView(R.layout.statistics);
     	
-    	ArrayList<Date> toSleepDates = ScheduleDatabase.getActionDatesForAction(getString(R.string.go_to_sleep));
-    	ArrayList<Date> napDates = ScheduleDatabase.getActionDatesForAction(getString(R.string.go_to_nap));
+    	ArrayList<Date> toSleepDates = ScheduleDatabase.getActionDatesForAction("verneri", getString(R.string.go_to_sleep));
+    	ArrayList<Date> napDates = ScheduleDatabase.getActionDatesForAction("verneri", getString(R.string.go_to_nap));
     	
     	TextView view = (TextView) findViewById(R.id.sleep_stats);
     	ArrayList<ConsumedTime> sleepTimes = new ArrayList<ConsumedTime>();
     	ArrayList<ConsumedTime> napTimes = new ArrayList<ConsumedTime>();
     	for( Date sleepDate : toSleepDates ) {
-    		ConsumedTime sleepTime = ScheduleDatabase.getDurationOfSleepStartedAt(sleepDate);
+    		ConsumedTime sleepTime = ScheduleDatabase.getDurationOfSleepStartedAt("verneri", sleepDate);
     		if( sleepTime != null ) {
     			sleepTimes.add(sleepTime);
     		}
     	}
     	for( Date napDate : napDates ) {
-    		ConsumedTime sleepTime = ScheduleDatabase.getDurationOfSleepStartedAt(napDate);
+    		ConsumedTime sleepTime = ScheduleDatabase.getDurationOfSleepStartedAt("verneri", napDate);
     		if( sleepTime != null ) {
     			napTimes.add(sleepTime);
     		}

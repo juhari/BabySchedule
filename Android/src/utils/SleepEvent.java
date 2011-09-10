@@ -24,7 +24,7 @@ public class SleepEvent extends BabyEvent {
 			setSleep(true);
 		}
 		
-		setSleepDuration(ScheduleDatabase.getDurationOfSleepStartedAt(actionDate));
+		setSleepDuration(ScheduleDatabase.getDurationOfSleepStartedAt("verneri", actionDate));
 	}
 
 	private void setSleepDuration(ConsumedTime sleepDuration) {

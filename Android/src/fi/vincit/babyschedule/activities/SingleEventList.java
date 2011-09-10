@@ -55,12 +55,12 @@ public class SingleEventList extends ListActivity
 	
 	private ArrayList<Date> getMyActionDates() {
 		if( mActionName == getString(R.string.go_to_sleep) ){
-    		ArrayList<Date> dates = ScheduleDatabase.getActionDatesForAction(mActionName);
-    		dates.addAll(ScheduleDatabase.getActionDatesForAction(getString(R.string.go_to_nap)));
+    		ArrayList<Date> dates = ScheduleDatabase.getActionDatesForAction("verneri", mActionName);
+    		dates.addAll(ScheduleDatabase.getActionDatesForAction("verneri", getString(R.string.go_to_nap)));
     		Collections.sort(dates);
     		return dates;
     	} else {
-    		return ScheduleDatabase.getActionDatesForAction(mActionName);
+    		return ScheduleDatabase.getActionDatesForAction("verneri", mActionName);
     	}
 	}
 	
@@ -82,8 +82,8 @@ public class SingleEventList extends ListActivity
 		BabyEvent event = new BabyEvent(mActionName, (Date)info.targetView.getTag());
 		switch (item.getItemId()) {
 		case R.id.delete_activity:			
-			ScheduleDatabase.deleteEntryBasedOnDate(event.getActionDate());
-			mListAdapter.setDateList(ScheduleDatabase.getActionDatesForAction(mActionName));
+			ScheduleDatabase.deleteEntryBasedOnDate("verneri", event.getActionDate());
+			mListAdapter.setDateList(ScheduleDatabase.getActionDatesForAction("verneri", mActionName));
 			return true;
 		case R.id.edit_activity:
 			openEditViewForEvent(event);

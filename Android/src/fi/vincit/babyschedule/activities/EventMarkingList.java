@@ -139,7 +139,7 @@ public class EventMarkingList extends ListActivity
 	}
     
     private void showSelectedEventList(String actionName) {
-    	if( ScheduleDatabase.getActionDatesForAction(actionName).size() > 0 ) {
+    	if( ScheduleDatabase.getActionDatesForAction("verneri", actionName).size() > 0 ) {
     		// show list of actions for the specified type
     		Intent showSingleList = new Intent(EventMarkingList.this, SingleEventList.class);   
     		Bundle actionBundle = new Bundle();
@@ -150,9 +150,9 @@ public class EventMarkingList extends ListActivity
     }
 
     public boolean isCurrentlyAsleep() {
-    	ArrayList<Date> toSleepDates = ScheduleDatabase.getActionDatesForAction(getResources().getString(R.string.go_to_sleep));
-    	toSleepDates.addAll(ScheduleDatabase.getActionDatesForAction(getResources().getString(R.string.go_to_nap)));
-    	ArrayList<Date> wakeUpDates = ScheduleDatabase.getActionDatesForAction(getResources().getString(R.string.woke_up));
+    	ArrayList<Date> toSleepDates = ScheduleDatabase.getActionDatesForAction("verneri", getResources().getString(R.string.go_to_sleep));
+    	toSleepDates.addAll(ScheduleDatabase.getActionDatesForAction("verneri", getResources().getString(R.string.go_to_nap)));
+    	ArrayList<Date> wakeUpDates = ScheduleDatabase.getActionDatesForAction("verneri", getResources().getString(R.string.woke_up));
     	
     	Collections.sort(toSleepDates);
     	

@@ -86,7 +86,7 @@ public class AllEventsListAdapter extends BaseAdapter {
 	}
 	
 	private String getTimeTextForSleepOrNap(BabyEvent event) {
-		ConsumedTime duration = ScheduleDatabase.getDurationOfSleepStartedAt(event.getActionDate());
+		ConsumedTime duration = ScheduleDatabase.getDurationOfSleepStartedAt("verneri", event.getActionDate());
 		if( duration != null ) {
 			return (event.getActionDate().toLocaleString() + "\nDuration: " + duration.toString());
 		} else {

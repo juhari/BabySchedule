@@ -23,6 +23,7 @@ public class MainTabWidget extends TabActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		ScheduleDatabase.open(getApplicationContext());
+		ScheduleDatabase.getBabyNames();
 		super.onCreate(savedInstanceState);						
 	    setContentView(R.layout.main);
 	
