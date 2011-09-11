@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import utils.ScheduleDatabase;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -21,20 +22,42 @@ public class Settings extends PreferenceActivity {
 		addPreferencesFromResource(R.xml.preferences);
 		
 		updateBabyNameList();
-		
+		initAddBabyPreference();
+		initManageBabiesPreference();
+	}
+	
+	private void initAddBabyPreference() {
 		// Get the custom preference
         Preference customPref = (Preference) findPreference("addBaby");
         customPref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 
                     public boolean onPreferenceClick(Preference preference) {
-                            getBabyNameFromAlertDialog();                                                        
-                            return true;
+                        getBabyNameFromAlertDialog();                                                        
+                        return true;
                     }
 
             });
 	}
 	
-	public void updateBabyNameList() {
+	private void initManageBabiesPreference() {
+		// Get the custom preference
+        Preference customPref = (Preference) findPreference("manageBabies");
+        customPref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+                    public boolean onPreferenceClick(Preference preference) {
+            	        showManageBabiesActivity();                                      
+                        return true;
+                    }
+
+            });
+	}
+	
+	private void showManageBabiesActivity() {
+		Intent showBabyList = new Intent(this, ManageBabies.class);
+		startActivity(showBabyList);        
+	}
+	
+	private void updateBabyNameList() {
 		ListPreference nameList = (ListPreference)findPreference("chooseList");
 		ArrayList<String> names = ScheduleDatabase.getBabyNames();
 
@@ -42,7 +65,7 @@ public class Settings extends PreferenceActivity {
 		nameList.setEntryValues(names.toArray(new CharSequence[names.size()]));
 	}
 	
-	public void getBabyNameFromAlertDialog() {
+	private void getBabyNameFromAlertDialog() {
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
 		alert.setTitle(getString(R.string.add_baby));

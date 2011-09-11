@@ -33,6 +33,9 @@
 		<activity android:name=".activities.Settings"
 				  android:label="@string/settings">
 		</activity>
+		<activity android:name=".activities.ManageBabies"
+				  android:label="@string/manage_babies">
+		</activity>
 		
     </application>
 </manifest>
