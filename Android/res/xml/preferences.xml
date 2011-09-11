@@ -6,7 +6,18 @@
       android:title="@string/babynames"
       android:summary="@string/choose_baby_summary"
       android:key="chooseList" />
+  </PreferenceCategory>
   
+  <PreferenceCategory android:title="@string/manage_babies">
+  <Preference
+      android:title="@string/add_baby"
+      android:summary="@string/add_baby_summary"
+      android:key="addBaby" />
+      
+  <Preference
+      android:title="@string/manage_babies"
+      android:summary="@string/manage_babies_summary"
+      android:key="manageBabies" />
   </PreferenceCategory>
     
 </PreferenceScreen>

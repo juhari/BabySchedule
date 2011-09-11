@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+	<!-- Event marking and showing UI -->
+	<string name="ok">Ok</string>
     <string name="hello">Hello World, BabyScheduleMain!</string>
     <string name="app_name">BabySchedule</string>
     <string name="single_action">BabySchedule: single event list</string>
@@ -18,10 +21,19 @@
     <string name="mark">Mark now</string>
     <string name="mark_nightsleep">Mark night sleep now</string>
     <string name="mark_nap">Mark nap now</string>
+    
+    <!-- Settings screen -->
     <string name="choose_baby">Choose baby</string>
     <string name="settings">Settings</string>
     <string name="babynames">Baby names</string>
     <string name="choose_baby_summary">Choose for which baby to mark events for</string>
+    <string name="add_baby">Add new baby</string>
+    <string name="add_baby_summary">Add a new baby to the application</string>
+    <string name="add_baby_instruction">Give the name of the new baby</string>
+    <string name="manage_babies">Manage babies</string>
+    <string name="manage_babies_summary">Rename and delete babies</string>
+    
+    <!-- Activities -->
     <string-array name="activity_names">
     	<item name="eat">Eat</item>
     	<item name="go_to_sleep">Go to sleep</item>

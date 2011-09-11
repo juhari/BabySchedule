@@ -92,6 +92,7 @@ public class ScheduleDatabase {
 	}
 	
 	public static void addNewBaby(String babyName) {
+		Log.w("Babyschedule", "Adding new baby: " + babyName);
 		Cursor nameCursor = mDb.query(TABLE_BABY_NAMES, new String[] {"_id", "babyname"}, 
 										"babyname = '" + babyName + "'", null, null, null, null);
 		if( nameCursor.getCount() == 0 ) {
