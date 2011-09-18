@@ -40,8 +40,19 @@ public class Statistics extends Activity {
     		}
     	}
     	
-    	ConsumedTime sleepAvg = ConsumedTime.getAverageOf(sleepTimes);
-    	ConsumedTime napAvg = ConsumedTime.getAverageOf(napTimes);
+    	ConsumedTime sleepAvg = null;
+    	ConsumedTime napAvg = null;
+    	if( sleepTimes.size() > 0 ) {
+    		sleepAvg = ConsumedTime.getAverageOf(sleepTimes);
+    	} else {
+    		sleepAvg = new ConsumedTime();
+    	}
+    	
+    	if( napTimes.size() > 0 ) {
+    		napAvg = ConsumedTime.getAverageOf(napTimes);
+    	} else {
+    		napAvg = new ConsumedTime();
+    	}
     	
     	view.setText("Average length of night sleep:\n	" + sleepAvg.toString() + "\n\n" +
     				 "Average length of nap:\n	" + napAvg.toString());

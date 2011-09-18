@@ -5,9 +5,15 @@ import java.util.Date;
 
 public class ConsumedTime {
 	
-	private long days;
-	private long hours;
-	private long minutes;
+	private long days = 0;
+	private long hours = 0;
+	private long minutes = 0;
+	
+	public ConsumedTime() {
+		this.days = 0;
+		this.hours = 0;
+		this.minutes = 0;
+	}
 	
 	public ConsumedTime(long days, long hours, long minutes) {
 		this.days = days;
