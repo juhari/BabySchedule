@@ -88,19 +88,38 @@ public class ScheduleDatabase {
 	    		names.moveToNext();
 	    	}
     	}
+    	names.close();
     	return nameList;
 	}
 	
 	public static void addNewBaby(String babyName) {
 		Log.w("Babyschedule", "Adding new baby: " + babyName);
-		Cursor nameCursor = mDb.query(TABLE_BABY_NAMES, new String[] {"_id", "babyname"}, 
-										"babyname = '" + babyName + "'", null, null, null, null);
+		Cursor nameCursor = getBabyNameCursor(babyName);
+		
 		if( nameCursor.getCount() == 0 ) {
 			ContentValues values = new ContentValues();
 			values.put("babyname", babyName);
 			mDb.insert(TABLE_BABY_NAMES, null, values);
 			mDb.execSQL("create table " + babyName + " " + DATABASE_CREATE_BABY_SCHEDULE);
 		}
+	}
+	
+	public static void removeBaby(String babyName) {
+		Log.w("Babyschedule", "Removing baby: " + babyName);		
+		Cursor nameCursor = getBabyNameCursor(babyName);
+		
+		if( nameCursor.getCount() > 0 ) {
+			int deleted = mDb.delete(TABLE_BABY_NAMES, "babyname = '" + babyName + "'", null);
+			Log.i("Babyschedule", "Deleted " + deleted + " rows from db.");
+			mDb.execSQL("DROP TABLE IF EXISTS " + babyName);
+		}
+		
+		nameCursor.close();
+	}
+	
+	private static Cursor getBabyNameCursor(String babyName) {
+		return mDb.query(TABLE_BABY_NAMES, new String[] {"_id", "babyname"}, 
+				"babyname = '" + babyName + "'", null, null, null, null);
 	}
 	
     public static long insertBabyAction(String babyName, String actionname, Date time) {
@@ -141,6 +160,7 @@ public class ScheduleDatabase {
     		event = new BabyEvent(getRowActionName(cursor), getRowTime(cursor));
     	} 
     	
+    	cursor.close();
     	return event;
     }
     
@@ -170,6 +190,7 @@ public class ScheduleDatabase {
     	}
     	
     	Collections.sort(actions);
+    	everything.close();
     	return actions;
     }
     
@@ -191,6 +212,7 @@ public class ScheduleDatabase {
     	}
     	
     	Collections.sort(dateList);
+    	cursor.close();
     	return dateList;
     }           
     

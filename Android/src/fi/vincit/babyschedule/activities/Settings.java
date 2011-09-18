@@ -6,12 +6,16 @@ import utils.ScheduleDatabase;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.EditText;
+import fi.vincit.babyschedule.MainTabWidget.StaticContext;
 import fi.vincit.babyschedule.R;
 
 public class Settings extends PreferenceActivity {
@@ -25,6 +29,35 @@ public class Settings extends PreferenceActivity {
 		initAddBabyPreference();
 		initManageBabiesPreference();
 	}
+	
+	public static String getCurrentBabyName() {
+		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(StaticContext.ctx);
+    	String name = pref.getString("chooseList", "verneri");
+    	Log.d("Babyschedule", "Name of current baby: " + name);
+    	ArrayList<String> names = ScheduleDatabase.getBabyNames();
+    	
+    	// check for obsolete preference values
+    	if( !names.contains(name) ) {
+    		SharedPreferences.Editor editor = pref.edit();
+			editor.putString("chooseList", names.get(0));
+			editor.commit();
+    		return names.get(0);
+    	}
+    	
+    	return name;
+	}
+	
+	@Override
+    public void onStart() {
+    	super.onStart();
+    	updateBabyNameList();
+    }
+	
+	@Override
+    public void onResume() {
+    	super.onResume();
+    	updateBabyNameList();
+    }
 	
 	private void initAddBabyPreference() {
 		// Get the custom preference

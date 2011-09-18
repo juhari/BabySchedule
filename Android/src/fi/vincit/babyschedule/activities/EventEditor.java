@@ -53,8 +53,8 @@ public class EventEditor extends EventDetailsEditor {
 	public void onClick(View v) {
 		if( v.getId() == R.id.saveButton ) {			
 			Date dateTime = getDateTimeFromSpinners();
-			ScheduleDatabase.insertBabyAction("Verneri", (String)getmSpinner().getSelectedItem(), dateTime);
-			ScheduleDatabase.deleteEntryBasedOnDate("verneri", mEvent.getActionDate());
+			ScheduleDatabase.insertBabyAction(Settings.getCurrentBabyName(), (String)getmSpinner().getSelectedItem(), dateTime);
+			ScheduleDatabase.deleteEntryBasedOnDate(Settings.getCurrentBabyName(), mEvent.getActionDate());
 			finish();
 		}
 		else if( v.getId() == R.id.cancelButton ) {

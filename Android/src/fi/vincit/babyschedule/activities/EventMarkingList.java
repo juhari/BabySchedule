@@ -117,7 +117,7 @@ public class EventMarkingList extends ListActivity
 	
 	private void eventMarkedNow(String eventName) {
 		Log.d("Babyschedule", "Marked event" + eventName);	    	
-    	ScheduleDatabase.insertBabyAction("Verneri", eventName, new Date());	    	
+    	ScheduleDatabase.insertBabyAction(Settings.getCurrentBabyName(), eventName, new Date());	    	
     	mListAdapter.notifyDataSetChanged();     
     	
     	updateMainListAdapter();
@@ -139,7 +139,7 @@ public class EventMarkingList extends ListActivity
 	}
     
     private void showSelectedEventList(String actionName) {
-    	if( ScheduleDatabase.getActionDatesForAction("verneri", actionName).size() > 0 ) {
+    	if( ScheduleDatabase.getActionDatesForAction(Settings.getCurrentBabyName(), actionName).size() > 0 ) {
     		// show list of actions for the specified type
     		Intent showSingleList = new Intent(EventMarkingList.this, SingleEventList.class);   
     		Bundle actionBundle = new Bundle();
@@ -150,9 +150,9 @@ public class EventMarkingList extends ListActivity
     }
 
     public boolean isCurrentlyAsleep() {
-    	ArrayList<Date> toSleepDates = ScheduleDatabase.getActionDatesForAction("verneri", getResources().getString(R.string.go_to_sleep));
-    	toSleepDates.addAll(ScheduleDatabase.getActionDatesForAction("verneri", getResources().getString(R.string.go_to_nap)));
-    	ArrayList<Date> wakeUpDates = ScheduleDatabase.getActionDatesForAction("verneri", getResources().getString(R.string.woke_up));
+    	ArrayList<Date> toSleepDates = ScheduleDatabase.getActionDatesForAction(Settings.getCurrentBabyName(), getResources().getString(R.string.go_to_sleep));
+    	toSleepDates.addAll(ScheduleDatabase.getActionDatesForAction(Settings.getCurrentBabyName(), getResources().getString(R.string.go_to_nap)));
+    	ArrayList<Date> wakeUpDates = ScheduleDatabase.getActionDatesForAction(Settings.getCurrentBabyName(), getResources().getString(R.string.woke_up));
     	
     	Collections.sort(toSleepDates);
     	

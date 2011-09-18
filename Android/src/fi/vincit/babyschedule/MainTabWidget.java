@@ -2,6 +2,7 @@ package fi.vincit.babyschedule;
 
 import utils.ScheduleDatabase;
 import android.app.TabActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -21,6 +22,10 @@ public class MainTabWidget extends TabActivity {
 	    public static Resources res;
 	}
 	
+	public static class StaticContext {
+		public static Context ctx;
+	}
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		ScheduleDatabase.open(getApplicationContext());
@@ -33,7 +38,9 @@ public class MainTabWidget extends TabActivity {
 	    TabHost tabHost = getTabHost();  // The activity TabHost
 	    TabHost.TabSpec spec;  // Resusable TabSpec for each tab
 	    Intent intent;  // Reusable Intent for each tab
-	
+	    
+	    StaticContext.ctx = this.getApplicationContext();
+	    
 	    // Create an Intent to launch an Activity for the tab (to be reused)
 	    intent = new Intent().setClass(this, EventMarkingList.class);
 	

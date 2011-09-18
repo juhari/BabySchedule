@@ -32,7 +32,7 @@ public class AllEventsList extends ListActivity
     	
     	setTitle("List of all events");    
     	
-    	mListAdapter = new AllEventsListAdapter(ScheduleDatabase.getAllDbActionsSortedByDate("verneri"));
+    	mListAdapter = new AllEventsListAdapter(ScheduleDatabase.getAllDbActionsSortedByDate(Settings.getCurrentBabyName()));
     	setListAdapter(mListAdapter);
     	
     	registerForContextMenu(getListView());
@@ -46,13 +46,13 @@ public class AllEventsList extends ListActivity
 	@Override
     public void onStart() {
     	super.onStart();
-    	mListAdapter.setActionsList(ScheduleDatabase.getAllDbActionsSortedByDate("verneri"));
+    	mListAdapter.setActionsList(ScheduleDatabase.getAllDbActionsSortedByDate(Settings.getCurrentBabyName()));
     }
 	
 	@Override
     public void onResume() {
     	super.onResume();
-    	mListAdapter.setActionsList(ScheduleDatabase.getAllDbActionsSortedByDate("verneri"));
+    	mListAdapter.setActionsList(ScheduleDatabase.getAllDbActionsSortedByDate(Settings.getCurrentBabyName()));
     }
 	
 	@Override
@@ -69,13 +69,13 @@ public class AllEventsList extends ListActivity
 		BabyEvent event = (BabyEvent)info.targetView.getTag();
 		switch (item.getItemId()) {
 		case R.id.delete_activity:			
-			ScheduleDatabase.deleteEntryBasedOnDate("verneri", event.getActionDate());
+			ScheduleDatabase.deleteEntryBasedOnDate(Settings.getCurrentBabyName(), event.getActionDate());
 			if( event.getActionName().equals(getString(R.string.go_to_nap)) ||
 				event.getActionName().equals(getString(R.string.go_to_nap)) ) {
-				Date wokeupDate = ScheduleDatabase.getWakeUpDateFromSleepDate("verneri", event.getActionDate());
-				ScheduleDatabase.deleteEntryBasedOnDate("verneri", wokeupDate);
+				Date wokeupDate = ScheduleDatabase.getWakeUpDateFromSleepDate(Settings.getCurrentBabyName(), event.getActionDate());
+				ScheduleDatabase.deleteEntryBasedOnDate(Settings.getCurrentBabyName(), wokeupDate);
 			}
-			mListAdapter.setActionsList(ScheduleDatabase.getAllDbActionsSortedByDate("verneri"));
+			mListAdapter.setActionsList(ScheduleDatabase.getAllDbActionsSortedByDate(Settings.getCurrentBabyName()));
 			return true;
 		case R.id.edit_activity:
 			openEditViewForEvent(event);

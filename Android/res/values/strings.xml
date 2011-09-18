@@ -32,6 +32,8 @@
     <string name="add_baby_instruction">Give the name of the new baby</string>
     <string name="manage_babies">Manage babies</string>
     <string name="manage_babies_summary">Rename and delete babies</string>
+    <string name="delete_baby">Remove baby</string>
+    <string name="edit_baby">Edit baby</string>
     
     <!-- Activities -->
     <string-array name="activity_names">

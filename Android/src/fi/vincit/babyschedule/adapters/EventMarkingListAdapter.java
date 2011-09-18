@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import fi.vincit.babyschedule.R;
+import fi.vincit.babyschedule.activities.Settings;
 
 public class EventMarkingListAdapter extends BaseAdapter {
 
@@ -72,7 +73,7 @@ public class EventMarkingListAdapter extends BaseAdapter {
 	}
 	
 	private String getFormattedTimeTextForNormalEvent(String eventName) {
-		Date date = ScheduleDatabase.getLastActionOfType("verneri", eventName);
+		Date date = ScheduleDatabase.getLastActionOfType(Settings.getCurrentBabyName(), eventName);
 		if( date != null ) {	
 			String time = "Last occurred at: " + date.toLocaleString() + "\n";								
 			String timeDiff = getTimeDiffFromDate(date);				
@@ -83,7 +84,7 @@ public class EventMarkingListAdapter extends BaseAdapter {
 	}
 	
 	private String getFormattedTimeTextForGotToSleepEvent() {
-		Date lastWokeUp = ScheduleDatabase.getLastActionOfType("verneri", mContext.getString(R.string.woke_up));
+		Date lastWokeUp = ScheduleDatabase.getLastActionOfType(Settings.getCurrentBabyName(), mContext.getString(R.string.woke_up));
 		if( lastWokeUp != null ){
 			String time = "Baby has now been awake for \n";
 			String timeDiff = getTimeDiffFromDate(lastWokeUp);
@@ -94,8 +95,8 @@ public class EventMarkingListAdapter extends BaseAdapter {
 	}
 	
 	private String getFormattedTimeTextForWokeUpEvent() {
-		Date lastFellAsleep = ScheduleDatabase.getLastActionOfType("verneri", mContext.getString(R.string.go_to_sleep));
-		Date lastNap = ScheduleDatabase.getLastActionOfType("verneri", mContext.getString(R.string.go_to_nap));
+		Date lastFellAsleep = ScheduleDatabase.getLastActionOfType(Settings.getCurrentBabyName(), mContext.getString(R.string.go_to_sleep));
+		Date lastNap = ScheduleDatabase.getLastActionOfType(Settings.getCurrentBabyName(), mContext.getString(R.string.go_to_nap));
 		if( lastNap != null && (lastFellAsleep == null || lastNap.after(lastFellAsleep)) ) {
 			lastFellAsleep = lastNap;
 		}

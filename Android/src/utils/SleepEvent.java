@@ -4,6 +4,7 @@ import java.util.Date;
 
 import fi.vincit.babyschedule.MainTabWidget;
 import fi.vincit.babyschedule.R;
+import fi.vincit.babyschedule.activities.Settings;
 
 public class SleepEvent extends BabyEvent {
 
@@ -24,7 +25,7 @@ public class SleepEvent extends BabyEvent {
 			setSleep(true);
 		}
 		
-		setSleepDuration(ScheduleDatabase.getDurationOfSleepStartedAt("verneri", actionDate));
+		setSleepDuration(ScheduleDatabase.getDurationOfSleepStartedAt(Settings.getCurrentBabyName(), actionDate));
 	}
 
 	private void setSleepDuration(ConsumedTime sleepDuration) {

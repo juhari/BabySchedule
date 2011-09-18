@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import fi.vincit.babyschedule.MainTabWidget;
 import fi.vincit.babyschedule.R;
+import fi.vincit.babyschedule.activities.Settings;
 
 public class AllEventsListAdapter extends BaseAdapter {
 
@@ -86,7 +87,7 @@ public class AllEventsListAdapter extends BaseAdapter {
 	}
 	
 	private String getTimeTextForSleepOrNap(BabyEvent event) {
-		ConsumedTime duration = ScheduleDatabase.getDurationOfSleepStartedAt("verneri", event.getActionDate());
+		ConsumedTime duration = ScheduleDatabase.getDurationOfSleepStartedAt(Settings.getCurrentBabyName(), event.getActionDate());
 		if( duration != null ) {
 			return (event.getActionDate().toLocaleString() + "\nDuration: " + duration.toString());
 		} else {
