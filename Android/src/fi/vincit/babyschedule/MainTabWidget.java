@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TabHost;
+import android.widget.TextView;
 import fi.vincit.babyschedule.activities.AllEventsList;
 import fi.vincit.babyschedule.activities.EventAdder;
 import fi.vincit.babyschedule.activities.EventMarkingList;
@@ -55,9 +56,19 @@ public class MainTabWidget extends TabActivity {
 	    spec = tabHost.newTabSpec("Show events").setIndicator("Show Events",
 	                      res.getDrawable(R.drawable.new_show_icon))
 	                  .setContent(intent);
-	    tabHost.addTab(spec);	    
-	    tabHost.setCurrentTab(0);
+	    tabHost.addTab(spec);	 
+	    
+	 // Change background
+	    for(int i=0; i< getTabWidget().getChildCount(); i++) {
+	    	getTabWidget().getChildAt(i).setBackgroundResource(R.drawable.tab_style);
+	    	final TextView tv = (TextView) getTabWidget().getChildAt(i).findViewById(android.R.id.title);        
+	    	tv.setTextColor(this.getResources().getColorStateList(R.color.tab_selected_text_color));
+
+	    }
+	    
+	    tabHost.setCurrentTab(0);	    	   
 	}
+
 	
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -2,12 +2,20 @@
 <LinearLayout android:orientation="horizontal"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent" android:alwaysDrawnWithCache="false" android:baselineAligned="true" android:clipChildren="true" xmlns:android="http://schemas.android.com/apk/res/android">
-	<LinearLayout
+	<ImageView
+		android:id="@+id/event_icon"
+		android:src="@drawable/eat_icon"
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:gravity="center_vertical|center_horizontal">
+	</ImageView>
+	<LinearLayout	
 		android:orientation="vertical"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content" 
-		android:layout_marginBottom="2px" 
-		android:layout_marginTop="2px">	
+		android:layout_marginBottom="1px" 
+		android:layout_marginTop="1px"
+		android:layout_marginLeft="5px">	
 		<TextView
 			android:id="@+id/ActivityName"
 		    android:layout_width="fill_parent"

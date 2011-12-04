@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="custom_theme_color">#b0b0ff</color>
+    <color name="custom_tab_selected_color">#8080c0</color>
+    <color name="custom_tab_pressed_color">#ffb380</color>
+    
+    <color name="tab_selected_text_color">#000000</color>
     
 	<style name="CustomTheme" parent="android:Theme.Light">
     	<item name="android:windowBackground">@color/custom_theme_color</item>
-    	<item name="android:colorBackground">@color/custom_theme_color</item>
-    	<item name="android:tabWidgetStyle">@style/CustomTabWidget</item>       
+    	<item name="android:colorBackground">@color/custom_theme_color</item>    
 	</style>
-
-	<style name="CustomTabWidget" parent="@android:style/Widget.TabWidget">
-        <item name="android:textAppearance">@style/CustomTabWidgetText</item>
-        <item name="android:colorBackground">@color/custom_theme_color</item>
-    </style>
-
-    <style name="CustomTabWidgetText" parent="@android:style/TextAppearance.Widget.TabWidget">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
 
 </resources>

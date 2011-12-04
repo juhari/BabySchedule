@@ -4,12 +4,12 @@ import java.util.Date;
 
 import utils.ConsumedTime;
 import utils.ScheduleDatabase;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import fi.vincit.babyschedule.R;
 import fi.vincit.babyschedule.activities.Settings;
@@ -54,7 +54,7 @@ public class EventMarkingListAdapter extends BaseAdapter {
 			activityView = inflater.inflate(R.layout.main_list_item, null);
 		} else {
 			activityView = convertView;
-		}
+		}	
 		
 		TextView name = (TextView)activityView.findViewById(R.id.ActivityName);
 		name.setText(activityName);	
@@ -68,8 +68,21 @@ public class EventMarkingListAdapter extends BaseAdapter {
 			timePassed.setText(getFormattedTimeTextForNormalEvent(activityName));
 		}
 		
+		ImageView img = (ImageView)activityView.findViewById(R.id.event_icon);
+		img.setImageDrawable(mContext.getResources().getDrawable(getActivityIconId(activityName)));
+		
 		activityView.setTag(activityName);
-		return activityView;
+		return activityView;		
+	}
+	
+	int getActivityIconId(String activityName) {
+		String[] aNames = mContext.getResources().getStringArray(R.array.activity_names);
+		if( activityName.equalsIgnoreCase(aNames[0]) ) {
+			return R.drawable.eat_icon;
+		}
+		else {
+			return R.drawable.sleep_icon;
+		}
 	}
 	
 	private String getFormattedTimeTextForNormalEvent(String eventName) {
