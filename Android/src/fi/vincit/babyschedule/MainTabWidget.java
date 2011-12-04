@@ -21,7 +21,7 @@ public class MainTabWidget extends TabActivity {
 	public static class StaticResources {
 	    public static Resources res;
 	}
-	
+		
 	public static class StaticContext {
 		public static Context ctx;
 	}
@@ -31,8 +31,8 @@ public class MainTabWidget extends TabActivity {
 		ScheduleDatabase.open(getApplicationContext());
 		ScheduleDatabase.getBabyNames();
 		super.onCreate(savedInstanceState);						
-	    setContentView(R.layout.main);
-	
+	    setContentView(R.layout.main);	   	    
+	    
 	    Resources res = getResources(); // Resource object to get Drawables
 	    StaticResources.res = res;
 	    TabHost tabHost = getTabHost();  // The activity TabHost
@@ -55,8 +55,7 @@ public class MainTabWidget extends TabActivity {
 	    spec = tabHost.newTabSpec("Show events").setIndicator("Show Events",
 	                      res.getDrawable(R.drawable.new_show_icon))
 	                  .setContent(intent);
-	    tabHost.addTab(spec);
-	
+	    tabHost.addTab(spec);	    
 	    tabHost.setCurrentTab(0);
 	}
 	

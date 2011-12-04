@@ -34,6 +34,7 @@
     <string name="manage_babies_summary">Rename and delete babies</string>
     <string name="delete_baby">Remove baby</string>
     <string name="edit_baby">Edit baby</string>
+    <string name="baby_exists">Unable to add, baby with the same name already exists!</string>
     
     <!-- Activities -->
     <string-array name="activity_names">

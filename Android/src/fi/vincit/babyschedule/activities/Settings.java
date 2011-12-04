@@ -15,6 +15,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.Toast;
 import fi.vincit.babyschedule.MainTabWidget.StaticContext;
 import fi.vincit.babyschedule.R;
 
@@ -107,10 +108,16 @@ public class Settings extends PreferenceActivity {
 		// Set an EditText view to get user input 
 		final EditText input = new EditText(this);
 		alert.setView(input);
-
+		
 		alert.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
 		public void onClick(DialogInterface dialog, int whichButton) {
 		  String babyName = input.getText().toString();
+		  if( ScheduleDatabase.getBabyNames().contains(babyName) ) {
+			  Log.w("Babyschedule", "Settings::addBaby, unable to add, already exists with the same name.");
+			  Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.baby_exists), 1000);
+			  toast.show();
+			  return;
+		  }
 		  ScheduleDatabase.addNewBaby(babyName);
 	      updateBabyNameList();	  
 		  }
