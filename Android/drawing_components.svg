@@ -16,7 +16,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.1 "
-   sodipodi:docname="drawing_components.svg.2011_12_04_21_21_55.0.svg">
+   sodipodi:docname="drawing_components.svg">
   <defs
      id="defs4">
     <pattern
@@ -258,8 +258,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.12374369"
-     inkscape:cx="4548.3923"
-     inkscape:cy="1451.47"
+     inkscape:cx="3287.722"
+     inkscape:cy="-1781.0181"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -849,5 +849,79 @@
          id="rect3279-3"
          style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.38700008;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
     </g>
+    <path
+       style="fill:#ffccaa;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="M 5567.2812 1695.0938 C 5385.2971 1695.0938 5234.2131 1913.3708 5204.9688 2199.9062 L 5200.375 2199.9062 C 5199.9387 2199.9062 5199.5938 2200.2512 5199.5938 2200.6875 L 5199.5938 3548.6562 C 5199.5938 3549.0925 5199.9387 3549.4688 5200.375 3549.4688 L 5934.1875 3549.4688 C 5934.6238 3549.4688 5934.9688 3549.0925 5934.9688 3548.6562 L 5934.9688 2200.6875 C 5934.9688 2200.2512 5934.6238 2199.9062 5934.1875 2199.9062 L 5929.5938 2199.9062 C 5900.3494 1913.3708 5749.2655 1695.0938 5567.2812 1695.0938 z "
+       id="rect3133" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#00ffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3905"
+       sodipodi:cx="3394.1125"
+       sodipodi:cy="2478.6975"
+       sodipodi:rx="129.29951"
+       sodipodi:ry="270.72089"
+       d="m 3523.4121,2478.6975 a 129.29951,270.72089 0 1 1 -258.5991,0 l 129.2995,0 z"
+       sodipodi:start="0"
+       sodipodi:end="3.1415927"
+       transform="matrix(-1,0,0,-1,8961.4,4234.1258)"
+       inkscape:transform-center-x="1349.5638"
+       inkscape:transform-center-y="824.28445" />
+    <rect
+       style="fill:#00ffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3920"
+       width="719.22858"
+       height="743.47223"
+       x="5204.3057"
+       y="2797.9058"
+       ry="0.78509998" />
+    <rect
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3924"
+       width="250.51782"
+       height="23.37421"
+       x="5242.6914"
+       y="2474.9263"
+       ry="0.45416635" />
+    <rect
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3924-2"
+       width="250.51782"
+       height="23.37421"
+       x="5242.6914"
+       y="2694.2795"
+       ry="0.45416635" />
+    <rect
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3924-8"
+       width="250.51782"
+       height="23.37421"
+       x="5242.6914"
+       y="2913.6326"
+       ry="0.45416635" />
+    <rect
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3924-3"
+       width="250.51782"
+       height="23.37421"
+       x="5242.6914"
+       y="3132.9858"
+       ry="0.45416635" />
+    <rect
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3924-5"
+       width="250.51782"
+       height="23.37421"
+       x="5242.6914"
+       y="3352.3389"
+       ry="0.45416635" />
+    <rect
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3924-24"
+       width="250.51782"
+       height="23.37421"
+       x="5242.6914"
+       y="2255.573"
+       ry="0.45416635" />
   </g>
 </svg>
