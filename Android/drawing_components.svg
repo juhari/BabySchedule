@@ -259,7 +259,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="0.12374369"
      inkscape:cx="3287.722"
-     inkscape:cy="-1781.0181"
+     inkscape:cy="-3227.7007"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -852,7 +852,10 @@
     <path
        style="fill:#ffccaa;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
        d="M 5567.2812 1695.0938 C 5385.2971 1695.0938 5234.2131 1913.3708 5204.9688 2199.9062 L 5200.375 2199.9062 C 5199.9387 2199.9062 5199.5938 2200.2512 5199.5938 2200.6875 L 5199.5938 3548.6562 C 5199.5938 3549.0925 5199.9387 3549.4688 5200.375 3549.4688 L 5934.1875 3549.4688 C 5934.6238 3549.4688 5934.9688 3549.0925 5934.9688 3548.6562 L 5934.9688 2200.6875 C 5934.9688 2200.2512 5934.6238 2199.9062 5934.1875 2199.9062 L 5929.5938 2199.9062 C 5900.3494 1913.3708 5749.2655 1695.0938 5567.2812 1695.0938 z "
-       id="rect3133" />
+       id="rect3133"
+       inkscape:export-filename="C:\Comp Dev\BabySchedule\Android\res\drawable-mdpi\milk_icon.png"
+       inkscape:export-xdpi="1.3881197"
+       inkscape:export-ydpi="1.3881197" />
     <path
        sodipodi:type="arc"
        style="fill:#00ffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -866,7 +869,10 @@
        sodipodi:end="3.1415927"
        transform="matrix(-1,0,0,-1,8961.4,4234.1258)"
        inkscape:transform-center-x="1349.5638"
-       inkscape:transform-center-y="824.28445" />
+       inkscape:transform-center-y="824.28445"
+       inkscape:export-filename="C:\Comp Dev\BabySchedule\Android\res\drawable-mdpi\milk_icon.png"
+       inkscape:export-xdpi="1.3881197"
+       inkscape:export-ydpi="1.3881197" />
     <rect
        style="fill:#00ffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect3920"
@@ -874,7 +880,10 @@
        height="743.47223"
        x="5204.3057"
        y="2797.9058"
-       ry="0.78509998" />
+       ry="0.78509998"
+       inkscape:export-filename="C:\Comp Dev\BabySchedule\Android\res\drawable-mdpi\milk_icon.png"
+       inkscape:export-xdpi="1.3881197"
+       inkscape:export-ydpi="1.3881197" />
     <rect
        style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect3924"
@@ -882,7 +891,10 @@
        height="23.37421"
        x="5242.6914"
        y="2474.9263"
-       ry="0.45416635" />
+       ry="0.45416635"
+       inkscape:export-filename="C:\Comp Dev\BabySchedule\Android\res\drawable-mdpi\milk_icon.png"
+       inkscape:export-xdpi="1.3881197"
+       inkscape:export-ydpi="1.3881197" />
     <rect
        style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect3924-2"
@@ -890,7 +902,10 @@
        height="23.37421"
        x="5242.6914"
        y="2694.2795"
-       ry="0.45416635" />
+       ry="0.45416635"
+       inkscape:export-filename="C:\Comp Dev\BabySchedule\Android\res\drawable-mdpi\milk_icon.png"
+       inkscape:export-xdpi="1.3881197"
+       inkscape:export-ydpi="1.3881197" />
     <rect
        style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect3924-8"
@@ -898,7 +913,10 @@
        height="23.37421"
        x="5242.6914"
        y="2913.6326"
-       ry="0.45416635" />
+       ry="0.45416635"
+       inkscape:export-filename="C:\Comp Dev\BabySchedule\Android\res\drawable-mdpi\milk_icon.png"
+       inkscape:export-xdpi="1.3881197"
+       inkscape:export-ydpi="1.3881197" />
     <rect
        style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect3924-3"
@@ -906,7 +924,10 @@
        height="23.37421"
        x="5242.6914"
        y="3132.9858"
-       ry="0.45416635" />
+       ry="0.45416635"
+       inkscape:export-filename="C:\Comp Dev\BabySchedule\Android\res\drawable-mdpi\milk_icon.png"
+       inkscape:export-xdpi="1.3881197"
+       inkscape:export-ydpi="1.3881197" />
     <rect
        style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect3924-5"
@@ -914,7 +935,10 @@
        height="23.37421"
        x="5242.6914"
        y="3352.3389"
-       ry="0.45416635" />
+       ry="0.45416635"
+       inkscape:export-filename="C:\Comp Dev\BabySchedule\Android\res\drawable-mdpi\milk_icon.png"
+       inkscape:export-xdpi="1.3881197"
+       inkscape:export-ydpi="1.3881197" />
     <rect
        style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect3924-24"
@@ -922,6 +946,73 @@
        height="23.37421"
        x="5242.6914"
        y="2255.573"
-       ry="0.45416635" />
+       ry="0.45416635"
+       inkscape:export-filename="C:\Comp Dev\BabySchedule\Android\res\drawable-mdpi\milk_icon.png"
+       inkscape:export-xdpi="1.3881197"
+       inkscape:export-ydpi="1.3881197" />
+    <g
+       id="g4019">
+      <path
+         sodipodi:end="3.1415927"
+         sodipodi:start="0"
+         d="m 4186.0721,3480.7688 a 848.52814,998.0307 0 1 1 -1697.0563,0 l 848.5281,0 z"
+         sodipodi:ry="998.0307"
+         sodipodi:rx="848.52814"
+         sodipodi:cy="3480.7688"
+         sodipodi:cx="3337.5439"
+         id="path3975"
+         style="fill:#00ffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         transform="matrix(-0.75261895,0.65845631,-0.65845631,-0.75261895,7248.4455,6155.4459)"
+         sodipodi:end="3.1415927"
+         sodipodi:start="0"
+         d="m 1567.7567,3658.5557 a 206.07112,311.12698 0 1 1 -412.1423,-10e-5 l 206.0711,10e-5 z"
+         sodipodi:ry="311.12698"
+         sodipodi:rx="206.07112"
+         sodipodi:cy="3658.5557"
+         sodipodi:cx="1361.6855"
+         id="path3977"
+         style="fill:#ffb380;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:transform-center-y="999.10087"
+         inkscape:transform-center-x="-603.99068"
+         sodipodi:end="3.1415927"
+         sodipodi:start="0"
+         d="m 1567.7567,3658.5557 a 206.07112,311.12698 0 1 1 -412.1423,-10e-5 l 206.0711,10e-5 z"
+         sodipodi:ry="311.12698"
+         sodipodi:rx="206.07112"
+         sodipodi:cy="3658.5557"
+         sodipodi:cx="1361.6855"
+         id="path3977-8"
+         style="fill:#ffb380;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc"
+         transform="matrix(-0.76445965,-0.57047531,0.51553278,-0.84593138,2039.0003,8187.9001)" />
+      <path
+         transform="matrix(0,-0.73065979,1,0,-1312.9987,4269.9851)"
+         sodipodi:end="3.1415927"
+         sodipodi:start="0"
+         d="m 1082.8835,3816.1394 a 157.58379,266.68027 0 1 1 -315.1676,0 l 157.58378,0 z"
+         sodipodi:ry="266.68027"
+         sodipodi:rx="157.58379"
+         sodipodi:cy="3816.1394"
+         sodipodi:cx="925.29968"
+         id="path3999"
+         style="fill:none;stroke:#000000;stroke-width:10;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         transform="matrix(0,0.73065979,-1,0,7998.1709,2913.7861)"
+         sodipodi:end="3.1415927"
+         sodipodi:start="0"
+         d="m 1082.8835,3816.1394 a 157.58379,266.68027 0 1 1 -315.1676,0 l 157.58378,0 z"
+         sodipodi:ry="266.68027"
+         sodipodi:rx="157.58379"
+         sodipodi:cy="3816.1394"
+         sodipodi:cx="925.29968"
+         id="path3999-8"
+         style="fill:none;stroke:#000000;stroke-width:10;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+    </g>
   </g>
 </svg>
