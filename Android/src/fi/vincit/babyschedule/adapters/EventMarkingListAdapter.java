@@ -89,6 +89,9 @@ public class EventMarkingListAdapter extends BaseAdapter {
 		else if( activityName.equalsIgnoreCase(aNames[7]) ) {
 			return R.drawable.icon_diaper;			
 		}
+		else if( activityName.equalsIgnoreCase(aNames[8]) ) {
+			return R.drawable.potty_icon;			
+		}		
 		else {
 			return R.drawable.sleep_icon;
 		}
