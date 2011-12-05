@@ -3,14 +3,18 @@ package fi.vincit.babyschedule.adapters;
 import java.util.ArrayList;
 import java.util.Date;
 
+import utils.BabyEvent;
+
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import fi.vincit.babyschedule.R;
+import fi.vincit.babyschedule.MainTabWidget.StaticContext;
 
 public class SingleEventListAdapter extends BaseAdapter {
 
@@ -61,6 +65,9 @@ public class SingleEventListAdapter extends BaseAdapter {
 		
 		TextView dateTime = (TextView)dateView.findViewById(R.id.ActionTime);
 		dateTime.setText(date.toLocaleString());	
+		
+		ImageView img = (ImageView)dateView.findViewById(R.id.events_list_icon);
+		img.setImageDrawable(StaticContext.ctx.getResources().getDrawable(BabyEvent.getActivityIconId(mEventName)));		
 		
 		dateView.setTag(date);
 			

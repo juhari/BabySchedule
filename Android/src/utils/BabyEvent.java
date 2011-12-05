@@ -3,6 +3,10 @@ package utils;
 import java.io.Serializable;
 import java.util.Date;
 
+import android.content.Context;
+import fi.vincit.babyschedule.MainTabWidget.StaticContext;
+import fi.vincit.babyschedule.R;
+
 public class BabyEvent implements Comparable<BabyEvent>
 								   ,Serializable {
 	/**
@@ -37,6 +41,36 @@ public class BabyEvent implements Comparable<BabyEvent>
 			return 1;
 		} else {
 			return -1;
+		}
+	}
+	
+	public static int getActivityIconId(String activityName) {
+		Context context = StaticContext.ctx;
+		String[] aNames = context.getResources().getStringArray(R.array.activity_names);
+		if( activityName.equalsIgnoreCase(aNames[0]) ) {
+			return R.drawable.eat_icon;
+		}
+		else if( activityName.equalsIgnoreCase(aNames[4]) ) {
+			return R.drawable.bath_icon;
+		}
+		else if( activityName.equalsIgnoreCase(aNames[5]) ||
+				 activityName.equalsIgnoreCase(aNames[6])) {
+			return R.drawable.milk_icon;
+		}
+		else if( activityName.equalsIgnoreCase(aNames[8]) ) {
+			return R.drawable.icon_diaper;			
+		}
+		else if( activityName.equalsIgnoreCase(aNames[9]) ) {
+			return R.drawable.potty_icon;			
+		}	
+		else if( activityName.equalsIgnoreCase(aNames[1]) ||
+				 activityName.equalsIgnoreCase(aNames[2]) ||
+				 activityName.equalsIgnoreCase(aNames[3]) ||
+				 activityName.equalsIgnoreCase(aNames[7])) {
+			return R.drawable.sleep_icon;
+		}
+		else {
+			return R.drawable.icon_empty;
 		}
 	}
 }

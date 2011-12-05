@@ -1,14 +1,20 @@
 package fi.vincit.babyschedule;
 
+import java.util.ArrayList;
+
 import utils.ScheduleDatabase;
+import android.app.AlertDialog;
 import android.app.TabActivity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TabHost;
 import android.widget.TextView;
 import fi.vincit.babyschedule.activities.AllEventsList;
@@ -30,11 +36,39 @@ public class MainTabWidget extends TabActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		ScheduleDatabase.open(getApplicationContext());
-		ScheduleDatabase.getBabyNames();
+		ArrayList<String> names = ScheduleDatabase.getBabyNames();
 		super.onCreate(savedInstanceState);						
 	    setContentView(R.layout.main);	   	    
 	    
-	    Resources res = getResources(); // Resource object to get Drawables
+	    // Show a dialog to add baby, if none exist
+    	if( names.isEmpty() ) {
+    		// Set an EditText view to get user input 
+    		final EditText input = new EditText(this);
+    		
+    		new AlertDialog.Builder(MainTabWidget.this)
+    	    .setTitle(getString(R.string.no_babies))
+    	    .setMessage(getString(R.string.no_babies))
+    	    .setView(input)
+    	    .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+    	        public void onClick(DialogInterface dialog, int whichButton) {
+    	            Editable value = input.getText(); 
+    	            ScheduleDatabase.addNewBaby(value.toString());
+    	            createTabs();
+    	        }
+    	    }).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+    	        public void onClick(DialogInterface dialog, int whichButton) {
+    	            // exit the application
+    	        	System.exit(0);
+    	        }
+    	    }).show();
+    	}
+    	else {
+    		createTabs();
+    	}	    	   
+	}
+	
+	private void createTabs() {
+		Resources res = getResources(); // Resource object to get Drawables
 	    StaticResources.res = res;
 	    TabHost tabHost = getTabHost();  // The activity TabHost
 	    TabHost.TabSpec spec;  // Resusable TabSpec for each tab
@@ -66,9 +100,17 @@ public class MainTabWidget extends TabActivity {
 
 	    }
 	    
-	    tabHost.setCurrentTab(0);	    	   
+	    tabHost.setCurrentTab(0);	
+	    
+	    setTitle("Babyschedule: " + Settings.getCurrentBabyName());
 	}
 
+	@Override
+    public void onResume() {
+		super.onResume();
+		if( !ScheduleDatabase.getBabyNames().isEmpty() )
+			setTitle("Babyschedule: " + Settings.getCurrentBabyName());
+	}
 	
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {

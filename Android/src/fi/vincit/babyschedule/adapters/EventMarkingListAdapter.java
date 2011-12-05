@@ -2,6 +2,7 @@ package fi.vincit.babyschedule.adapters;
 
 import java.util.Date;
 
+import utils.BabyEvent;
 import utils.ConsumedTime;
 import utils.ScheduleDatabase;
 import android.content.Context;
@@ -69,33 +70,11 @@ public class EventMarkingListAdapter extends BaseAdapter {
 		}
 		
 		ImageView img = (ImageView)activityView.findViewById(R.id.event_icon);
-		img.setImageDrawable(mContext.getResources().getDrawable(getActivityIconId(activityName)));
+		img.setImageDrawable(mContext.getResources().getDrawable(BabyEvent.getActivityIconId(activityName)));
 		
 		activityView.setTag(activityName);
 		return activityView;		
-	}
-	
-	int getActivityIconId(String activityName) {
-		String[] aNames = mContext.getResources().getStringArray(R.array.activity_names);
-		if( activityName.equalsIgnoreCase(aNames[0]) ) {
-			return R.drawable.eat_icon;
-		}
-		else if( activityName.equalsIgnoreCase(aNames[4]) ) {
-			return R.drawable.bath_icon;
-		}
-		else if( activityName.equalsIgnoreCase(aNames[5]) ) {
-			return R.drawable.milk_icon;
-		}
-		else if( activityName.equalsIgnoreCase(aNames[7]) ) {
-			return R.drawable.icon_diaper;			
-		}
-		else if( activityName.equalsIgnoreCase(aNames[8]) ) {
-			return R.drawable.potty_icon;			
-		}		
-		else {
-			return R.drawable.sleep_icon;
-		}
-	}
+	}		
 	
 	private String getFormattedTimeTextForNormalEvent(String eventName) {
 		Date date = ScheduleDatabase.getLastActionOfType(Settings.getCurrentBabyName(), eventName);

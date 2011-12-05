@@ -10,9 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import fi.vincit.babyschedule.MainTabWidget;
 import fi.vincit.babyschedule.R;
+import fi.vincit.babyschedule.MainTabWidget.StaticContext;
 import fi.vincit.babyschedule.activities.Settings;
 
 public class AllEventsListAdapter extends BaseAdapter {
@@ -81,6 +83,9 @@ public class AllEventsListAdapter extends BaseAdapter {
 		} else {			
 			actionTime.setText(action.getActionDate().toLocaleString());
 		}
+		
+		ImageView img = (ImageView)actionView.findViewById(R.id.events_list_icon);
+		img.setImageDrawable(StaticContext.ctx.getResources().getDrawable(BabyEvent.getActivityIconId(action.getActionName())));		
 		
 		actionView.setTag(action);
 		return actionView;

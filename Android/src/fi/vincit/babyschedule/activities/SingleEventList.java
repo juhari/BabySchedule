@@ -30,7 +30,7 @@ public class SingleEventList extends ListActivity
 	@Override
 	public void onCreate(Bundle b) {
 		Log.d("Babyschedule", "Single action onCreate()");
-    	super.onCreate(b);
+    	super.onCreate(b);    	    	
     	
     	ScheduleDatabase.open(getApplicationContext());        
     	

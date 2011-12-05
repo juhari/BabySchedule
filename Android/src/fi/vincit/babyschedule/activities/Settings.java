@@ -35,7 +35,11 @@ public class Settings extends PreferenceActivity {
 		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(StaticContext.ctx);
     	String name = pref.getString("chooseList", "verneri");
     	Log.d("Babyschedule", "Name of current baby: " + name);
-    	ArrayList<String> names = ScheduleDatabase.getBabyNames();
+    	ArrayList<String> names = ScheduleDatabase.getBabyNames();    	    	
+    	
+    	if( names.isEmpty() ) {
+    		return name;
+    	}
     	
     	// check for obsolete preference values
     	if( !names.contains(name) ) {

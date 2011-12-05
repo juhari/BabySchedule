@@ -1018,7 +1018,10 @@
          sodipodi:type="arc" />
     </g>
     <g
-       id="g4073">
+       id="g4073"
+       inkscape:export-filename="C:\Comp Dev\BabySchedule\Android\res\drawable-mdpi\potty_icon.png"
+       inkscape:export-xdpi="3.7918088"
+       inkscape:export-ydpi="3.7918088">
       <rect
          rx="10.741233"
          ry="8.0062304"
@@ -1094,5 +1097,17 @@
          style="fill:#00ffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
          sodipodi:type="arc" />
     </g>
+    <path
+       sodipodi:type="arc"
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path4081"
+       sodipodi:cx="1794.0309"
+       sodipodi:cy="5343.4902"
+       sodipodi:rx="363.65491"
+       sodipodi:ry="444.4671"
+       d="M 2157.6858,5343.4902 A 363.65491,444.4671 0 1 1 1975.8584,4958.5704"
+       sodipodi:start="0"
+       sodipodi:end="5.2359878"
+       sodipodi:open="true" />
   </g>
 </svg>
