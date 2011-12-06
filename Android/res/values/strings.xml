@@ -16,6 +16,8 @@
     <string name="show_stats">Show statistics</string>
     <string name="go_to_sleep">Go to sleep</string>
     <string name="go_to_nap">Go for a nap</string>
+    <string name="milk_left">Nurse left</string>
+   	<string name="milk_right">Nurse right</string>
     <string name="woke_up">Woke up</string>
     <string name="delete">Delete event</string>
     <string name="mark">Mark now</string>
@@ -36,6 +38,15 @@
     <string name="edit_baby">Edit baby</string>
     <string name="baby_exists">Unable to add, baby with the same name already exists!</string>
     <string name="no_babies">No babies exist, give baby name to start using application.</string>
+    
+    <!-- Nursing activity -->
+    <string name="nursing">Nursing</string>
+    <string name="nursing_left">Nursing left breast</string>
+    <string name="nursing_right">Nursing right breast</string> 
+    <string name="switch_breast">Switch breast</string>
+    <string name="finish_nursing">Finish nursing</string>
+    <string name="start_nursing_left">Start nursing left now</string>
+    <string name="start_nursing_right">Start nursing right now</string>
     
     <!-- Activities -->
     <string-array name="activity_names">

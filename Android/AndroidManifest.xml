@@ -38,6 +38,9 @@
 		<activity android:name=".activities.ManageBabies"
 				  android:label="@string/manage_babies">
 		</activity>
+		<activity android:name=".activities.NursingActivity"
+				  android:label="@string/nursing">
+		</activity>
 		
     </application>
 </manifest>

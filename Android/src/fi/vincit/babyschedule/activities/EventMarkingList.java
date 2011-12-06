@@ -79,7 +79,14 @@ public class EventMarkingList extends ListActivity
 		MenuInflater inflater = getMenuInflater();
 		if( mSelectedEventName.equalsIgnoreCase(getString(R.string.go_to_sleep)) ) {
 			inflater.inflate(R.menu.marksleepeventscontext, menu);
-		} else {
+		} 
+		else if( mSelectedEventName.equalsIgnoreCase(getString(R.string.milk_left)) ) {
+			inflater.inflate(R.menu.mark_nursing_left_context, menu);
+		}
+		else if( mSelectedEventName.equalsIgnoreCase(getString(R.string.milk_right)) ) {
+			inflater.inflate(R.menu.mark_nursing_right_context, menu);
+		}
+		else {
 			inflater.inflate(R.menu.markeventscontext, menu);
 		}		
 	}
@@ -100,6 +107,16 @@ public class EventMarkingList extends ListActivity
 				eventMarkedNow(getString(R.string.go_to_nap));	    	
 				return true;
 			}
+			case R.id.mark_nursing_left_context:
+			{
+				startNursing(true);
+				return true;
+			}
+			case R.id.mark_nursing_right_context:
+			{
+				startNursing(false);
+				return true;
+			}
 			case R.id.mark_activity:
 			{				  
 		    	eventMarkedNow(actionName);
@@ -113,6 +130,15 @@ public class EventMarkingList extends ListActivity
 			default:
 				return super.onContextItemSelected(item);
 			}
+	}
+	
+	private void startNursing(boolean left) {
+		// show list of actions for the specified type
+		Intent startNursing = new Intent(EventMarkingList.this, NursingActivity.class);   
+		Bundle actionBundle = new Bundle();
+		actionBundle.putBoolean("LEFT", left);
+		startNursing.putExtras(actionBundle);
+		startActivity(startNursing);
 	}
 	
 	private void eventMarkedNow(String eventName) {

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+    <TextView 
+    	android:layout_width="wrap_content" 
+    	android:textAppearance="?android:attr/textAppearanceLarge" 
+    	android:layout_height="wrap_content" 
+    	android:id="@+id/nursing_which" 
+    	android:text="@string/nursing_left" 
+    	android:layout_gravity="center_horizontal"
+    	android:layout_marginTop="10px">
+   	</TextView>
+    <LinearLayout 
+    	android:layout_width="fill_parent" 
+    	android:id="@+id/linearLayout1" 
+    	android:orientation="vertical" 
+    	android:layout_height="fill_parent">
+        <Chronometer 
+        	android:layout_width="wrap_content" 
+        	android:id="@+id/nursingChrono" 
+        	android:layout_gravity="center_horizontal" 
+        	android:layout_height="wrap_content" 
+        	android:text="Chronometer" 
+        	android:layout_marginTop="40px" 
+        	android:textSize="32px">
+       	</Chronometer>
+        <Button 
+        	android:layout_height="wrap_content" 
+        	android:id="@+id/switch_breast_btn" 
+        	android:text="@string/switch_breast" 
+        	android:layout_gravity="center_horizontal" 
+        	android:layout_marginTop="40px" 
+        	android:layout_width="fill_parent"
+        	android:onClick="onClick">
+       	</Button>
+        <Button 
+        	android:layout_gravity="center_horizontal" 
+        	android:layout_height="wrap_content"
+			android:id="@+id/finish_bursing_btn" 
+			android:text="@string/finish_nursing" 
+			android:layout_marginTop="40px" 
+			android:layout_width="fill_parent"
+			android:onClick="onClick">
+		</Button>
+    </LinearLayout>
+    
+</LinearLayout>
