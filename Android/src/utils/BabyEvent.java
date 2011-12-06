@@ -49,18 +49,21 @@ public class BabyEvent implements Comparable<BabyEvent>
 		String[] aNames = context.getResources().getStringArray(R.array.activity_names);
 		if( activityName.equalsIgnoreCase(aNames[0]) ) {
 			return R.drawable.eat_icon;
-		}
+		}		
 		else if( activityName.equalsIgnoreCase(aNames[4]) ) {
 			return R.drawable.bath_icon;
 		}
-		else if( activityName.equalsIgnoreCase(aNames[5]) ||
-				 activityName.equalsIgnoreCase(aNames[6])) {
+		else if( activityName.equalsIgnoreCase(aNames[5]) ) {
 			return R.drawable.milk_icon;
 		}
-		else if( activityName.equalsIgnoreCase(aNames[8]) ) {
-			return R.drawable.icon_diaper;			
+		else if( activityName.equalsIgnoreCase(aNames[6]) ||
+				 activityName.equalsIgnoreCase(aNames[7])) {
+			return R.drawable.nurse_icon;
 		}
 		else if( activityName.equalsIgnoreCase(aNames[9]) ) {
+			return R.drawable.icon_diaper;			
+		}
+		else if( activityName.equalsIgnoreCase(aNames[10]) ) {
 			return R.drawable.potty_icon;			
 		}	
 		else if( activityName.equalsIgnoreCase(aNames[1]) ||

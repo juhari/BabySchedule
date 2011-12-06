@@ -44,7 +44,8 @@
     	<item name="go_to_nap">Go for a nap</item>
     	<item name="woke_up">Woke up</item>
     	<item name="bath">Bath</item>
-    	<item name="milk">Nurse left</item>
+    	<item name="milk">Milk</item>
+    	<item name="milk_left">Nurse left</item>
     	<item name="milk_right">Nurse right</item>
     	<item name="Woke up during night">Woke up during night</item>
     	<item name="Changed diaper">Changed diaper</item>
@@ -52,7 +53,8 @@
    	</string-array>
    	<string-array name="sleep_activities">
     	<item name="woke_up">Woke up</item>
-    	<item name="milk">Nurse left</item>
+    	<item name="milk">Milk</item>
+    	<item name="milk_left">Nurse left</item>
     	<item name="milk_right">Nurse right</item>
     	<item name="Woke up during night">Woke up during night</item>    	
    	</string-array>
@@ -60,7 +62,8 @@
    		<item name="eat">Eat</item>
     	<item name="go_to_sleep">Go to sleep</item>
     	<item name="bath">Bath</item>
-    	<item name="milk">Nurse left</item>
+    	<item name="milk">Milk</item>
+    	<item name="milk_left">Nurse left</item>
     	<item name="milk_right">Nurse right</item>
     	<item name="Changed diaper">Changed diaper</item>
     	<item name="Made poop">Made poop</item>    	

@@ -17,17 +17,16 @@ import fi.vincit.babyschedule.R;
 
 public class ScheduleDatabase {
    private static final String DATABASE_CREATE_BABY_NAMES = "create table babynames (_id integer primary key autoincrement, babyname text not null );";
-   private static final String DATABASE_CREATE_BABY_SCHEDULE = "(_id integer primary key autoincrement, babyname text not null, activityname text not null, time text not null, duration int );";
+   private static final String DATABASE_CREATE_BABY_SCHEDULE = "(_id integer primary key autoincrement, babyname text not null, activityname text not null, time text not null, duration int, freevalue int, freevalue2 int );";
    
    private static final int BABY_NAME_COLUMN = 1;
    private static final int ACTIVITY_NAME_COLUMN = 2;
    private static final int TIME_COLUMN = 3;
    
    private static final String DATABASE_NAME = "BabySchedule";
-   private static final int DATABASE_VERSION = 9;
+   private static final int DATABASE_VERSION = 10;
    private static final String TABLE_BABY_NAMES = "babynames";
-   
-   
+      
    private static Context mCtx = null;
    private static DatabaseHelper mDbHelper = null;
    private static SQLiteDatabase mDb = null;   
