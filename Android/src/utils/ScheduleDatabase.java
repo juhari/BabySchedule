@@ -22,6 +22,7 @@ public class ScheduleDatabase {
    private static final int BABY_NAME_COLUMN = 1;
    private static final int ACTIVITY_NAME_COLUMN = 2;
    private static final int TIME_COLUMN = 3;
+   private static final int DURATION_COLUMN = 4;
    
    private static final String DATABASE_NAME = "BabySchedule";
    private static final int DATABASE_VERSION = 10;
@@ -131,10 +132,21 @@ public class ScheduleDatabase {
         values.put("time", time.toLocaleString());
         
         return mDb.insert(babyName, null, values);
-    }	     
+    }	
+    
+    public static long insertBabyAction(String babyName, String actionname, Date time, int durationInSeconds) {
+    	Log.i("Babyschedule", "creating baby schedule to with activity name: " + actionname + " and duration: " + durationInSeconds);
+    	ContentValues values = new ContentValues();
+    	values.put("babyname", babyName);
+    	values.put("activityname", actionname);
+        values.put("time", time.toLocaleString());
+        values.put("duration", durationInSeconds);
+        
+        return mDb.insert(babyName, null, values);
+    }
     
     public static Cursor fetchEntireTable(String tableName){
-    	return mDb.query(tableName, new String[] {"_id", "babyname", "activityname", "time"},  null, null, null, null, null);
+    	return mDb.query(tableName, new String[] {"_id", "babyname", "activityname", "time", "duration"},  null, null, null, null, null);
     }   
     
     public static void removeFromDb(String tableName, Cursor cursor) {
@@ -153,12 +165,12 @@ public class ScheduleDatabase {
     	String dateString = date.toLocaleString();
     	BabyEvent event = null;
     	Cursor cursor = mDb.query(babyName, 
-				  new String[] {"_id", "babyname", "activityname", "time"}, 
+				  new String[] {"_id", "babyname", "activityname", "time", "duration"}, 
 				  "time = '" + dateString + "'", 
 				  null, null, null, null);
     	
     	if( cursor.moveToFirst() ) {
-    		event = new BabyEvent(getRowActionName(cursor), getRowTime(cursor));
+    		event = new BabyEvent(getRowActionName(cursor), getRowTime(cursor), getRowDuration(cursor));
     	} 
     	
     	cursor.close();
@@ -185,7 +197,7 @@ public class ScheduleDatabase {
     	ArrayList<BabyEvent> actions = new ArrayList<BabyEvent>();
     	if( everything.moveToFirst() ) {
 	    	while( !everything.isAfterLast() ) {
-	    		actions.add(new BabyEvent(getRowActionName(everything), getRowTime(everything)));
+	    		actions.add(new BabyEvent(getRowActionName(everything), getRowTime(everything), getRowDuration(everything)));
 	    		everything.moveToNext();
 	    	}
     	}
@@ -198,7 +210,7 @@ public class ScheduleDatabase {
     public static ArrayList<Date> getActionDatesForAction(String babyName, String activityName){
     	Log.i("Babyschedule", "requesting dates for activity " + activityName);
     	Cursor cursor = mDb.query(babyName, 
-    							  new String[] {"_id", "babyname", "activityname", "time"}, 
+    							  new String[] {"_id", "babyname", "activityname", "time", "duration"}, 
     							  "activityname = '" + activityName + "'", 
     							  null, null, null, null);
     	
@@ -225,7 +237,12 @@ public class ScheduleDatabase {
     		return null;
     	}
     }
-            
+    
+    public static int getDurationOfNursingStartedAt(String babyName, Date nursingStarted) {
+    	BabyEvent event = getEventBasedOnDate(babyName, nursingStarted);
+    	return event.getDurationInSeconds();
+    }
+    
     public static ConsumedTime getDurationOfSleepStartedAt(String babyName, Date sleepStartTime) {
     	Date wakeUpDate = getWakeUpDateFromSleepDate(babyName, sleepStartTime);
     	if( wakeUpDate == null ) {
@@ -263,7 +280,11 @@ public class ScheduleDatabase {
     		// do nothing, return null
     	}
     	return date;
-    }      
+    }    
+    
+    private static int getRowDuration(Cursor cursor) {
+    	return cursor.getInt(DURATION_COLUMN);
+    }
     
     private static String getRowActionName(Cursor cursor) {
     	return cursor.getString(ACTIVITY_NAME_COLUMN);

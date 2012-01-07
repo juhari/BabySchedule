@@ -54,7 +54,7 @@ public class Statistics extends Activity {
     		napAvg = new ConsumedTime();
     	}
     	
-    	view.setText("Average length of night sleep:\n	" + sleepAvg.toString() + "\n\n" +
-    				 "Average length of nap:\n	" + napAvg.toString());
+    	view.setText("Average length of night sleep:\n	" + sleepAvg.toStringWithoutSeconds() + "\n\n" +
+    				 "Average length of nap:\n	" + napAvg.toStringWithoutSeconds());
 	}
 }

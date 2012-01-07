@@ -80,11 +80,8 @@ public class EventMarkingList extends ListActivity
 		if( mSelectedEventName.equalsIgnoreCase(getString(R.string.go_to_sleep)) ) {
 			inflater.inflate(R.menu.marksleepeventscontext, menu);
 		} 
-		else if( mSelectedEventName.equalsIgnoreCase(getString(R.string.milk_left)) ) {
-			inflater.inflate(R.menu.mark_nursing_left_context, menu);
-		}
-		else if( mSelectedEventName.equalsIgnoreCase(getString(R.string.milk_right)) ) {
-			inflater.inflate(R.menu.mark_nursing_right_context, menu);
+		else if( mSelectedEventName.equalsIgnoreCase(getString(R.string.nursing)) ) {
+			inflater.inflate(R.menu.mark_nursing_context, menu);
 		}
 		else {
 			inflater.inflate(R.menu.markeventscontext, menu);

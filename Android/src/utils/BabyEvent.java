@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import android.content.Context;
+import android.content.res.Resources;
 import fi.vincit.babyschedule.MainTabWidget.StaticContext;
 import fi.vincit.babyschedule.R;
 
@@ -15,11 +16,19 @@ public class BabyEvent implements Comparable<BabyEvent>
 	private static final long serialVersionUID = 7385675124548040589L;
 	private String actionName;
 	private Date actionDate;
+	private int durationInSeconds = 0;
 	
+
 	public BabyEvent(String name, Date actionDate) {
 		this.actionName = name;
 		this.actionDate = actionDate;
 	}		
+	
+	public BabyEvent(String name, Date actionDate, int duration) {
+		this.actionName = name;
+		this.actionDate = actionDate;
+		this.durationInSeconds = duration;
+	}
 	
 	public void setActionName(String activityName) {
 		this.actionName = activityName;
@@ -31,6 +40,10 @@ public class BabyEvent implements Comparable<BabyEvent>
 	
 	public Date getActionDate() {
 		return actionDate;
+	}
+	
+	public int getDurationInSeconds() {
+		return durationInSeconds;
 	}
 
 	@Override
@@ -46,6 +59,7 @@ public class BabyEvent implements Comparable<BabyEvent>
 	
 	public static int getActivityIconId(String activityName) {
 		Context context = StaticContext.ctx;
+		Resources res = context.getResources();
 		String[] aNames = context.getResources().getStringArray(R.array.activity_names);
 		if( activityName.equalsIgnoreCase(aNames[0]) ) {
 			return R.drawable.eat_icon;
@@ -56,7 +70,8 @@ public class BabyEvent implements Comparable<BabyEvent>
 		else if( activityName.equalsIgnoreCase(aNames[5]) ) {
 			return R.drawable.milk_icon;
 		}
-		else if( activityName.equalsIgnoreCase(aNames[6]) ||
+		else if( activityName.equalsIgnoreCase(res.getString(R.string.nursing)) ||
+				 activityName.equalsIgnoreCase(aNames[6]) ||
 				 activityName.equalsIgnoreCase(aNames[7])) {
 			return R.drawable.nurse_icon;
 		}
@@ -69,7 +84,7 @@ public class BabyEvent implements Comparable<BabyEvent>
 		else if( activityName.equalsIgnoreCase(aNames[1]) ||
 				 activityName.equalsIgnoreCase(aNames[2]) ||
 				 activityName.equalsIgnoreCase(aNames[3]) ||
-				 activityName.equalsIgnoreCase(aNames[7])) {
+				 activityName.equalsIgnoreCase(aNames[8])) {
 			return R.drawable.sleep_icon;
 		}
 		else {

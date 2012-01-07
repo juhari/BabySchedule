@@ -115,6 +115,6 @@ public class EventMarkingListAdapter extends BaseAdapter {
 	
 	private String getTimeDiffFromDate(Date oldDate) {
 		ConsumedTime timeDiff = new ConsumedTime(new Date(), oldDate);	
-		return timeDiff.toString();
+		return timeDiff.toStringWithoutSeconds();
 	}
 }

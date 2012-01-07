@@ -23,6 +23,8 @@ public class AllEventsListAdapter extends BaseAdapter {
 	private String mSleepString;
 	private String mNapString;
 	private String mWokeUpString;
+	private String mNursingLeftString;
+	private String mNursingRightString;
 	
 	public AllEventsListAdapter(ArrayList<BabyEvent> actions) {		
 		mActionList = actions;
@@ -31,6 +33,8 @@ public class AllEventsListAdapter extends BaseAdapter {
 		mNapString = MainTabWidget.StaticResources.res.getString(R.string.go_to_nap);
 		mSleepString = MainTabWidget.StaticResources.res.getString(R.string.go_to_sleep);
 		mWokeUpString = MainTabWidget.StaticResources.res.getString(R.string.woke_up);
+		mNursingLeftString = MainTabWidget.StaticResources.res.getString(R.string.milk_left);
+		mNursingRightString = MainTabWidget.StaticResources.res.getString(R.string.milk_right);
 	}
 	
 	public void setActionsList(ArrayList<BabyEvent> actions) {
@@ -80,7 +84,11 @@ public class AllEventsListAdapter extends BaseAdapter {
 		TextView actionTime = (TextView)actionView.findViewById(R.id.ActionTime);
 		if( action.getActionName().equals(mNapString) || action.getActionName().equals(mSleepString) ) {
 			actionTime.setText(getTimeTextForSleepOrNap(action));
-		} else {			
+		} 
+		else if( action.getActionName().equals(mNursingLeftString) || action.getActionName().equals(mNursingRightString)) {
+			actionTime.setText(getTimeTextForNursing(action));
+		}
+		else {			
 			actionTime.setText(action.getActionDate().toLocaleString());
 		}
 		
@@ -91,10 +99,19 @@ public class AllEventsListAdapter extends BaseAdapter {
 		return actionView;
 	}
 	
+	private String getTimeTextForNursing(BabyEvent event) {
+		ConsumedTime duration = new ConsumedTime(event.getDurationInSeconds());
+		return (event.getActionDate().toLocaleString() + "\n" + 
+				MainTabWidget.StaticResources.res.getString(R.string.duration) + 
+				duration.toString());
+	}
+	
 	private String getTimeTextForSleepOrNap(BabyEvent event) {
 		ConsumedTime duration = ScheduleDatabase.getDurationOfSleepStartedAt(Settings.getCurrentBabyName(), event.getActionDate());
 		if( duration != null ) {
-			return (event.getActionDate().toLocaleString() + "\nDuration: " + duration.toString());
+			return (event.getActionDate().toLocaleString() + "\n" + 
+					MainTabWidget.StaticResources.res.getString(R.string.duration) + 
+					duration.toStringWithoutSeconds());
 		} else {
 			return (event.getActionDate().toLocaleString());
 		}

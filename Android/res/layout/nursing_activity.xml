@@ -11,28 +11,67 @@
     	android:id="@+id/nursing_which" 
     	android:text="@string/nursing_left" 
     	android:layout_gravity="center_horizontal"
-    	android:layout_marginTop="10px">
+    	android:layout_marginTop="10dp">
    	</TextView>
     <LinearLayout 
     	android:layout_width="fill_parent" 
     	android:id="@+id/linearLayout1" 
     	android:orientation="vertical" 
     	android:layout_height="fill_parent">
-        <Chronometer 
-        	android:layout_width="wrap_content" 
-        	android:id="@+id/nursingChrono" 
-        	android:layout_gravity="center_horizontal" 
-        	android:layout_height="wrap_content" 
-        	android:text="Chronometer" 
-        	android:layout_marginTop="40px" 
-        	android:textSize="32px">
-       	</Chronometer>
+    	<LinearLayout
+    	    android:layout_width="fill_parent"
+    	    android:id="@+id/nursingleftla"
+    	    android:orientation="horizontal"
+    	    android:layout_height="wrap_content">
+    	    <TextView
+    	        android:layout_width="wrap_content" 
+		    	android:textAppearance="?android:attr/textAppearanceLarge" 
+		    	android:layout_height="wrap_content" 
+		    	android:id="@+id/nursing_left" 
+		    	android:text="@string/left" 
+		    	android:layout_gravity="center_horizontal"
+		    	android:layout_marginTop="10dp">
+		   	</TextView>
+	        <Chronometer 
+	        	android:layout_width="wrap_content" 
+	        	android:id="@+id/nursingLeftChrono" 
+	        	android:layout_gravity="center_horizontal" 
+	        	android:layout_height="wrap_content" 
+	        	android:layout_marginLeft="15dp"
+	        	android:layout_marginTop="40dp" 
+	        	android:textSize="32dp">
+	       	</Chronometer>
+       	</LinearLayout>
+       	<LinearLayout
+    	    android:layout_width="fill_parent"
+    	    android:id="@+id/nursingrightla"
+    	    android:orientation="horizontal"
+    	    android:layout_height="wrap_content">
+    	    <TextView
+    	        android:layout_width="wrap_content" 
+		    	android:textAppearance="?android:attr/textAppearanceLarge" 
+		    	android:layout_height="wrap_content" 
+		    	android:id="@+id/nursing_right" 
+		    	android:text="@string/right" 
+		    	android:layout_gravity="center_horizontal"
+		    	android:layout_marginTop="10dp">
+		   	</TextView>
+	        <Chronometer 
+	        	android:layout_width="wrap_content" 
+	        	android:id="@+id/nursingRightChrono" 
+	        	android:layout_gravity="center_horizontal" 
+	        	android:layout_height="wrap_content" 
+	        	android:layout_marginLeft="15dp"
+	        	android:layout_marginTop="40dp" 
+	        	android:textSize="32dp">
+	       	</Chronometer>
+       	</LinearLayout>
         <Button 
         	android:layout_height="wrap_content" 
         	android:id="@+id/switch_breast_btn" 
         	android:text="@string/switch_breast" 
         	android:layout_gravity="center_horizontal" 
-        	android:layout_marginTop="40px" 
+        	android:layout_marginTop="40dp" 
         	android:layout_width="fill_parent"
         	android:onClick="onClick">
        	</Button>
@@ -41,7 +80,7 @@
         	android:layout_height="wrap_content"
 			android:id="@+id/finish_bursing_btn" 
 			android:text="@string/finish_nursing" 
-			android:layout_marginTop="40px" 
+			android:layout_marginTop="40dp" 
 			android:layout_width="fill_parent"
 			android:onClick="onClick">
 		</Button>
