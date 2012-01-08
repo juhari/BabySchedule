@@ -44,8 +44,17 @@
     <string name="baby_exists">Unable to add, baby with the same name already exists!</string>
     <string name="no_babies">No babies exist, give baby name to start using application.</string>
     
+    <!--  Milk activity -->
+    <string name="give_milk">Give milk</string>
+    <string name="how_much">How much milk was given?</string>
+    <string name="ml">ml</string>
+    <string name="milk">Milk</string>
+    <string name="milk_bottle">Milk bottle</string>
+    <string name="mark_milk_amount">Mark amount of milk given</string>
+    <string name="amount">Amount</string>
+    
     <!-- Nursing activity -->
-    <string name="nursing">Nursing</string>
+    <string name="nursing">Nursing</string>    
     <string name="nursing_left">Now nursing left breast</string>
     <string name="left">Left: </string>
     <string name="right">Right: </string>

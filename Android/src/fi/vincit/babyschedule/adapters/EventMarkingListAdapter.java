@@ -65,6 +65,8 @@ public class EventMarkingListAdapter extends BaseAdapter {
 			timePassed.setText(getFormattedTimeTextForGotToSleepEvent());
 		} else if( activityName.equalsIgnoreCase(mContext.getString(R.string.woke_up)) ) {
 			timePassed.setText(getFormattedTimeTextForWokeUpEvent());
+		} else if( activityName.equalsIgnoreCase(mContext.getString(R.string.milk)) ) {
+			timePassed.setText(getFormattedTimeTextForMilkEvent());
 		} else {
 			timePassed.setText(getFormattedTimeTextForNormalEvent(activityName));
 		}
@@ -95,6 +97,21 @@ public class EventMarkingListAdapter extends BaseAdapter {
 			return time + timeDiff;
 		} else {
 			return "Baby is now awake, no previous sleep events marked.";
+		}
+	}
+	
+	private String getFormattedTimeTextForMilkEvent() {
+		Date date = ScheduleDatabase.getLastActionOfType(Settings.getCurrentBabyName(), mContext.getString(R.string.milk));
+		if( date != null ) {	
+			String time = "Last occurred at: " + date.toLocaleString() + "\n";								
+			String timeDiff = getTimeDiffFromDate(date);		
+			int amount = ScheduleDatabase.getFreeValueAttachedToEvent(Settings.getCurrentBabyName(), date);
+			return (time + timeDiff + " ago, " + 
+				   mContext.getString(R.string.amount)+ ": " + amount +
+				   mContext.getString(R.string.ml)
+				   );
+		} else {
+			return "No \"" + mContext.getString(R.string.milk) + "\" events occurred";
 		}
 	}
 	

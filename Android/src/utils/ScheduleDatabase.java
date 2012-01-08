@@ -16,16 +16,20 @@ import android.util.Log;
 import fi.vincit.babyschedule.R;
 
 public class ScheduleDatabase {
-   private static final String DATABASE_CREATE_BABY_NAMES = "create table babynames (_id integer primary key autoincrement, babyname text not null );";
-   private static final String DATABASE_CREATE_BABY_SCHEDULE = "(_id integer primary key autoincrement, babyname text not null, activityname text not null, time text not null, duration int, freevalue int, freevalue2 int );";
+   private static final String DATABASE_CREATE_BABY_NAMES = "create table if not exists babynames (_id integer primary key autoincrement, babyname text not null );";
+   private static final String DATABASE_CREATE_BABY_SCHEDULE = "(_id integer primary key autoincrement, babyname text not null, activityname text not null, time text not null, duration int, freevalue int, freevalue2 int, freeText text, freeData image );";
    
    private static final int BABY_NAME_COLUMN = 1;
    private static final int ACTIVITY_NAME_COLUMN = 2;
    private static final int TIME_COLUMN = 3;
    private static final int DURATION_COLUMN = 4;
+   private static final int FREEVALUE = 5;
+   private static final int FREEVALUE2 = 6;
+   private static final int FREETEXT = 7;
+   private static final int FREEDATA = 8;
    
    private static final String DATABASE_NAME = "BabySchedule";
-   private static final int DATABASE_VERSION = 10;
+   private static final int DATABASE_VERSION = 12;
    private static final String TABLE_BABY_NAMES = "babynames";
       
    private static Context mCtx = null;
@@ -70,9 +74,11 @@ public class ScheduleDatabase {
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w("Babyschedule", "Upgrading database from version " + oldVersion + " to "
                     + newVersion);
-        	db.execSQL("DROP TABLE IF EXISTS Verneri");
-        	db.execSQL("DROP TABLE IF EXISTS tester");
-        	db.execSQL("DROP TABLE IF EXISTS test");
+            
+            db.execSQL("DROP TABLE IF EXISTS Verneri");
+            db.execSQL("DROP TABLE IF EXISTS testk");
+            
+
             db.execSQL("DROP TABLE IF EXISTS babynames");
             db.execSQL(DATABASE_CREATE_BABY_NAMES);
         }
@@ -134,13 +140,24 @@ public class ScheduleDatabase {
         return mDb.insert(babyName, null, values);
     }	
     
-    public static long insertBabyAction(String babyName, String actionname, Date time, int durationInSeconds) {
+    public static long insertBabyActionWithDuration(String babyName, String actionname, Date time, int durationInSeconds) {
     	Log.i("Babyschedule", "creating baby schedule to with activity name: " + actionname + " and duration: " + durationInSeconds);
     	ContentValues values = new ContentValues();
     	values.put("babyname", babyName);
     	values.put("activityname", actionname);
         values.put("time", time.toLocaleString());
         values.put("duration", durationInSeconds);
+        
+        return mDb.insert(babyName, null, values);
+    }
+    
+    public static long insertBabyActionWithFreeVal(String babyName, String actionname, Date time, int freeValue) {
+    	Log.i("Babyschedule", "creating baby schedule to with activity name: " + actionname + " and freeValue: " + freeValue);
+    	ContentValues values = new ContentValues();
+    	values.put("babyname", babyName);
+    	values.put("activityname", actionname);
+        values.put("time", time.toLocaleString());
+        values.put("freevalue", freeValue);
         
         return mDb.insert(babyName, null, values);
     }
@@ -175,6 +192,26 @@ public class ScheduleDatabase {
     	
     	cursor.close();
     	return event;
+    }
+    
+    public static int getFreeValueAttachedToEvent(String babyName, Date date) {
+    	String dateString = date.toLocaleString();
+    	int freeVal = 0;
+    	Cursor cursor = mDb.query(babyName, 
+				  new String[] {"_id", "freeValue"}, 
+				  "time = '" + dateString + "'", 
+				  null, null, null, null);
+    	
+    	if( cursor.moveToFirst() ) {
+    		freeVal = cursor.getInt(1);
+    	} 
+    	
+    	cursor.close();
+    	return freeVal;
+    }
+    
+    public static int getFreeValueAttachedToEvent(String babyName, BabyEvent event) {
+    	return getFreeValueAttachedToEvent(babyName, event.getActionDate());
     }
     
     public static ArrayList<BabyEvent> getAllBabyActions(String babyName, String[] actionNames) {   

@@ -80,6 +80,9 @@ public class EventMarkingList extends ListActivity
 		if( mSelectedEventName.equalsIgnoreCase(getString(R.string.go_to_sleep)) ) {
 			inflater.inflate(R.menu.marksleepeventscontext, menu);
 		} 
+		else if( mSelectedEventName.equalsIgnoreCase(getString(R.string.milk)) ) {
+			inflater.inflate(R.menu.mark_milk_context, menu);
+		}
 		else if( mSelectedEventName.equalsIgnoreCase(getString(R.string.nursing)) ) {
 			inflater.inflate(R.menu.mark_nursing_context, menu);
 		}
@@ -102,6 +105,11 @@ public class EventMarkingList extends ListActivity
 			case R.id.mark_nap_activity:
 			{
 				eventMarkedNow(getString(R.string.go_to_nap));	    	
+				return true;
+			}
+			case R.id.mark_milk:
+			{
+				startMilk();
 				return true;
 			}
 			case R.id.mark_nursing_left_context:
@@ -127,6 +135,12 @@ public class EventMarkingList extends ListActivity
 			default:
 				return super.onContextItemSelected(item);
 			}
+	}
+	
+	private void startMilk() {
+		// show list of actions for the specified type
+		Intent startMilk = new Intent(EventMarkingList.this, GiveMilkActivity.class);   
+		startActivity(startMilk);
 	}
 	
 	private void startNursing(boolean left) {

@@ -6,15 +6,16 @@ import utils.BabyEvent;
 import utils.ConsumedTime;
 import utils.ScheduleDatabase;
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import fi.vincit.babyschedule.MainTabWidget.StaticContext;
 import fi.vincit.babyschedule.MainTabWidget;
 import fi.vincit.babyschedule.R;
-import fi.vincit.babyschedule.MainTabWidget.StaticContext;
 import fi.vincit.babyschedule.activities.Settings;
 
 public class AllEventsListAdapter extends BaseAdapter {
@@ -25,16 +26,20 @@ public class AllEventsListAdapter extends BaseAdapter {
 	private String mWokeUpString;
 	private String mNursingLeftString;
 	private String mNursingRightString;
+	private String mMilkString;
+	private Resources mRes;
 	
 	public AllEventsListAdapter(ArrayList<BabyEvent> actions) {		
 		mActionList = actions;
 		removeWokeUps();
 		
-		mNapString = MainTabWidget.StaticResources.res.getString(R.string.go_to_nap);
-		mSleepString = MainTabWidget.StaticResources.res.getString(R.string.go_to_sleep);
-		mWokeUpString = MainTabWidget.StaticResources.res.getString(R.string.woke_up);
-		mNursingLeftString = MainTabWidget.StaticResources.res.getString(R.string.milk_left);
-		mNursingRightString = MainTabWidget.StaticResources.res.getString(R.string.milk_right);
+		mRes = MainTabWidget.StaticResources.res;
+		mNapString = mRes.getString(R.string.go_to_nap);
+		mSleepString = mRes.getString(R.string.go_to_sleep);
+		mWokeUpString = mRes.getString(R.string.woke_up);
+		mNursingLeftString = mRes.getString(R.string.milk_left);
+		mNursingRightString = mRes.getString(R.string.milk_right);
+		mMilkString = mRes.getString(R.string.milk);		
 	}
 	
 	public void setActionsList(ArrayList<BabyEvent> actions) {
@@ -88,6 +93,9 @@ public class AllEventsListAdapter extends BaseAdapter {
 		else if( action.getActionName().equals(mNursingLeftString) || action.getActionName().equals(mNursingRightString)) {
 			actionTime.setText(getTimeTextForNursing(action));
 		}
+		else if( action.getActionName().equals(mMilkString) ) {
+			actionTime.setText(getTimeTextForMilk(action));
+		}
 		else {			
 			actionTime.setText(action.getActionDate().toLocaleString());
 		}
@@ -99,18 +107,25 @@ public class AllEventsListAdapter extends BaseAdapter {
 		return actionView;
 	}
 	
+	private String getTimeTextForMilk(BabyEvent event) {
+		int amount = ScheduleDatabase.getFreeValueAttachedToEvent(Settings.getCurrentBabyName(), event);
+		return (event.getActionDate().toLocaleString() + "\n" + 
+				mRes.getString(R.string.amount) + 
+				": " + amount + mRes.getString(R.string.ml)); 
+	}
+	
 	private String getTimeTextForNursing(BabyEvent event) {
 		ConsumedTime duration = new ConsumedTime(event.getDurationInSeconds());
 		return (event.getActionDate().toLocaleString() + "\n" + 
-				MainTabWidget.StaticResources.res.getString(R.string.duration) + 
-				duration.toString());
+				mRes.getString(R.string.duration) + 
+				" " + duration.toString());
 	}
 	
 	private String getTimeTextForSleepOrNap(BabyEvent event) {
 		ConsumedTime duration = ScheduleDatabase.getDurationOfSleepStartedAt(Settings.getCurrentBabyName(), event.getActionDate());
 		if( duration != null ) {
 			return (event.getActionDate().toLocaleString() + "\n" + 
-					MainTabWidget.StaticResources.res.getString(R.string.duration) + 
+					mRes.getString(R.string.duration) + 
 					duration.toStringWithoutSeconds());
 		} else {
 			return (event.getActionDate().toLocaleString());

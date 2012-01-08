@@ -51,6 +51,10 @@
 				  android:label="@string/nursing"
 				  android:screenOrientation="portrait">
 		</activity>
+		<activity android:name=".activities.GiveMilkActivity"
+				  android:label="@string/give_milk"
+				  android:screenOrientation="portrait">
+		</activity>
 		
     </application>
 </manifest>

@@ -95,12 +95,12 @@ public class NursingActivity extends Activity
 			if( leftMeterMilliseconds > 0 ) {
 				Date startDate = new Date(nursingLeftStartTimeStamp);
 				int durationInSeconds = (int) (leftMeterMilliseconds/1000);
-				ScheduleDatabase.insertBabyAction(Settings.getCurrentBabyName(), getString(R.string.milk_left), startDate, durationInSeconds);
+				ScheduleDatabase.insertBabyActionWithDuration(Settings.getCurrentBabyName(), getString(R.string.milk_left), startDate, durationInSeconds);
 			}
 			if( rightMeterMilliseconds > 0 ) {
 				Date startDate = new Date(nursingRightStartTimeStamp);
 				int durationInSeconds = (int) (rightMeterMilliseconds/1000);
-				ScheduleDatabase.insertBabyAction(Settings.getCurrentBabyName(), getString(R.string.milk_right), startDate, durationInSeconds);
+				ScheduleDatabase.insertBabyActionWithDuration(Settings.getCurrentBabyName(), getString(R.string.milk_right), startDate, durationInSeconds);
 			}
 			
 			finish();
