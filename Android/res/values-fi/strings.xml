@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- Event marking and showing UI -->
+	<string name="ok">Ok</string>
+    <string name="hello">Hello World, BabyScheduleMain!</string>
+    <string name="app_name">BabySchedule</string>
+    <string name="single_action">BabySchedule: tietyt tapahtumat</string>
+    <string name="add_activity">Lisää tapahtuma</string>
+    <string name="edit_event">Muokkaa tapahtumaa</string>
+    <string name="save">Tallenna</string>
+    <string name="cancel">Peruuta</string>
+    <string name="events_list">Näytä kaikki tapahtumat</string>
+    <string name="show_events">Näytä tapahtumalista</string>
+    <string name="add_event_prompt">Valitse tapahtumatyyppi</string>
+    <string name="show_stats">Näytä tilastot</string>
+    <string name="go_to_sleep">Meni nukkumaan</string>
+    <string name="go_to_nap">Meni päiväunille</string>
+    <string name="milk_left">Imetys vasen</string>
+   	<string name="milk_right">Imetys oikea</string>
+    <string name="woke_up">Heräsi</string>
+    <string name="delete">Poista tapahtuma</string>
+    <string name="mark">Kirjaa nyt</string>
+    <string name="mark_nightsleep">Kirjaa yöunet nyt</string>
+    <string name="mark_nap">Kirjaa päiväunet nyt</string>
+    <string name="duration">Kesto: </string>
+    <string name="days">päivää</string>
+    <string name="hours">tuntia</string>
+    <string name="minutes">minuuttia</string>
+    <string name="seconds">sekuntia</string>
+    
+    <!--  Main tabs -->
+    <string name="tab_mark_events">Kirjaa tapahtumia</string>
+    <string name="tab_show_events">Näytä tapahtumat</string>
+    
+    <!--  Statistics -->
+    <string name="avg_night_sleep">Yöunien keskipituus:</string>
+    <string name="avg_nap">Päiväunien keskipituus:</string>
+    
+    <!-- Settings screen -->
+    <string name="choose_baby">Valitse vauva</string>
+    <string name="settings">Asetukset</string>
+    <string name="babynames">Vauvojen nimet</string>
+    <string name="choose_baby_summary">Valitse vauva, jolle tapahtumat kirjataan</string>
+    <string name="add_baby">Lisää uusi vauva</string>
+    <string name="add_baby_summary">Lisää uusi vauva sovellukseen</string>
+    <string name="add_baby_instruction">Anna vauvan nimi</string>
+    <string name="manage_babies">Hallinnoi vauvoja</string>
+    <string name="manage_babies_summary">Uudelleennimeä ja poista vauvoja</string>
+    <string name="delete_baby">Poista vauva</string>
+    <string name="edit_baby">Muokkaa vauvaa</string>
+    <string name="baby_exists">Ei voi lisätä, sovelluksessa on jo vauva samalla nimellä!</string>
+    <string name="no_babies">Sovellukseen ei ole lisätty yhtään vauvoja. Anna vauvan nimi aloittaaksesi sovelluksen käytön.</string>
+    
+    <!--  Mark activites list -->
+    <string name="last_occurred">Kirjattu viimeksi: </string>
+    <string name="ago">sitten</string>
+    <string name="no_events_occurred">Ei kirjauksia</string>
+    <string name="baby_has_been_awake">Vauva on nyt ollut hereillä</string>
+    <string name="baby_is_awake_no_prev">Vauva on hereillä, ei kirjattu kuinka pitkään.</string>
+    <string name="baby_has_been_sleeping">Vauva on nyt nukkunut</string>
+    <string name="baby_is_sleeping_no_prev">Vauva on nukkumassa, ei kirjattu kuinka pitkään.</string>
+    
+    
+    <!--  Milk activity -->
+    <string name="give_milk">Anna maitoa</string>
+    <string name="how_much">Paljonko maitoa annoit?</string>
+    <string name="ml">ml</string>
+    <string name="milk">Maito</string>
+    <string name="milk_bottle">Maitopullo</string>
+    <string name="mark_milk_amount">Kirjaa annetun maidon määrä</string>
+    <string name="amount">Määrä</string>
+    
+    <!-- Nursing activity -->
+    <string name="nursing">Imetys</string>    
+    <string name="nursing_left">Imetät nyt vasemmasta rinnasta</string>
+    <string name="from_left">Vasemmasta rinnasta</string>
+    <string name="from_right">Oikeasta rinnasta</string>
+    <string name="left">Vasen: </string>
+    <string name="right">Oikea: </string>
+    <string name="nursing_right">Imetät nyt oikeasta rinnasta</string> 
+    <string name="switch_breast">Vaihda rintaa</string>
+    <string name="finish_nursing">Lopeta imetys</string>
+    <string name="start_nursing_left">Imetä vasemmasta rinnasta</string>
+    <string name="start_nursing_right">Imetä oikeasta rinnasta</string>
+    
+    <!-- Activities -->
+    <string-array name="activity_names">
+    	<item name="eat">Söi</item>
+    	<item name="go_to_sleep">Meni nukkumaan</item>
+    	<item name="go_to_nap">Meni päiväunille</item>
+    	<item name="woke_up">Heräsi</item>
+    	<item name="bath">Kylpy</item>
+    	<item name="milk">Maito</item>
+    	<item name="nurse_left">Imetys vasen</item>
+    	<item name="nurse_right">Imetys oikea</item>
+    	<item name="Woke up during night">Heräsi yöllä</item>
+    	<item name="Changed diaper">Vaipanvaihto</item>
+    	<item name="Made poop">Kakat</item>    	
+   	</string-array>
+   	<string-array name="sleep_activities">
+    	<item name="woke_up">Heräsi</item>
+    	<item name="milk">Maito</item>
+    	<item name="nursing">Imetys</item>
+    	<item name="Woke up during night">Heräsi yöllä</item>    	
+   	</string-array>
+   	<string-array name="awake_activities">
+   		<item name="eat">Söi</item>
+    	<item name="go_to_sleep">Meni nukkumaan</item>
+    	<item name="bath">Kylpy</item>
+    	<item name="milk">Maito</item>
+    	<item name="nursing">Imetys</item>
+    	<item name="Changed diaper">Vaipanvaihto</item>
+    	<item name="Made poop">Kakat</item>    	
+   	</string-array>
+</resources>

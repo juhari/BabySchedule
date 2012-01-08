@@ -80,14 +80,14 @@ public class MainTabWidget extends TabActivity {
 	    intent = new Intent().setClass(this, EventMarkingList.class);
 	
 	    // Initialize a TabSpec for each tab and add it to the TabHost
-	    spec = tabHost.newTabSpec("Mark events").setIndicator("Mark Events",
+	    spec = tabHost.newTabSpec("Mark events").setIndicator(getString(R.string.tab_mark_events),
 	                      res.getDrawable(R.drawable.new_mark_icon))
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 	
 	    // Do the same for the other tabs
 	    intent = new Intent().setClass(this, AllEventsList.class);
-	    spec = tabHost.newTabSpec("Show events").setIndicator("Show Events",
+	    spec = tabHost.newTabSpec("Show events").setIndicator(getString(R.string.tab_show_events),
 	                      res.getDrawable(R.drawable.new_show_icon))
 	                  .setContent(intent);
 	    tabHost.addTab(spec);	 

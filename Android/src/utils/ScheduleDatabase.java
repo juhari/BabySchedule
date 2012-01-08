@@ -17,7 +17,7 @@ import fi.vincit.babyschedule.R;
 
 public class ScheduleDatabase {
    private static final String DATABASE_CREATE_BABY_NAMES = "create table if not exists babynames (_id integer primary key autoincrement, babyname text not null );";
-   private static final String DATABASE_CREATE_BABY_SCHEDULE = "(_id integer primary key autoincrement, babyname text not null, activityname text not null, time text not null, duration int, freevalue int, freevalue2 int, freeText text, freeData image );";
+   private static final String DATABASE_CREATE_BABY_SCHEDULE = "(_id integer primary key autoincrement, babyname text not null, activityname text not null, time bigint not null, duration int, freevalue int, freevalue2 int, freeText text, freeData image );";
    
    private static final int BABY_NAME_COLUMN = 1;
    private static final int ACTIVITY_NAME_COLUMN = 2;
@@ -29,7 +29,7 @@ public class ScheduleDatabase {
    private static final int FREEDATA = 8;
    
    private static final String DATABASE_NAME = "BabySchedule";
-   private static final int DATABASE_VERSION = 12;
+   private static final int DATABASE_VERSION = 13;
    private static final String TABLE_BABY_NAMES = "babynames";
       
    private static Context mCtx = null;
@@ -132,20 +132,13 @@ public class ScheduleDatabase {
 	
     public static long insertBabyAction(String babyName, String actionname, Date time) {
     	Log.i("Babyschedule", "creating baby schedule to with activity name: " + actionname);
-        ContentValues values = new ContentValues();
-        values.put("babyname", babyName);
-        values.put("activityname", actionname);
-        values.put("time", time.toLocaleString());
-        
+    	ContentValues values = createContentValuesFor(babyName, actionname, time);
         return mDb.insert(babyName, null, values);
     }	
     
     public static long insertBabyActionWithDuration(String babyName, String actionname, Date time, int durationInSeconds) {
     	Log.i("Babyschedule", "creating baby schedule to with activity name: " + actionname + " and duration: " + durationInSeconds);
-    	ContentValues values = new ContentValues();
-    	values.put("babyname", babyName);
-    	values.put("activityname", actionname);
-        values.put("time", time.toLocaleString());
+    	ContentValues values = createContentValuesFor(babyName, actionname, time);
         values.put("duration", durationInSeconds);
         
         return mDb.insert(babyName, null, values);
@@ -153,13 +146,18 @@ public class ScheduleDatabase {
     
     public static long insertBabyActionWithFreeVal(String babyName, String actionname, Date time, int freeValue) {
     	Log.i("Babyschedule", "creating baby schedule to with activity name: " + actionname + " and freeValue: " + freeValue);
-    	ContentValues values = new ContentValues();
-    	values.put("babyname", babyName);
-    	values.put("activityname", actionname);
-        values.put("time", time.toLocaleString());
+    	ContentValues values = createContentValuesFor(babyName, actionname, time);
         values.put("freevalue", freeValue);
         
         return mDb.insert(babyName, null, values);
+    }
+    
+    private static ContentValues createContentValuesFor(String babyName, String actionname, Date time) {
+    	ContentValues values = new ContentValues();
+        values.put("babyname", babyName);
+        values.put("activityname", actionname);
+        values.put("time", time.getTime());
+        return values;
     }
     
     public static Cursor fetchEntireTable(String tableName){
@@ -172,18 +170,18 @@ public class ScheduleDatabase {
     }        
     
     public static void deleteEntryBasedOnDate(String babyName, Date date) {
-    	String dateString = date.toLocaleString();
-    	int deleted = mDb.delete(babyName, "time = '" + dateString + "'", null);
+    	long datems = date.getTime();
+    	int deleted = mDb.delete(babyName, "time = '" + datems + "'", null);
   
     	Log.i("Babyschedule", "found " + deleted + " rows to be deleted in db.");						  
     }
     
     public static BabyEvent getEventBasedOnDate(String babyName, Date date) {
-    	String dateString = date.toLocaleString();
+    	long datems = date.getTime();
     	BabyEvent event = null;
     	Cursor cursor = mDb.query(babyName, 
 				  new String[] {"_id", "babyname", "activityname", "time", "duration"}, 
-				  "time = '" + dateString + "'", 
+				  "time = '" + datems + "'", 
 				  null, null, null, null);
     	
     	if( cursor.moveToFirst() ) {
@@ -195,11 +193,11 @@ public class ScheduleDatabase {
     }
     
     public static int getFreeValueAttachedToEvent(String babyName, Date date) {
-    	String dateString = date.toLocaleString();
+    	long datems = date.getTime();
     	int freeVal = 0;
     	Cursor cursor = mDb.query(babyName, 
 				  new String[] {"_id", "freeValue"}, 
-				  "time = '" + dateString + "'", 
+				  "time = '" + datems + "'", 
 				  null, null, null, null);
     	
     	if( cursor.moveToFirst() ) {
@@ -305,17 +303,10 @@ public class ScheduleDatabase {
     }
     
     private static Date getRowTime(Cursor cursor) {	
-    	String time = cursor.getString(TIME_COLUMN);
-    	Log.i("Babyschedule", "trying to parse row time with time string: " + time);
-    	Date date = null;
-    	DateFormat format = DateFormat.getDateTimeInstance();
-    	try {
-    		date = format.parse(time);
-    	}
-    	catch( ParseException e)
-    	{
-    		// do nothing, return null
-    	}
+    	long timems = cursor.getLong(TIME_COLUMN);
+    	Log.i("Babyschedule", "trying to parse row time with time string val: " + timems);
+    	Date date = new Date();
+    	date.setTime(timems);
     	return date;
     }    
     

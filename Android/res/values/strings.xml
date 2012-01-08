@@ -29,6 +29,14 @@
     <string name="minutes">minutes</string>
     <string name="seconds">seconds</string>
     
+    <!--  Main tabs -->
+    <string name="tab_mark_events">Mark events</string>
+    <string name="tab_show_events">Show events</string>
+    
+    <!--  Statistics -->
+    <string name="avg_night_sleep">Average length of night sleep:</string>
+    <string name="avg_nap">Average length of nap:</string>
+    
     <!-- Settings screen -->
     <string name="choose_baby">Choose baby</string>
     <string name="settings">Settings</string>
@@ -44,6 +52,15 @@
     <string name="baby_exists">Unable to add, baby with the same name already exists!</string>
     <string name="no_babies">No babies exist, give baby name to start using application.</string>
     
+    <!--  Mark activites list -->
+    <string name="last_occurred">Last occurred at: </string>
+    <string name="ago">ago</string>
+    <string name="no_events_occurred">No events occurred</string>
+    <string name="baby_has_been_awake">Baby has now been awake for</string>
+    <string name="baby_is_awake_no_prev">Baby is now awake, no previous sleep events marked.</string>
+    <string name="baby_has_been_sleeping">Baby has now been sleeping for</string>
+    <string name="baby_is_sleeping_no_prev">Baby is now sleeping, no previous awake events marked.</string>
+    
     <!--  Milk activity -->
     <string name="give_milk">Give milk</string>
     <string name="how_much">How much milk was given?</string>
@@ -56,6 +73,8 @@
     <!-- Nursing activity -->
     <string name="nursing">Nursing</string>    
     <string name="nursing_left">Now nursing left breast</string>
+    <string name="from_left">From left breast</string>
+    <string name="from_right">From right breast</string>
     <string name="left">Left: </string>
     <string name="right">Right: </string>
     <string name="nursing_right">Now nursing right breast</string> 
