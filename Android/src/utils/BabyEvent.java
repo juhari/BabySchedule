@@ -17,17 +17,18 @@ public class BabyEvent implements Comparable<BabyEvent>
 	private String actionName;
 	private Date actionDate;
 	private int durationInSeconds = 0;
+	private int freeValue = 0;
 	
-
 	public BabyEvent(String name, Date actionDate) {
 		this.actionName = name;
 		this.actionDate = actionDate;
 	}		
 	
-	public BabyEvent(String name, Date actionDate, int duration) {
+	public BabyEvent(String name, Date actionDate, int duration, int freeValue) {
 		this.actionName = name;
 		this.actionDate = actionDate;
 		this.durationInSeconds = duration;
+		this.freeValue = freeValue;
 	}
 	
 	public void setActionName(String activityName) {
@@ -45,6 +46,15 @@ public class BabyEvent implements Comparable<BabyEvent>
 	public int getDurationInSeconds() {
 		return durationInSeconds;
 	}
+	
+	public int getFreeValue() {
+		return freeValue;
+	}
+
+	public void setFreeValue(int freeValue) {
+		this.freeValue = freeValue;
+	}
+
 
 	@Override
 	public int compareTo(BabyEvent another) {

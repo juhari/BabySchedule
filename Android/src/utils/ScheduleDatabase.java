@@ -1,7 +1,5 @@
 package utils;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -185,7 +183,7 @@ public class ScheduleDatabase {
 				  null, null, null, null);
     	
     	if( cursor.moveToFirst() ) {
-    		event = new BabyEvent(getRowActionName(cursor), getRowTime(cursor), getRowDuration(cursor));
+    		event = new BabyEvent(getRowActionName(cursor), getRowTime(cursor), getRowDuration(cursor), getRowFreeValue(cursor));
     	} 
     	
     	cursor.close();
@@ -208,31 +206,13 @@ public class ScheduleDatabase {
     	return freeVal;
     }
     
-    public static int getFreeValueAttachedToEvent(String babyName, BabyEvent event) {
-    	return getFreeValueAttachedToEvent(babyName, event.getActionDate());
-    }
-    
-    public static ArrayList<BabyEvent> getAllBabyActions(String babyName, String[] actionNames) {   
-    	ArrayList<BabyEvent> activityList = new ArrayList<BabyEvent>();
-    	for( String activityName : actionNames ) {
-    		ArrayList<Date> currentActivityDates = getActionDatesForAction(babyName, activityName);
-    		for( Date actionDate : currentActivityDates ) {
-    			BabyEvent currentActivity = new BabyEvent(activityName, actionDate);
-    			Log.i("Babyschedule", "Added baby activity: " + activityName + ":\n" + currentActivityDates);
-    			activityList.add(currentActivity);
-    		}
-    	}
-    	    	    	
-		return activityList;    	
-    }
-    
     public static ArrayList<BabyEvent> getAllDbActionsSortedByDate(String babyName) {
     	Cursor everything = fetchEntireTable(babyName);
     	
     	ArrayList<BabyEvent> actions = new ArrayList<BabyEvent>();
     	if( everything.moveToFirst() ) {
 	    	while( !everything.isAfterLast() ) {
-	    		actions.add(new BabyEvent(getRowActionName(everything), getRowTime(everything), getRowDuration(everything)));
+	    		actions.add(new BabyEvent(getRowActionName(everything), getRowTime(everything), getRowDuration(everything), getRowFreeValue(everything)));
 	    		everything.moveToNext();
 	    	}
     	}
@@ -311,10 +291,26 @@ public class ScheduleDatabase {
     }    
     
     private static int getRowDuration(Cursor cursor) {
-    	return cursor.getInt(DURATION_COLUMN);
+    	int duration = 0;
+    	try {
+    		duration = cursor.getInt(DURATION_COLUMN);
+    	} catch(Exception e) {
+    		// do nothing, just return 0 as default
+    	}
+    	return duration;
     }
     
     private static String getRowActionName(Cursor cursor) {
     	return cursor.getString(ACTIVITY_NAME_COLUMN);
+    }
+    
+    private static int getRowFreeValue(Cursor cursor) {
+    	int freeVal = 0;
+    	try {
+    		freeVal = cursor.getInt(FREEVALUE);
+    	} catch(Exception e) {
+    		// do nothing, just return 0 as default
+    	}
+    	return freeVal;
     }
 }

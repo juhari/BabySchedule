@@ -108,7 +108,7 @@ public class AllEventsListAdapter extends BaseAdapter {
 	}
 	
 	private String getTimeTextForMilk(BabyEvent event) {
-		int amount = ScheduleDatabase.getFreeValueAttachedToEvent(Settings.getCurrentBabyName(), event);
+		int amount = event.getFreeValue();
 		return (event.getActionDate().toLocaleString() + "\n" + 
 				mRes.getString(R.string.amount) + 
 				": " + amount + mRes.getString(R.string.ml)); 
