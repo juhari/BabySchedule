@@ -1,57 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent"
-  android:layout_marginBottom="2px" 
-  android:layout_marginTop="2px">
-    <Spinner 
-    	android:layout_width="fill_parent" 
-   		android:layout_height="wrap_content" 
-   		android:id="@+id/actionsSpinner"
-   		android:prompt="@string/add_event_prompt">
-	</Spinner>
-  	<DatePicker
-  		android:layout_width="fill_parent"
-  		android:layout_height="wrap_content"
- 		android:id="@+id/datePick">
-  	</DatePicker>
-	<TimePicker
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:id="@+id/timePick">
-	</TimePicker>
-	<TextView
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:textSize="16sp"
-		android:textStyle="bold"
-		android:text="Event and Datetime"
-		android:id="@+id/descriptionText">
-	</TextView>
-	<RelativeLayout
-		android:layout_width="fill_parent" 
-   		android:layout_height="wrap_content">
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:id="@+id/saveButton"		
-			android:text="@string/save"
-			android:onClick="onClick" 
-			android:layout_alignParentLeft="true"
-			android:textSize="16sp"
-			android:gravity="left">
-		</Button>
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:id="@+id/cancelButton"		
-			android:text="@string/cancel"
-			android:onClick="onClick" 
-			android:textSize="16sp"
-			android:layout_alignParentRight="true"
-			android:gravity="right|center_vertical">
-		</Button>
-	</RelativeLayout>	
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginBottom="2dp"
+    android:layout_marginTop="2dp"
+    android:orientation="vertical" >
+
+    <Spinner
+        android:id="@+id/actionsSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/add_event_prompt" >
+    </Spinner>
+
+    <DatePicker
+        android:id="@+id/datePick"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+    </DatePicker>
+
+    <TimePicker
+        android:id="@+id/timePick"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+    </TimePicker>
+
+    <LinearLayout
+        android:id="@+id/extraInputLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.36" >
+
+        <TextView
+            android:id="@+id/extraInputDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.41"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/extraInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="number" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/descriptionText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Event and Datetime"
+        android:textSize="16sp"
+        android:textStyle="bold" >
+    </TextView>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:gravity="left"
+            android:onClick="onClick"
+            android:text="@string/save"
+            android:textSize="16sp" >
+        </Button>
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="right|center_vertical"
+            android:onClick="onClick"
+            android:text="@string/cancel"
+            android:textSize="16sp" >
+        </Button>
+    </RelativeLayout>
+
 </LinearLayout>

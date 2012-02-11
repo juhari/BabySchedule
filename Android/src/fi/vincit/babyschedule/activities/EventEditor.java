@@ -8,6 +8,7 @@ import utils.ScheduleDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 import fi.vincit.babyschedule.R;
 
 public class EventEditor extends EventDetailsEditor {
@@ -44,22 +45,29 @@ public class EventEditor extends EventDetailsEditor {
     		correctPosition++;
     	}
     	
-    	getmSpinner().setSelection(correctPosition);    	    
+    	getmSpinner().setSelection(correctPosition);    	        	
+    	
+    	if( isMilkEventSelected()) {
+    		getmExtraInput().setText(""+mEvent.getFreeValue());
+    	}
+    	if( isNursingEventSelected()) {
+    		getmExtraInput().setText(""+mEvent.getDurationInSeconds()/60);
+    	}
     	
     	updateDescription();
 	}
 	
 	@Override
 	public void onClick(View v) {
-		if( v.getId() == R.id.saveButton ) {			
-			Date dateTime = getDateTimeFromSpinners();
-			ScheduleDatabase.insertBabyAction(Settings.getCurrentBabyName(), (String)getmSpinner().getSelectedItem(), dateTime);
-			ScheduleDatabase.deleteEntryBasedOnDate(Settings.getCurrentBabyName(), mEvent.getActionDate());
-			finish();
+		if( v.getId() == R.id.saveButton ) {	
+			if( saveEvent() ) {		
+				String babyName = Settings.getCurrentBabyName();
+				ScheduleDatabase.deleteEntryBasedOnDate(babyName, mEvent.getActionDate());
+				finish();
+			}
 		}
 		else if( v.getId() == R.id.cancelButton ) {
 			finish();
 		}
-	}
-	
+	}					
 }

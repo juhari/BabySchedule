@@ -159,7 +159,7 @@ public class ScheduleDatabase {
     }
     
     public static Cursor fetchEntireTable(String tableName){
-    	return mDb.query(tableName, new String[] {"_id", "babyname", "activityname", "time", "duration"},  null, null, null, null, null);
+    	return mDb.query(tableName, new String[] {"_id", "babyname", "activityname", "time", "duration", "freevalue"},  null, null, null, null, null);
     }   
     
     public static void removeFromDb(String tableName, Cursor cursor) {
@@ -178,7 +178,7 @@ public class ScheduleDatabase {
     	long datems = date.getTime();
     	BabyEvent event = null;
     	Cursor cursor = mDb.query(babyName, 
-				  new String[] {"_id", "babyname", "activityname", "time", "duration"}, 
+				  new String[] {"_id", "babyname", "activityname", "time", "duration", "freevalue"}, 
 				  "time = '" + datems + "'", 
 				  null, null, null, null);
     	
@@ -225,7 +225,7 @@ public class ScheduleDatabase {
     public static ArrayList<Date> getActionDatesForAction(String babyName, String activityName){
     	Log.i("Babyschedule", "requesting dates for activity " + activityName);
     	Cursor cursor = mDb.query(babyName, 
-    							  new String[] {"_id", "babyname", "activityname", "time", "duration"}, 
+    							  new String[] {"_id", "babyname", "activityname", "time", "duration", "freevalue"}, 
     							  "activityname = '" + activityName + "'", 
     							  null, null, null, null);
     	

@@ -28,6 +28,10 @@
     <string name="hours">tuntia</string>
     <string name="minutes">minuuttia</string>
     <string name="seconds">sekuntia</string>
+    <string name="milk_amount_instruction">Kuinka paljon maitoa annoit (ml)?</string>
+    <string name="nursing_instruction">Kuinka monta minuuttia imetit?</string>
+    <string name="forgot_milk_amount">Anna annetun maidon määrä ennen jatkamista.</string>
+    <string name="forgot_nursing_time">Anna imetyksen kesto ennen jatkamista.</string>
     
     <!--  Main tabs -->
     <string name="tab_mark_events">Kirjaa tapahtumia</string>
@@ -84,33 +88,47 @@
     <string name="start_nursing_left">Imetä vasemmasta rinnasta</string>
     <string name="start_nursing_right">Imetä oikeasta rinnasta</string>
     
-    <!-- Activities -->
+    <!--  Activity names -->
+    <string name="eat_activity">Söi</string>
+   	<string name="go_to_sleep_activity">Meni nukkumaan</string>
+   	<string name="go_to_nap_activity">Meni päiväunille</string>
+   	<string name="woke_up_activity">Heräsi</string>
+   	<string name="bath_activity">Kylpy</string>
+   	<string name="milk_activity">Maito</string>
+   	<string name="nurse_left_activity">Imetys vasen</string>
+   	<string name="nurse_right_activity">Imetys oikea</string>
+   	<string name="woke_up_during_night_activity">Heräsi yöllä</string>
+   	<string name="changed_diaper_activity">Vaipanvaihto</string>
+   	<string name="made_poop_activity">Kakat</string>    
+   	<string name="nursing_activity">Imetys</string>	
+    
+    <!-- Activity arrays -->
     <string-array name="activity_names">
-    	<item name="eat">Söi</item>
-    	<item name="go_to_sleep">Meni nukkumaan</item>
-    	<item name="go_to_nap">Meni päiväunille</item>
-    	<item name="woke_up">Heräsi</item>
-    	<item name="bath">Kylpy</item>
-    	<item name="milk">Maito</item>
-    	<item name="nurse_left">Imetys vasen</item>
-    	<item name="nurse_right">Imetys oikea</item>
-    	<item name="Woke up during night">Heräsi yöllä</item>
-    	<item name="Changed diaper">Vaipanvaihto</item>
-    	<item name="Made poop">Kakat</item>    	
+    	<item name="eat">@string/eat_activity</item>
+    	<item name="go_to_sleep">@string/go_to_sleep_activity</item>
+    	<item name="go_to_nap">@string/go_to_nap_activity</item>
+    	<item name="woke_up">@string/woke_up_activity</item>
+    	<item name="bath">@string/bath_activity</item>
+    	<item name="milk">@string/milk_activity</item>
+    	<item name="nurse_left">@string/nurse_left_activity</item>
+    	<item name="nurse_right">@string/nurse_right_activity</item>
+    	<item name="woke_up_during_night">@string/woke_up_during_night_activity</item>
+    	<item name="changed_diaper">@string/changed_diaper_activity</item>
+    	<item name="made_poop">@string/made_poop_activity</item>    	
    	</string-array>
    	<string-array name="sleep_activities">
-    	<item name="woke_up">Heräsi</item>
-    	<item name="milk">Maito</item>
-    	<item name="nursing">Imetys</item>
-    	<item name="Woke up during night">Heräsi yöllä</item>    	
+    	<item name="woke_up">@string/woke_up_activity</item>
+    	<item name="milk">@string/milk_activity</item>
+    	<item name="nursing">@string/nursing_activity</item>
+    	<item name="woke_up_during_night">@string/woke_up_during_night_activity</item>    	
    	</string-array>
    	<string-array name="awake_activities">
-   		<item name="eat">Söi</item>
-    	<item name="go_to_sleep">Meni nukkumaan</item>
-    	<item name="bath">Kylpy</item>
-    	<item name="milk">Maito</item>
-    	<item name="nursing">Imetys</item>
-    	<item name="Changed diaper">Vaipanvaihto</item>
-    	<item name="Made poop">Kakat</item>    	
+   		<item name="eat">@string/eat_activity</item>
+    	<item name="go_to_sleep">@string/go_to_sleep_activity</item>
+    	<item name="bath">@string/bath_activity</item>
+    	<item name="milk">@string/milk_activity</item>
+    	<item name="nursing">@string/nursing_activity</item>
+    	<item name="changed_diaper">@string/changed_diaper_activity</item>
+    	<item name="made_poop">@string/made_poop_activity</item>    	
    	</string-array>
 </resources>

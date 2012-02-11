@@ -28,6 +28,10 @@
     <string name="hours">hours</string>
     <string name="minutes">minutes</string>
     <string name="seconds">seconds</string>
+    <string name="milk_amount_instruction">How much milk was given (ml)?</string>
+    <string name="nursing_instruction">How many minutes nursed?</string>
+    <string name="forgot_milk_amount">Please enter how much milk was given.</string>
+    <string name="forgot_nursing_time">Please enter how long the nursing lasted.</string>
     
     <!--  Main tabs -->
     <string name="tab_mark_events">Mark events</string>
@@ -83,33 +87,47 @@
     <string name="start_nursing_left">Start nursing left breast</string>
     <string name="start_nursing_right">Start nursing right breast</string>
     
-    <!-- Activities -->
+    <!--  Activity names -->
+    <string name="eat_activity">Eat</string>
+   	<string name="go_to_sleep_activity">Go to sleep</string>
+   	<string name="go_to_nap_activity">Go for a nap</string>
+   	<string name="woke_up_activity">Woke up</string>
+   	<string name="bath_activity">Bath</string>
+   	<string name="milk_activity">Milk</string>
+   	<string name="nurse_left_activity">Nurse left</string>
+   	<string name="nurse_right_activity">Nurse right</string>
+   	<string name="woke_up_during_night_activity">Woke up during night</string>
+   	<string name="changed_diaper_activity">Changed diaper</string>
+   	<string name="made_poop_activity">Made poop</string>    
+   	<string name="nursing_activity">Nursing</string>	
+    
+    <!-- Activity arrays -->
     <string-array name="activity_names">
-    	<item name="eat">Eat</item>
-    	<item name="go_to_sleep">Go to sleep</item>
-    	<item name="go_to_nap">Go for a nap</item>
-    	<item name="woke_up">Woke up</item>
-    	<item name="bath">Bath</item>
-    	<item name="milk">Milk</item>
-    	<item name="nurse_left">Nurse left</item>
-    	<item name="nurse_right">Nurse right</item>
-    	<item name="Woke up during night">Woke up during night</item>
-    	<item name="Changed diaper">Changed diaper</item>
-    	<item name="Made poop">Made poop</item>    	
+    	<item name="eat">@string/eat_activity</item>
+    	<item name="go_to_sleep">@string/go_to_sleep_activity</item>
+    	<item name="go_to_nap">@string/go_to_nap_activity</item>
+    	<item name="woke_up">@string/woke_up_activity</item>
+    	<item name="bath">@string/bath_activity</item>
+    	<item name="milk">@string/milk_activity</item>
+    	<item name="nurse_left">@string/nurse_left_activity</item>
+    	<item name="nurse_right">@string/nurse_right_activity</item>
+    	<item name="woke_up_during_night">@string/woke_up_during_night_activity</item>
+    	<item name="changed_diaper">@string/changed_diaper_activity</item>
+    	<item name="made_poop">@string/made_poop_activity</item>    	
    	</string-array>
    	<string-array name="sleep_activities">
-    	<item name="woke_up">Woke up</item>
-    	<item name="milk">Milk</item>
-    	<item name="nursing">Nursing</item>
-    	<item name="Woke up during night">Woke up during night</item>    	
+    	<item name="woke_up">@string/woke_up_activity</item>
+    	<item name="milk">@string/milk_activity</item>
+    	<item name="nursing">@string/nursing_activity</item>
+    	<item name="woke_up_during_night">@string/woke_up_during_night_activity</item>    	
    	</string-array>
    	<string-array name="awake_activities">
-   		<item name="eat">Eat</item>
-    	<item name="go_to_sleep">Go to sleep</item>
-    	<item name="bath">Bath</item>
-    	<item name="milk">Milk</item>
-    	<item name="nursing">Nursing</item>
-    	<item name="Changed diaper">Changed diaper</item>
-    	<item name="Made poop">Made poop</item>    	
+   		<item name="eat">@string/eat_activity</item>
+    	<item name="go_to_sleep">@string/go_to_sleep_activity</item>
+    	<item name="bath">@string/bath_activity</item>
+    	<item name="milk">@string/milk_activity</item>
+    	<item name="nursing">@string/nursing_activity</item>
+    	<item name="changed_diaper">@string/changed_diaper_activity</item>
+    	<item name="made_poop">@string/made_poop_activity</item>    	
    	</string-array>
 </resources>

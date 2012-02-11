@@ -70,31 +70,30 @@ public class BabyEvent implements Comparable<BabyEvent>
 	public static int getActivityIconId(String activityName) {
 		Context context = StaticContext.ctx;
 		Resources res = context.getResources();
-		String[] aNames = context.getResources().getStringArray(R.array.activity_names);
-		if( activityName.equalsIgnoreCase(aNames[0]) ) {
+		if( activityName.equalsIgnoreCase(res.getString(R.string.eat_activity)) ) {
 			return R.drawable.eat_icon;
 		}		
-		else if( activityName.equalsIgnoreCase(aNames[4]) ) {
+		else if( activityName.equalsIgnoreCase(res.getString(R.string.bath_activity)) ) {
 			return R.drawable.bath_icon;
 		}
-		else if( activityName.equalsIgnoreCase(aNames[5]) ) {
+		else if( activityName.equalsIgnoreCase(res.getString(R.string.milk_activity)) ) {
 			return R.drawable.milk_icon;
 		}
 		else if( activityName.equalsIgnoreCase(res.getString(R.string.nursing)) ||
-				 activityName.equalsIgnoreCase(aNames[6]) ||
-				 activityName.equalsIgnoreCase(aNames[7])) {
+				 activityName.equalsIgnoreCase(res.getString(R.string.nurse_left_activity)) ||
+				 activityName.equalsIgnoreCase(res.getString(R.string.nurse_right_activity))) {
 			return R.drawable.nurse_icon;
 		}
-		else if( activityName.equalsIgnoreCase(aNames[9]) ) {
+		else if( activityName.equalsIgnoreCase(res.getString(R.string.changed_diaper_activity)) ) {
 			return R.drawable.icon_diaper;			
 		}
-		else if( activityName.equalsIgnoreCase(aNames[10]) ) {
+		else if( activityName.equalsIgnoreCase(res.getString(R.string.made_poop_activity)) ) {
 			return R.drawable.potty_icon;			
 		}	
-		else if( activityName.equalsIgnoreCase(aNames[1]) ||
-				 activityName.equalsIgnoreCase(aNames[2]) ||
-				 activityName.equalsIgnoreCase(aNames[3]) ||
-				 activityName.equalsIgnoreCase(aNames[8])) {
+		else if( activityName.equalsIgnoreCase(res.getString(R.string.go_to_nap_activity)) ||
+				 activityName.equalsIgnoreCase(res.getString(R.string.go_to_sleep_activity)) ||
+				 activityName.equalsIgnoreCase(res.getString(R.string.woke_up_activity)) ||
+				 activityName.equalsIgnoreCase(res.getString(R.string.woke_up_during_night_activity))) {
 			return R.drawable.sleep_icon;
 		}
 		else {
