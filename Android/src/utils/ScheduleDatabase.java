@@ -222,6 +222,28 @@ public class ScheduleDatabase {
     	return actions;
     }
     
+    public static ArrayList<BabyEvent> getAllDbActionsByActionName(String babyName, String actionName) {
+    	Log.i("Babyschedule", "requesting actions for actionName " + actionName);
+    	Cursor cursor = mDb.query(babyName, 
+    							  new String[] {"_id", "babyname", "activityname", "time", "duration", "freevalue"}, 
+    							  "activityname = '" + actionName + "'", 
+    							  null, null, null, null);
+    	
+    	ArrayList<BabyEvent> actions = new ArrayList<BabyEvent>();
+    	Log.i("Babyschedule", "found " + cursor.getCount() + " rows in db.");
+    	
+    	if( cursor.moveToFirst() ) {
+	    	while( !cursor.isAfterLast() ) {
+	    		actions.add(new BabyEvent(getRowActionName(cursor), getRowTime(cursor), getRowDuration(cursor), getRowFreeValue(cursor)));
+	    		cursor.moveToNext();
+	    	}
+    	}
+    	
+    	Collections.sort(actions);
+    	cursor.close();
+    	return actions;
+    }
+    
     public static ArrayList<Date> getActionDatesForAction(String babyName, String activityName){
     	Log.i("Babyschedule", "requesting dates for activity " + activityName);
     	Cursor cursor = mDb.query(babyName, 

@@ -1,12 +1,10 @@
 package fi.vincit.babyschedule.activities;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 
 import utils.BabyEvent;
 import utils.ScheduleDatabase;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,12 +17,12 @@ import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
 import fi.vincit.babyschedule.R;
-import fi.vincit.babyschedule.adapters.SingleEventListAdapter;
+import fi.vincit.babyschedule.adapters.AllEventsListAdapter;
 
 public class SingleEventList extends ListActivity 
 						      implements View.OnCreateContextMenuListener {
 
-	private SingleEventListAdapter mListAdapter;
+	private AllEventsListAdapter mListAdapter;
 	private String mActionName;
 	
 	@Override
@@ -41,7 +39,8 @@ public class SingleEventList extends ListActivity
     	
     	Log.d("Babyschedule", "Single action onCreate(): action name: " + mActionName);
     	
-    	mListAdapter = new SingleEventListAdapter(getMyActionDates(), mActionName);
+    	ArrayList<BabyEvent> myEvents = ScheduleDatabase.getAllDbActionsByActionName(Settings.getCurrentBabyName(), mActionName);
+    	mListAdapter = new AllEventsListAdapter(myEvents);
     	setListAdapter(mListAdapter);
     	
     	registerForContextMenu(getListView());
@@ -50,21 +49,11 @@ public class SingleEventList extends ListActivity
 	@Override
     public void onStart() {
     	super.onStart();
-    	mListAdapter.setDateList(getMyActionDates());
+    	ArrayList<BabyEvent> myEvents = ScheduleDatabase.getAllDbActionsByActionName(Settings.getCurrentBabyName(), mActionName);
+    	mListAdapter.setActionsList(myEvents);
     }
 	
-	private ArrayList<Date> getMyActionDates() {
-		if( mActionName == getString(R.string.go_to_sleep) ){
-    		ArrayList<Date> dates = ScheduleDatabase.getActionDatesForAction(Settings.getCurrentBabyName(), mActionName);
-    		dates.addAll(ScheduleDatabase.getActionDatesForAction(Settings.getCurrentBabyName(), getString(R.string.go_to_nap)));
-    		Collections.sort(dates);
-    		return dates;
-    	} else {
-    		return ScheduleDatabase.getActionDatesForAction(Settings.getCurrentBabyName(), mActionName);
-    	}
-	}
-	
-    public void onListItemClick(ListView l, View v, int position, long id) {
+	public void onListItemClick(ListView l, View v, int position, long id) {
     	v.performLongClick();
     }
 	
@@ -83,7 +72,8 @@ public class SingleEventList extends ListActivity
 		switch (item.getItemId()) {
 		case R.id.delete_activity:			
 			ScheduleDatabase.deleteEntryBasedOnDate(Settings.getCurrentBabyName(), event.getActionDate());
-			mListAdapter.setDateList(ScheduleDatabase.getActionDatesForAction(Settings.getCurrentBabyName(), mActionName));
+			ArrayList<BabyEvent> myEvents = ScheduleDatabase.getAllDbActionsByActionName(Settings.getCurrentBabyName(), mActionName);
+			mListAdapter.setActionsList(myEvents);
 			return true;
 		case R.id.edit_activity:
 			openEditViewForEvent(event);
