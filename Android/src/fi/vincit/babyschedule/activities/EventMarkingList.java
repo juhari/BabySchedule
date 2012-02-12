@@ -176,14 +176,12 @@ public class EventMarkingList extends ListActivity
 	}
     
     private void showSelectedEventList(String actionName) {
-    	if( ScheduleDatabase.getActionDatesForAction(Settings.getCurrentBabyName(), actionName).size() > 0 ) {
-    		// show list of actions for the specified type
-    		Intent showSingleList = new Intent(EventMarkingList.this, SingleEventList.class);   
-    		Bundle actionBundle = new Bundle();
-    		actionBundle.putString("ACTIONNAME", actionName);
-    		showSingleList.putExtras(actionBundle);
-    		startActivity(showSingleList);
-    	}
+		// show list of actions for the specified type
+		Intent showSingleList = new Intent(EventMarkingList.this, SingleEventList.class);   
+		Bundle actionBundle = new Bundle();
+		actionBundle.putString("ACTIONNAME", actionName);
+		showSingleList.putExtras(actionBundle);
+		startActivity(showSingleList);
     }
 
     public boolean isCurrentlyAsleep() {

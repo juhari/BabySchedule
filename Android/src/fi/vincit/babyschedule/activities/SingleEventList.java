@@ -1,6 +1,7 @@
 package fi.vincit.babyschedule.activities;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 import utils.BabyEvent;
@@ -35,22 +36,47 @@ public class SingleEventList extends ListActivity
     	Bundle actionNameBundle = this.getIntent().getExtras();
     	mActionName = actionNameBundle.getString("ACTIONNAME");
     	
-    	setTitle("List of " + mActionName + " events");
+    	setTitle(mActionName);
     	
     	Log.d("Babyschedule", "Single action onCreate(): action name: " + mActionName);
     	
-    	ArrayList<BabyEvent> myEvents = ScheduleDatabase.getAllDbActionsByActionName(Settings.getCurrentBabyName(), mActionName);
-    	mListAdapter = new AllEventsListAdapter(myEvents);
+    	mListAdapter = new AllEventsListAdapter(getEventListForAction());
     	setListAdapter(mListAdapter);
     	
     	registerForContextMenu(getListView());
 	}
 	
+	private ArrayList<BabyEvent> getEventListForAction() {
+		ArrayList<BabyEvent> events = new ArrayList<BabyEvent>();
+		if( mActionName.equalsIgnoreCase(getString(R.string.nursing_activity)) ||
+			mActionName.equalsIgnoreCase(getString(R.string.nursing)) ||
+			mActionName.equalsIgnoreCase(getString(R.string.nurse_left_activity)) ||
+			mActionName.equalsIgnoreCase(getString(R.string.nurse_right_activity)) ) {
+			events.addAll(ScheduleDatabase.getAllDbActionsByActionName(Settings.getCurrentBabyName(), getString(R.string.nurse_left_activity)));
+			events.addAll(ScheduleDatabase.getAllDbActionsByActionName(Settings.getCurrentBabyName(), getString(R.string.nurse_right_activity)));
+			Collections.sort(events);
+			return events;
+		}
+		else if( mActionName.equalsIgnoreCase(getString(R.string.go_to_nap_activity)) ||
+				 mActionName.equalsIgnoreCase(getString(R.string.go_to_sleep_activity)) ||
+				 mActionName.equalsIgnoreCase(getString(R.string.woke_up_activity)) ||
+				 mActionName.equalsIgnoreCase(getString(R.string.woke_up_during_night_activity)) ) {
+			events.addAll(ScheduleDatabase.getAllDbActionsByActionName(Settings.getCurrentBabyName(), getString(R.string.go_to_nap_activity)));
+			events.addAll(ScheduleDatabase.getAllDbActionsByActionName(Settings.getCurrentBabyName(), getString(R.string.go_to_sleep_activity)));
+			events.addAll(ScheduleDatabase.getAllDbActionsByActionName(Settings.getCurrentBabyName(), getString(R.string.woke_up_activity)));
+			events.addAll(ScheduleDatabase.getAllDbActionsByActionName(Settings.getCurrentBabyName(), getString(R.string.woke_up_during_night_activity)));
+			Collections.sort(events);
+			return events;
+		}
+		else {
+			return ScheduleDatabase.getAllDbActionsByActionName(Settings.getCurrentBabyName(), mActionName);
+		}
+	}
+	
 	@Override
     public void onStart() {
     	super.onStart();
-    	ArrayList<BabyEvent> myEvents = ScheduleDatabase.getAllDbActionsByActionName(Settings.getCurrentBabyName(), mActionName);
-    	mListAdapter.setActionsList(myEvents);
+    	mListAdapter.setActionsList(getEventListForAction());
     }
 	
 	public void onListItemClick(ListView l, View v, int position, long id) {
@@ -72,8 +98,7 @@ public class SingleEventList extends ListActivity
 		switch (item.getItemId()) {
 		case R.id.delete_activity:			
 			ScheduleDatabase.deleteEntryBasedOnDate(Settings.getCurrentBabyName(), event.getActionDate());
-			ArrayList<BabyEvent> myEvents = ScheduleDatabase.getAllDbActionsByActionName(Settings.getCurrentBabyName(), mActionName);
-			mListAdapter.setActionsList(myEvents);
+			mListAdapter.setActionsList(getEventListForAction());
 			return true;
 		case R.id.edit_activity:
 			openEditViewForEvent(event);
