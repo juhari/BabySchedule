@@ -18,10 +18,10 @@ import android.widget.EditText;
 import android.widget.TabHost;
 import android.widget.TextView;
 import fi.vincit.babyschedule.activities.AllEventsList;
+import fi.vincit.babyschedule.activities.BarStatistics;
 import fi.vincit.babyschedule.activities.EventAdder;
 import fi.vincit.babyschedule.activities.EventMarkingList;
 import fi.vincit.babyschedule.activities.Settings;
-import fi.vincit.babyschedule.activities.Statistics;
 
 public class MainTabWidget extends TabActivity {
 	
@@ -125,7 +125,7 @@ public class MainTabWidget extends TabActivity {
 	    	Intent showAddAction = new Intent(this, EventAdder.class);
 	    	startActivity(showAddAction);
     	} else if( item.getItemId() == R.id.show_statistics ) {
-    		Intent showAddAction = new Intent(this, Statistics.class);
+    		Intent showAddAction = new Intent(this, BarStatistics.class);
 	    	startActivity(showAddAction);
     	} else if( item.getItemId() == R.id.show_settings ) {
     		Intent showSettingsAction = new Intent(this, Settings.class);
