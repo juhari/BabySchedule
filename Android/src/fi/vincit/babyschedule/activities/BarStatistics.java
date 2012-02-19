@@ -105,16 +105,20 @@ public class BarStatistics extends Activity implements OnItemSelectedListener {
 	
 	private GraphView generateSleepGraphView() {
 		
-//		ArrayList<Date> dates = ScheduleDatabase.getActionDatesForAction(Settings.getCurrentBabyName(), getString(R.string.milk_activity));
-//		Date oldest = dates.get(0);
-//		Date now = new Date();
-//		long numberOfDays = (now.getTime() - oldest.getTime());
-//		Log.i("BabySchedule", "BarStatistics: how many ms ago: " + numberOfDays);
-//		numberOfDays /= 24*60*60*1000;
-//		Log.i("BabySchedule", "BarStatistics: how many days ago: " + numberOfDays);
-//		numberOfDays++;
-//		
-		long numberOfDays = 30;
+		ArrayList<Date> dates = ScheduleDatabase.getActionDatesForAction(Settings.getCurrentBabyName(), getString(R.string.go_to_sleep));
+		ArrayList<Date> napDates = ScheduleDatabase.getActionDatesForAction(Settings.getCurrentBabyName(), getString(R.string.go_to_nap));
+		Date oldest = dates.get(0);
+		Date oldestNap  = napDates.get(0);
+		if( oldestNap.getDate() < oldest.getDate() ) {
+			oldest = oldestNap;
+		}
+		Date now = new Date();
+		long numberOfDays = (now.getTime() - oldest.getTime());
+		Log.i("BabySchedule", "BarStatistics: how many ms ago: " + numberOfDays);
+		numberOfDays /= 24*60*60*1000;
+		Log.i("BabySchedule", "BarStatistics: how many days ago: " + numberOfDays);
+		numberOfDays++;
+		
 		if( numberOfDays < 7 )
 			numberOfDays = 7;
 		GraphViewData[] data = new GraphViewData[(int)numberOfDays];
