@@ -40,6 +40,7 @@
     <!--  Statistics -->
     <string name="avg_night_sleep">Average length of night sleep:</string>
     <string name="avg_nap">Average length of nap:</string>
+    <string name="milk_per_day">Milk given per day (ml)</string>
     
     <!-- Settings screen -->
     <string name="choose_baby">Choose baby</string>

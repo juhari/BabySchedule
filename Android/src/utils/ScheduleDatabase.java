@@ -244,7 +244,7 @@ public class ScheduleDatabase {
     	return actions;
     }
     
-    public static ArrayList<BabyEvent> getAllDbActionsFromNumberOfDaysAgo(String babyName, String actionName, int daysAgo) {
+    public static ArrayList<BabyEvent> getAllDbActionsFromNumberOfDaysAgo(String babyName, String actionName, long daysAgo) {
     	Log.i("Babyschedule", "requesting actions for actionName " + actionName + "from " + daysAgo + " days ago.");
     	Date tomorrowAtMidnight = new Date();
     	tomorrowAtMidnight.setHours(0);
@@ -255,11 +255,14 @@ public class ScheduleDatabase {
     	long upperLimitTimestamp = tomorrowAtMidnightMs - daysAgo*24*60*60*1000;
     	long lowerLimitTimeStamp = upperLimitTimestamp - 24*60*60*1000;
     	
+    	String where = " activityname = '" + actionName + "' " +
+		" AND time > " + lowerLimitTimeStamp +
+		" AND time < " + upperLimitTimestamp;
+    	Log.i("BabySchedule", "Query Where: " + where);
+    	
     	Cursor cursor = mDb.query(babyName,
     			new String[] {"_id", "babyname", "activityname", "time", "duration", "freevalue"}, 
-    			" activityname = '" + actionName + "' " +
-    			" AND time > " + lowerLimitTimeStamp +
-    			" AND time < " + upperLimitTimestamp, 
+    			where, 
     			null, null, null, null);
     	
     	ArrayList<BabyEvent> actions = new ArrayList<BabyEvent>();

@@ -40,6 +40,7 @@
     <!--  Statistics -->
     <string name="avg_night_sleep">Yöunien keskipituus:</string>
     <string name="avg_nap">Päiväunien keskipituus:</string>
+    <string name="milk_per_day">Maitoa annettu päivässä (ml)</string>
     
     <!-- Settings screen -->
     <string name="choose_baby">Valitse vauva</string>
