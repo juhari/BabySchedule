@@ -40,6 +40,7 @@
     <!--  Statistics -->
     <string name="avg_night_sleep">Yöunien keskipituus:</string>
     <string name="avg_nap">Päiväunien keskipituus:</string>
+    <string name="sleep_per_day">Montako tuntia unta päivässä</string>
     <string name="milk_per_day">Maitoa annettu päivässä (ml)</string>
     
     <!-- Settings screen -->
@@ -103,6 +104,18 @@
    	<string name="made_poop_activity">Kakat</string>    
    	<string name="nursing_activity">Imetys</string>	
     
+   	<!-- Statistic array items -->
+   	<string name="milk_stats_str">Maitotilastot</string>
+   	<string name="sleep_stats_str">Unitilastot</string>
+   	<string name="nursing_stats_str">Imetystilastot</string>
+   	
+   	<!--  Statistics arrays -->
+   	<string-array name="statistics_types">
+   	    <item name="milk_stats">@string/milk_stats_str</item>
+   	    <item name="sleep_stats">@string/sleep_stats_str</item>
+   	    <item name="nursing_stats">@string/nursing_stats_str</item>
+   	</string-array>
+   	
     <!-- Activity arrays -->
     <string-array name="activity_names">
     	<item name="eat">@string/eat_activity</item>

@@ -4,6 +4,11 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <Spinner
+        android:id="@+id/stats_chooser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:id="@+id/bargraphlayout"
         android:layout_width="match_parent"
