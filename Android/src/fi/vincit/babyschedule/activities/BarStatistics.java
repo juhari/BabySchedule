@@ -1,5 +1,9 @@
 package fi.vincit.babyschedule.activities;
 
+import java.util.ArrayList;
+
+import utils.BabyEvent;
+import utils.ScheduleDatabase;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.LinearLayout;
@@ -13,22 +17,33 @@ import fi.vincit.babyschedule.R;
 
 public class BarStatistics extends Activity {
 	
+	int[] values;
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.barstatistics);
 		
+		GraphViewData[] data = new GraphViewData[7];
+		
+		// Acquire milk data for milk / day
+		int indexForValueArray = 0;
+		for( int i = 6; i >= 0; i-- ) {
+			ArrayList<BabyEvent> events = ScheduleDatabase.getAllDbActionsFromNumberOfDaysAgo(Settings.getCurrentBabyName(), 
+																getString(R.string.milk_activity), i);
+			int daysCombined = 0;
+			for(BabyEvent event : events ) {
+				daysCombined += event.getFreeValue();
+			}
+			data[indexForValueArray] = new GraphViewData(indexForValueArray+1, daysCombined);
+			
+			indexForValueArray++;
+		}
+		
+		
 		// init example series data
-		GraphViewSeries exampleSeries = new GraphViewSeries(new GraphViewData[] {
-				new GraphViewData(1, 375d)
-				, new GraphViewData(2, 325d)
-				, new GraphViewData(3, 500d) // another frequency
-				, new GraphViewData(4, 415d)
-				, new GraphViewData(5, 290d)
-				, new GraphViewData(6, 360d)
-				, new GraphViewData(7, 120d)
-		});
+		GraphViewSeries exampleSeries = new GraphViewSeries(data);
 
 		// graph with dynamically generated horizontal and vertical labels
 		GraphView graphView = new BarGraphView(

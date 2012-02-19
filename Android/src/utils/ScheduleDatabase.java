@@ -15,7 +15,7 @@ import fi.vincit.babyschedule.R;
 
 public class ScheduleDatabase {
    private static final String DATABASE_CREATE_BABY_NAMES = "create table if not exists babynames (_id integer primary key autoincrement, babyname text not null );";
-   private static final String DATABASE_CREATE_BABY_SCHEDULE = "(_id integer primary key autoincrement, babyname text not null, activityname text not null, time bigint not null, duration int, freevalue int, freevalue2 int, freeText text, freeData image );";
+   private static final String DATABASE_CREATE_BABY_SCHEDULE = "(_id integer primary key autoincrement, babyname text not null, activityname text not null, time timestamp not null, duration int, freevalue int, freevalue2 int, freeText text, freeData image );";
    
    private static final int BABY_NAME_COLUMN = 1;
    private static final int ACTIVITY_NAME_COLUMN = 2;
@@ -174,7 +174,7 @@ public class ScheduleDatabase {
     	Log.i("Babyschedule", "found " + deleted + " rows to be deleted in db.");						  
     }
     
-    public static BabyEvent getEventBasedOnDate(String babyName, Date date) {
+    public static BabyEvent getEventBasedOnDateTime(String babyName, Date date) {
     	long datems = date.getTime();
     	BabyEvent event = null;
     	Cursor cursor = mDb.query(babyName, 
@@ -244,6 +244,39 @@ public class ScheduleDatabase {
     	return actions;
     }
     
+    public static ArrayList<BabyEvent> getAllDbActionsFromNumberOfDaysAgo(String babyName, String actionName, int daysAgo) {
+    	Log.i("Babyschedule", "requesting actions for actionName " + actionName + "from " + daysAgo + " days ago.");
+    	Date tomorrowAtMidnight = new Date();
+    	tomorrowAtMidnight.setHours(0);
+    	tomorrowAtMidnight.setMinutes(0);
+    	tomorrowAtMidnight.setSeconds(0);
+    	tomorrowAtMidnight.setTime(tomorrowAtMidnight.getTime()+24*60*60*1000);
+    	long tomorrowAtMidnightMs = tomorrowAtMidnight.getTime();
+    	long upperLimitTimestamp = tomorrowAtMidnightMs - daysAgo*24*60*60*1000;
+    	long lowerLimitTimeStamp = upperLimitTimestamp - 24*60*60*1000;
+    	
+    	Cursor cursor = mDb.query(babyName,
+    			new String[] {"_id", "babyname", "activityname", "time", "duration", "freevalue"}, 
+    			" activityname = '" + actionName + "' " +
+    			" AND time > " + lowerLimitTimeStamp +
+    			" AND time < " + upperLimitTimestamp, 
+    			null, null, null, null);
+    	
+    	ArrayList<BabyEvent> actions = new ArrayList<BabyEvent>();
+    	Log.i("Babyschedule", "found " + cursor.getCount() + " rows in db.");
+    	
+    	if( cursor.moveToFirst() ) {
+	    	while( !cursor.isAfterLast() ) {
+	    		actions.add(new BabyEvent(getRowActionName(cursor), getRowTime(cursor), getRowDuration(cursor), getRowFreeValue(cursor)));
+	    		cursor.moveToNext();
+	    	}
+    	}
+    	
+    	Collections.sort(actions);
+    	cursor.close();
+    	return actions;
+    }
+    
     public static ArrayList<Date> getActionDatesForAction(String babyName, String activityName){
     	Log.i("Babyschedule", "requesting dates for activity " + activityName);
     	Cursor cursor = mDb.query(babyName, 
@@ -276,7 +309,7 @@ public class ScheduleDatabase {
     }
     
     public static int getDurationOfNursingStartedAt(String babyName, Date nursingStarted) {
-    	BabyEvent event = getEventBasedOnDate(babyName, nursingStarted);
+    	BabyEvent event = getEventBasedOnDateTime(babyName, nursingStarted);
     	return event.getDurationInSeconds();
     }
     
@@ -286,7 +319,7 @@ public class ScheduleDatabase {
     		return null;
     		//wakeUpDate = new Date();
     	}
-    	BabyEvent sleepOrNapEvent = getEventBasedOnDate(babyName, sleepStartTime);
+    	BabyEvent sleepOrNapEvent = getEventBasedOnDateTime(babyName, sleepStartTime);
 		assert(sleepOrNapEvent != null);
     	
 		return new ConsumedTime(wakeUpDate, sleepStartTime);
