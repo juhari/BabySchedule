@@ -126,11 +126,11 @@ public class EventMarkingListAdapter extends BaseAdapter {
 	private String getFormattedTimeTextForGotToSleepEvent() {
 		Date lastWokeUp = ScheduleDatabase.getLastActionOfType(Settings.getCurrentBabyName(), mContext.getString(R.string.woke_up));
 		if( lastWokeUp != null ){
-			String time = mContext.getString(R.string.baby_has_been_awake) + "\n";
+			String time = Settings.getCurrentBabyName() + " " + mContext.getString(R.string.baby_has_been_awake) + "\n";
 			String timeDiff = getTimeDiffFromDate(lastWokeUp);
 			return time + timeDiff;
 		} else {
-			return mContext.getString(R.string.baby_is_awake_no_prev);
+			return Settings.getCurrentBabyName() + " " + mContext.getString(R.string.baby_is_awake_no_prev);
 		}
 	}
 	
@@ -156,11 +156,11 @@ public class EventMarkingListAdapter extends BaseAdapter {
 			lastFellAsleep = lastNap;
 		}
 		if( lastFellAsleep != null ){
-			String time = mContext.getString(R.string.baby_has_been_sleeping) + "\n";
+			String time = Settings.getCurrentBabyName() + " " + mContext.getString(R.string.baby_has_been_sleeping) + "\n";
 			String timeDiff = getTimeDiffFromDate(lastFellAsleep);
 			return time + timeDiff;
 		} else {
-			return mContext.getString(R.string.baby_is_sleeping_no_prev);
+			return Settings.getCurrentBabyName() + " " + mContext.getString(R.string.baby_is_sleeping_no_prev);
 		}
 	}
 	

@@ -62,10 +62,10 @@
     <string name="last_occurred">Last occurred at: </string>
     <string name="ago">ago</string>
     <string name="no_events_occurred">No events occurred</string>
-    <string name="baby_has_been_awake">Baby has now been awake for</string>
-    <string name="baby_is_awake_no_prev">Baby is now awake, no previous sleep events marked.</string>
-    <string name="baby_has_been_sleeping">Baby has now been sleeping for</string>
-    <string name="baby_is_sleeping_no_prev">Baby is now sleeping, no previous awake events marked.</string>
+    <string name="baby_has_been_awake"> has now been awake for</string>
+    <string name="baby_is_awake_no_prev"> is now awake, no previous sleep events marked.</string>
+    <string name="baby_has_been_sleeping"> has now been sleeping for</string>
+    <string name="baby_is_sleeping_no_prev"> is now sleeping, no previous awake events marked.</string>
     
     <!--  Milk activity -->
     <string name="give_milk">Give milk</string>

@@ -62,10 +62,10 @@
     <string name="last_occurred">Kirjattu viimeksi: </string>
     <string name="ago">sitten</string>
     <string name="no_events_occurred">Ei kirjauksia</string>
-    <string name="baby_has_been_awake">Vauva on nyt ollut hereillä</string>
-    <string name="baby_is_awake_no_prev">Vauva on hereillä, ei kirjattu kuinka pitkään.</string>
-    <string name="baby_has_been_sleeping">Vauva on nyt nukkunut</string>
-    <string name="baby_is_sleeping_no_prev">Vauva on nukkumassa, ei kirjattu kuinka pitkään.</string>
+    <string name="baby_has_been_awake"> on nyt ollut hereillä</string>
+    <string name="baby_is_awake_no_prev"> on hereillä, ei kirjattu kuinka pitkään.</string>
+    <string name="baby_has_been_sleeping"> on nyt nukkunut</string>
+    <string name="baby_is_sleeping_no_prev"> on nukkumassa, ei kirjattu kuinka pitkään.</string>
     
     
     <!--  Milk activity -->
