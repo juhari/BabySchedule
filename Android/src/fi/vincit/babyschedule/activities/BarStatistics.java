@@ -131,7 +131,9 @@ public class BarStatistics extends Activity implements OnItemSelectedListener {
 																getString(R.string.go_to_nap), i));
 			ConsumedTime daysCombined = new ConsumedTime();
 			for(BabyEvent event : events ) {
-				daysCombined = daysCombined.addition(ScheduleDatabase.getDurationOfSleepStartedAt(Settings.getCurrentBabyName(), event.getActionDate()));
+				ConsumedTime eventDuration = ScheduleDatabase.getDurationOfSleepStartedAt(Settings.getCurrentBabyName(), event.getActionDate());
+				if( eventDuration != null )
+					daysCombined = daysCombined.addition(eventDuration);
 			}
 			
 			data[indexForValueArray] = new GraphViewData(indexForValueArray+1, daysCombined.getHours());

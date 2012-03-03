@@ -168,10 +168,12 @@ public class ScheduleDatabase {
     }        
     
     public static void deleteEntryBasedOnDate(String babyName, Date date) {
-    	long datems = date.getTime();
-    	int deleted = mDb.delete(babyName, "time = '" + datems + "'", null);
+    	if( date != null ) {
+    		long datems = date.getTime();
+    		int deleted = mDb.delete(babyName, "time = '" + datems + "'", null);
   
-    	Log.i("Babyschedule", "found " + deleted + " rows to be deleted in db.");						  
+    		Log.i("Babyschedule", "found " + deleted + " rows to be deleted in db.");
+    	}
     }
     
     public static BabyEvent getEventBasedOnDateTime(String babyName, Date date) {
