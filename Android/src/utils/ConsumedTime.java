@@ -93,6 +93,12 @@ public class ConsumedTime {
 		}
 	}
 	
+	public double getHoursDecimals() {
+		double hourDecimals = getHours();
+		hourDecimals += (double)getMinutes()/60.0;
+		return hourDecimals;
+	}
+	
 	public long getDays() {
 		return days;
 	}
@@ -101,7 +107,7 @@ public class ConsumedTime {
 	}
 	public long getHours() {
 		return hours;
-	}
+	}			
 	public void setHours(long hours) {
 		this.hours = hours;
 	}

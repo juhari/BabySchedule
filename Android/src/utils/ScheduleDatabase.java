@@ -344,7 +344,7 @@ public class ScheduleDatabase {
     
     private static Date getRowTime(Cursor cursor) {	
     	long timems = cursor.getLong(TIME_COLUMN);
-    	Log.i("Babyschedule", "trying to parse row time with time string val: " + timems);
+    	//Log.i("Babyschedule", "trying to parse row time with time string val: " + timems);
     	Date date = new Date();
     	date.setTime(timems);
     	return date;

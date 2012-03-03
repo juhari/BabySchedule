@@ -103,6 +103,12 @@
    	<string name="made_poop_activity">Made poop</string>    
    	<string name="nursing_activity">Nursing</string>	
     
+   	<!--  Statistics view -->
+   	<string name="naptimes">Nap times (hours)</string>
+   	<string name="sleeptimes">Sleep times (hours)</string>
+   	<string name="allsleeptimes">Nap and sleep times combined (hours)</string>
+   	<string name="nodata">No data</string>
+   	
    	<!-- Statistic array items -->
    	<string name="milk_stats_str">Milk statistics</string>
    	<string name="sleep_stats_str">Sleep statistics</string>
@@ -110,8 +116,8 @@
    	
    	<!--  Statistics arrays -->
    	<string-array name="statistics_types">
-   	    <item name="milk_stats">@string/milk_stats_str</item>
    	    <item name="sleep_stats">@string/sleep_stats_str</item>
+   	    <item name="milk_stats">@string/milk_stats_str</item>   	    
    	    <item name="nursing_stats">@string/nursing_stats_str</item>
    	</string-array>
    	
