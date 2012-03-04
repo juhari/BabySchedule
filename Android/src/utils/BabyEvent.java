@@ -54,12 +54,6 @@ public class BabyEvent implements Comparable<BabyEvent>
 	public void setFreeValue(int freeValue) {
 		this.freeValue = freeValue;
 	}
-
-	public int getOccurredDaysAgo() {
-		Date now = new Date();
-		return 0;
-	}
-	
 	
 	@Override
 	public int compareTo(BabyEvent another) {
