@@ -66,7 +66,7 @@ public class MilkGraphView extends LinearLayout {
 					mMaxMilk = event.getFreeValue();
 			}
 			
-			mMilkData[indexForValueArray] = new GraphViewData(indexForValueArray+1, daysCombined);
+			mMilkData[indexForValueArray] = new GraphViewData(i, daysCombined);
 			
 			indexForValueArray++;
 		}			

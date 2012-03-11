@@ -24,6 +24,9 @@ public class SleepGraphView extends LinearLayout implements OnClickListener {
 	Context mContext;
 	
 	private LinearLayout mGraphLayout;	
+	private LinearLayout mNapLayout;
+	private LinearLayout mSleepLayout;
+	private LinearLayout mCombinedLayout;
 	
 	
 	private GraphViewData[] mSleepData = null;
@@ -40,7 +43,7 @@ public class SleepGraphView extends LinearLayout implements OnClickListener {
 		mContext = context;
 		
 		initializeGraphData();
-		
+
 		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View sleepView = inflater.inflate(R.layout.sleepstatisticsgraphview, null);
 		
@@ -48,8 +51,17 @@ public class SleepGraphView extends LinearLayout implements OnClickListener {
 		
 		findViewById(R.id.sleepSelection).setOnClickListener(this);
 		findViewById(R.id.napSelection).setOnClickListener(this);
+		findViewById(R.id.allSleepSelection).setOnClickListener(this);
 		
 		mGraphLayout = (LinearLayout)(findViewById(R.id.sleepbargraphlayout));
+		mNapLayout = (LinearLayout)(findViewById(R.id.naplayout));
+		mSleepLayout = (LinearLayout)(findViewById(R.id.sleeplayout));
+		mCombinedLayout = (LinearLayout)(findViewById(R.id.combinedlayout));
+		
+		mCombinedLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, mCombinedSleepData, mMaxCombinedSleepTime, mSleepDays, mContext.getString(R.string.allsleeptimes)));
+		mNapLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, mNapData, mMaxNapTime, mSleepDays, mContext.getString(R.string.naptimes)));
+		mSleepLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, mSleepData, mMaxSleepTime, mSleepDays, mContext.getString(R.string.sleeptimes)));
+		
 		updateWhatSleepIsShown();
 	}
 
@@ -115,9 +127,9 @@ public class SleepGraphView extends LinearLayout implements OnClickListener {
 			double combinedSleepToday = daysCombined.getHoursDecimals();
 			double napToday = daysNap.getHoursDecimals();
 			double sleepToday = daysSleep.getHoursDecimals();
-			mCombinedSleepData[indexForValueArray] = new GraphViewData(indexForValueArray+1, combinedSleepToday);
-			mNapData[indexForValueArray] = new GraphViewData(indexForValueArray+1, napToday);
-			mSleepData[indexForValueArray] = new GraphViewData(indexForValueArray+1, sleepToday);
+			mCombinedSleepData[indexForValueArray] = new GraphViewData(i, combinedSleepToday);
+			mNapData[indexForValueArray] = new GraphViewData(i, napToday);
+			mSleepData[indexForValueArray] = new GraphViewData(i, sleepToday);
 			
 			if( mMaxCombinedSleepTime < combinedSleepToday ) mMaxCombinedSleepTime = combinedSleepToday;
 			if( mMaxNapTime < napToday ) mMaxNapTime = napToday;
@@ -132,24 +144,29 @@ public class SleepGraphView extends LinearLayout implements OnClickListener {
 		Log.i("BabySchedule", "updateWhatSleepIsShown()");
 		CheckBox napCheckBox = (CheckBox) findViewById(R.id.napSelection);
 		CheckBox sleepCheckBox = (CheckBox) findViewById(R.id.sleepSelection);
+		CheckBox combinedCheckBox = (CheckBox) findViewById(R.id.allSleepSelection);
 		mGraphLayout.removeAllViews();
-		if( napCheckBox.isChecked() && sleepCheckBox.isChecked() ) {
-			mGraphLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, mCombinedSleepData, mMaxCombinedSleepTime, mSleepDays, mContext.getString(R.string.allsleeptimes)));
-		}
-		else if( napCheckBox.isChecked() ) {
-			mGraphLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, mNapData, mMaxNapTime, mSleepDays, mContext.getString(R.string.naptimes)));
-		}
-		else if( sleepCheckBox.isChecked() ) {
-			mGraphLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, mSleepData, mMaxSleepTime, mSleepDays, mContext.getString(R.string.sleeptimes)));
-		}
-		else if( !napCheckBox.isChecked() && !sleepCheckBox.isChecked() ) {
+		
+		if( !napCheckBox.isChecked() && !sleepCheckBox.isChecked() && !combinedCheckBox.isChecked() ) {
 			mGraphLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, null, 0, 0, ""));
+			return;
 		}
+		
+		if(combinedCheckBox.isChecked() ) {
+			mGraphLayout.addView(mCombinedLayout);
+		}
+		if( napCheckBox.isChecked() ) {
+			mGraphLayout.addView(mNapLayout);
+		}
+		if( sleepCheckBox.isChecked() ) {
+			mGraphLayout.addView(mSleepLayout);
+		}
+		
 	}
 
 	@Override
 	public void onClick(View v) {
-		if( v.getId() == R.id.napSelection || v.getId() == R.id.sleepSelection )
+		if( v.getId() == R.id.napSelection || v.getId() == R.id.sleepSelection || v.getId() == R.id.allSleepSelection )
 			updateWhatSleepIsShown();
 		
 	}

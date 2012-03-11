@@ -28,6 +28,7 @@ public class StatisticsGraphViewUtils {
 		
 		if( numberOfDays > 30 ) {
 			graphView.setViewPort(numberOfDays-30, 30);
+			graphView.setScrollable(true);
 		}
 		
 		return graphView;

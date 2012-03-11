@@ -107,6 +107,15 @@
    	<string name="naptimes">Nap times (hours)</string>
    	<string name="sleeptimes">Sleep times (hours)</string>
    	<string name="allsleeptimes">Nap and sleep times combined (hours)</string>
+   	<string name="napcbstring">Naps</string>
+   	<string name="sleepcbstring">Nights</string>
+   	<string name="allsleepcbstring">Combined</string>
+   	<string name="lefttimes">Nursing left breast times (minutes)</string>
+   	<string name="righttimes">Nursing right breast times (minutes)</string>
+   	<string name="bothtimes">Left and right breast combined (minutes)</string>
+   	<string name="leftcbstring">Left</string>
+   	<string name="rightcbstring">Right</string>
+   	<string name="bothcbstring">Both</string>
    	<string name="nodata">No data</string>
    	
    	<!-- Statistic array items -->

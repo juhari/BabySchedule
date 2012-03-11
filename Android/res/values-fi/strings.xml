@@ -108,6 +108,15 @@
    	<string name="naptimes">Päiväunet (tuntia)</string>
    	<string name="sleeptimes">Yöunet (tuntia)</string>
    	<string name="allsleeptimes">Päivä- ja yöunet yhteensä (tuntia)</string>
+   	<string name="napcbstring">Päiväunet</string>
+   	<string name="sleepcbstring">Yöunet</string>
+   	<string name="allsleepcbstring">Yhteensä</string>
+   	<string name="lefttimes">Imetystä vasemmasta rinnasta (minuutteja)</string>
+   	<string name="righttimes">Imetystä oikeasta rinnasta (minuutteja)</string>
+   	<string name="bothtimes">Imetystä molemmista rinnoista (minuutteja)</string>
+   	<string name="leftcbstring">Vasen</string>
+   	<string name="rightcbstring">Oikea</string>
+   	<string name="bothcbstring">Yhteensä</string>
    	<string name="nodata">Ei tietoja</string>
    	
    	<!-- Statistic array items -->

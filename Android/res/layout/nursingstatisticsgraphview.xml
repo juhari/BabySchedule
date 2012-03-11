@@ -6,55 +6,55 @@
     android:orientation="vertical" >
 	
     <LinearLayout
-        android:id="@+id/sleepSelectionLayout"
+        android:id="@+id/nursingSelectionLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
         android:orientation="horizontal">
 
         <CheckBox
-            android:id="@+id/napSelection"
+            android:id="@+id/leftSelection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.33"
-            android:text="@string/napcbstring" />
+            android:text="@string/leftcbstring" />
 
         <CheckBox
-            android:id="@+id/sleepSelection"
+            android:id="@+id/rightSelection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.33"
-            android:text="@string/sleepcbstring" />
+            android:text="@string/rightcbstring" />
         
         <CheckBox
-            android:id="@+id/allSleepSelection"
+            android:id="@+id/bothSelection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.33"
-            android:text="@string/allsleepcbstring" />
+            android:text="@string/bothcbstring" />
 
     </LinearLayout>
     
     <LinearLayout
-        android:id="@+id/sleepbargraphlayout"
+        android:id="@+id/nursingBarGraphLayout"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:baselineAligned="false" >        
 		
         <LinearLayout 
-            android:id="@+id/naplayout"
+            android:id="@+id/leftLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.33">            
         </LinearLayout>
         <LinearLayout 
-            android:id="@+id/sleeplayout"
+            android:id="@+id/rightLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.33">            
         </LinearLayout>
         <LinearLayout 
-            android:id="@+id/combinedlayout"
+            android:id="@+id/bothLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.33">            

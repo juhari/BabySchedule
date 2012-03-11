@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import fi.vincit.babyschedule.R;
 import graphviews.MilkGraphView;
+import graphviews.NursingGraphView;
 import graphviews.SleepGraphView;
 
 public class BarStatistics extends Activity implements OnItemSelectedListener {
@@ -47,7 +48,10 @@ public class BarStatistics extends Activity implements OnItemSelectedListener {
 			mGraphLayout.removeAllViews();
 			mGraphLayout.addView(new SleepGraphView(this));
 		}
-		
+		else if( item.equalsIgnoreCase(getString(R.string.nursing_stats_str)) ) {
+			mGraphLayout.removeAllViews();
+			mGraphLayout.addView(new NursingGraphView(this));
+		}
 	}
 
 	@Override
