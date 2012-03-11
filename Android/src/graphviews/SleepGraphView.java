@@ -59,8 +59,8 @@ public class SleepGraphView extends LinearLayout implements OnClickListener {
 		mCombinedLayout = (LinearLayout)(findViewById(R.id.combinedlayout));
 		
 		mCombinedLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, mCombinedSleepData, mMaxCombinedSleepTime, mSleepDays, mContext.getString(R.string.allsleeptimes)));
-		mNapLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, mNapData, mMaxNapTime, mSleepDays, mContext.getString(R.string.naptimes)));
-		mSleepLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, mSleepData, mMaxSleepTime, mSleepDays, mContext.getString(R.string.sleeptimes)));
+		mNapLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, mNapData, mMaxCombinedSleepTime, mSleepDays, mContext.getString(R.string.naptimes)));
+		mSleepLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, mSleepData, mMaxCombinedSleepTime, mSleepDays, mContext.getString(R.string.sleeptimes)));
 		
 		updateWhatSleepIsShown();
 	}
