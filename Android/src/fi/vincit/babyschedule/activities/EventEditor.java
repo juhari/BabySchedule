@@ -36,7 +36,7 @@ public class EventEditor extends EventDetailsEditor {
     		if( name.equals(mEvent.getActionName()) ) {
     			break;
     		}
-    		Log.d("Babyschedule", "No match: " + name + "," + mEvent.getActionName());
+    		//Log.d("Babyschedule", "No match: " + name + "," + mEvent.getActionName());
     		
     		correctPosition++;
     	}

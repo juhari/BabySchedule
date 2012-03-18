@@ -34,7 +34,7 @@ public class Settings extends PreferenceActivity {
 	public static String getCurrentBabyName() {
 		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(StaticContext.ctx);
     	String name = pref.getString("chooseList", "verneri");
-    	Log.d("Babyschedule", "Name of current baby: " + name);
+    	//Log.d("Babyschedule", "Name of current baby: " + name);
     	ArrayList<String> names = ScheduleDatabase.getBabyNames();    	    	
     	
     	if( names.isEmpty() ) {

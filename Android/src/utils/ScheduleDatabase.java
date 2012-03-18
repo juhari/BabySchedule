@@ -1,5 +1,9 @@
 package utils;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -10,6 +14,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Environment;
 import android.util.Log;
 import fi.vincit.babyschedule.R;
 
@@ -42,8 +47,41 @@ public class ScheduleDatabase {
 			mCtx = ctx;		
 		    mDbHelper = new DatabaseHelper(mCtx);
 	    	mDb = mDbHelper.getWritableDatabase();
+	    	Log.w("Babyschedule", "database at: " + mDb.getPath());
+	    	backupDbToSdCard();
 	    	mOpen = true; 
 		}
+	}
+	
+	private static void backupDbToSdCard() {
+	    try {
+	        File sd = Environment.getExternalStorageDirectory();
+
+	        if (sd.canWrite()) {
+	            Date date = new Date();
+	            String dateStr = date.getDate() + "_" + date.getMonth() + "_" + date.getYear() + "_" + date.getTime();
+	            String currentDBPath = mDb.getPath();
+	            String backupDBPath = "//mnt//sdcard//Android//data//fi.vincit.babyschedule//files//";
+	            File currentDB = new File(currentDBPath);
+	            File backupDB = new File(sd, dateStr);
+	            //backupDB.mkdirs();	
+	            	            
+	            if (currentDB.exists()) {
+	                Log.w("Babyschedule", "Backing up db from " + currentDB.getAbsolutePath() + "\nto " + backupDB.getAbsolutePath());
+	                FileChannel src = new FileInputStream(currentDB).getChannel();
+	                FileChannel dst = new FileOutputStream(backupDB).getChannel();
+	                dst.transferFrom(src, 0, src.size());
+	                src.close();
+	                dst.close();
+	                Log.w("Babyschedule", "Backup successfull!");
+	            }
+	            
+	            
+	        }
+	    } catch (Exception e) {
+	        
+	        Log.w("Babyschedule", e.getMessage());
+	    }
 	}
 	
 	public static boolean isOpen() {
@@ -83,13 +121,13 @@ public class ScheduleDatabase {
     }
 	   
 	public static ArrayList<String> getBabyNames() {
-		Log.w("Babyschedule", "getBabyNames()");
+		//Log.w("Babyschedule", "getBabyNames()");
 		ArrayList<String> nameList = new ArrayList<String>();
     	Cursor names = mDb.query(TABLE_BABY_NAMES, new String[] {"_id", "babyname"},  null, null, null, null, null);
     	
     	if( names.moveToFirst() ) {
 	    	while( !names.isAfterLast() ) {
-	    		Log.w("Babyschedule", "getBabyNames(): " + names.getString(BABY_NAME_COLUMN));
+	    		//Log.w("Babyschedule", "getBabyNames(): " + names.getString(BABY_NAME_COLUMN));
 	    		nameList.add(names.getString(BABY_NAME_COLUMN));	    				
 	    		names.moveToNext();
 	    	}
@@ -225,14 +263,14 @@ public class ScheduleDatabase {
     }
     
     public static ArrayList<BabyEvent> getAllDbActionsByActionName(String babyName, String actionName) {
-    	Log.i("Babyschedule", "requesting actions for actionName " + actionName);
+    	//Log.i("Babyschedule", "requesting actions for actionName " + actionName);
     	Cursor cursor = mDb.query(babyName, 
     							  new String[] {"_id", "babyname", "activityname", "time", "duration", "freevalue"}, 
     							  "activityname = '" + actionName + "'", 
     							  null, null, null, null);
     	
     	ArrayList<BabyEvent> actions = new ArrayList<BabyEvent>();
-    	Log.i("Babyschedule", "found " + cursor.getCount() + " rows in db.");
+    	//Log.i("Babyschedule", "found " + cursor.getCount() + " rows in db.");
     	
     	if( cursor.moveToFirst() ) {
 	    	while( !cursor.isAfterLast() ) {
@@ -247,7 +285,7 @@ public class ScheduleDatabase {
     }
     
     public static ArrayList<BabyEvent> getAllDbActionsFromNumberOfDaysAgo(String babyName, String actionName, long daysAgo) {
-    	Log.i("Babyschedule", "requesting actions for actionName " + actionName + "from " + daysAgo + " days ago.");
+    	//Log.i("Babyschedule", "requesting actions for actionName " + actionName + "from " + daysAgo + " days ago.");
     	Date tomorrowAtMidnight = new Date();
     	tomorrowAtMidnight.setHours(0);
     	tomorrowAtMidnight.setMinutes(0);
@@ -260,7 +298,7 @@ public class ScheduleDatabase {
     	String where = " activityname = '" + actionName + "' " +
 		" AND time > " + lowerLimitTimeStamp +
 		" AND time < " + upperLimitTimestamp;
-    	Log.i("BabySchedule", "Query Where: " + where);
+    	//Log.i("BabySchedule", "Query Where: " + where);
     	
     	Cursor cursor = mDb.query(babyName,
     			new String[] {"_id", "babyname", "activityname", "time", "duration", "freevalue"}, 
@@ -268,7 +306,7 @@ public class ScheduleDatabase {
     			null, null, null, null);
     	
     	ArrayList<BabyEvent> actions = new ArrayList<BabyEvent>();
-    	Log.i("Babyschedule", "found " + cursor.getCount() + " rows in db.");
+    	//Log.i("Babyschedule", "found " + cursor.getCount() + " rows in db.");
     	
     	if( cursor.moveToFirst() ) {
 	    	while( !cursor.isAfterLast() ) {
@@ -283,14 +321,14 @@ public class ScheduleDatabase {
     }
     
     public static ArrayList<Date> getActionDatesForAction(String babyName, String activityName){
-    	Log.i("Babyschedule", "requesting dates for activity " + activityName);
+    	//Log.i("Babyschedule", "requesting dates for activity " + activityName);
     	Cursor cursor = mDb.query(babyName, 
     							  new String[] {"_id", "babyname", "activityname", "time", "duration", "freevalue"}, 
     							  "activityname = '" + activityName + "'", 
     							  null, null, null, null);
     	
     	ArrayList<Date> dateList = new ArrayList<Date>();
-    	Log.i("Babyschedule", "found " + cursor.getCount() + " rows in db.");
+    	//Log.i("Babyschedule", "found " + cursor.getCount() + " rows in db.");
     	
     	if( cursor.moveToFirst() ) {
 	    	while( !cursor.isAfterLast() ) {
