@@ -23,11 +23,10 @@
     <string name="mark">Mark now</string>
     <string name="mark_nightsleep">Mark night sleep now</string>
     <string name="mark_nap">Mark nap now</string>
-    <string name="duration">Duration: </string>
-    <string name="days">days</string>
-    <string name="hours">hours</string>
-    <string name="minutes">minutes</string>
-    <string name="seconds">seconds</string>
+    <string name="days">d</string>
+    <string name="hours">h</string>
+    <string name="minutes">min</string>
+    <string name="seconds">s</string>
     <string name="milk_amount_instruction">How much milk was given (ml)?</string>
     <string name="nursing_instruction">How many minutes nursed?</string>
     <string name="forgot_milk_amount">Please enter how much milk was given.</string>
@@ -74,7 +73,12 @@
     <string name="milk">Milk</string>
     <string name="milk_bottle">Milk bottle</string>
     <string name="mark_milk_amount">Mark amount of milk given</string>
-    <string name="amount">Amount</string>
+    
+    <!--  Activity listing -->
+    <string name="list_time"><b>Time:</b></string>
+    <string name="list_date"><b>Date:</b></string>
+    <string name="amount"><b>Amount:</b></string>
+    <string name="duration"><b>Duration:</b></string>
     
     <!-- Nursing activity -->
     <string name="nursing">Nursing</string>    

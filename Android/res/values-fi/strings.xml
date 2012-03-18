@@ -22,12 +22,11 @@
     <string name="delete">Poista tapahtuma</string>
     <string name="mark">Kirjaa nyt</string>
     <string name="mark_nightsleep">Kirjaa yöunet nyt</string>
-    <string name="mark_nap">Kirjaa päiväunet nyt</string>
-    <string name="duration">Kesto: </string>
-    <string name="days">päivää</string>
-    <string name="hours">tuntia</string>
-    <string name="minutes">minuuttia</string>
-    <string name="seconds">sekuntia</string>
+    <string name="mark_nap">Kirjaa päiväunet nyt</string>    
+    <string name="days">pv</string>
+    <string name="hours">h</string>
+    <string name="minutes">min</string>
+    <string name="seconds">s</string>
     <string name="milk_amount_instruction">Kuinka paljon maitoa annoit (ml)?</string>
     <string name="nursing_instruction">Kuinka monta minuuttia imetit?</string>
     <string name="forgot_milk_amount">Anna annetun maidon määrä ennen jatkamista.</string>
@@ -67,6 +66,11 @@
     <string name="baby_has_been_sleeping"> on nyt nukkunut</string>
     <string name="baby_is_sleeping_no_prev"> on nukkumassa, ei kirjattu kuinka pitkään.</string>
     
+    <!--  Activity listing -->
+    <string name="list_time"><b>Aika:</b></string>
+    <string name="list_date"><b>Pvm:</b></string>
+    <string name="amount"><b>Määrä:</b></string>
+    <string name="duration"><b>Kesto:</b></string>
     
     <!--  Milk activity -->
     <string name="give_milk">Anna maitoa</string>
@@ -74,8 +78,7 @@
     <string name="ml">ml</string>
     <string name="milk">Maito</string>
     <string name="milk_bottle">Maitopullo</string>
-    <string name="mark_milk_amount">Kirjaa annetun maidon määrä</string>
-    <string name="amount">Määrä</string>
+    <string name="mark_milk_amount">Kirjaa annetun maidon määrä</string>    
     
     <!-- Nursing activity -->
     <string name="nursing">Imetys</string>    

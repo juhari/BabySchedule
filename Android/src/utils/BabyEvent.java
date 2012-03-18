@@ -35,6 +35,32 @@ public class BabyEvent implements Comparable<BabyEvent>
 		this.actionName = activityName;
 	}
 	
+	/**
+	 * 
+	 * @return the date as dd.mm.yyyy
+	 */
+	public String getDateString() {
+	    return getActionDate().getDate() + "." + getActionDate().getMonth() + "." + (getActionDate().getYear()+1900);
+	}
+	
+	/**
+	 * 
+	 * @return returns time as hh.mm
+	 */
+	public String getTimeString() {
+	    int hours = getActionDate().getHours();
+	    String hoursStr = hours + "";
+	    if( hours < 10) {
+	        hoursStr = "0" + hoursStr;
+	    }
+	    int minutes = getActionDate().getMinutes();
+        String minutesStr = minutes + "";
+        if( minutes < 10) {
+            minutesStr = "0" + minutesStr;
+        }
+	    return hoursStr + "." + minutesStr;
+	}
+	
 	public String getActionName() {
 		return actionName;
 	}

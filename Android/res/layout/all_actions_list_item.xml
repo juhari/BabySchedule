@@ -13,23 +13,25 @@
 		android:orientation="vertical"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
-		android:layout_marginBottom="2px" 
-		android:layout_marginTop="2px"
-		android:layout_marginLeft="5px"
+		android:layout_marginBottom="2dp" 
+		android:layout_marginTop="2dp"
+		android:layout_marginLeft="5dp"
 		android:id="@+id/eventItem">	
 		<TextView
 			android:id="@+id/ActionName"
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
-		    android:textSize="16sp" 
+		    android:textSize="18sp" 
 		    android:textStyle="bold">
 		</TextView>
 		<TextView
 			android:id="@+id/ActionTime"
-			android:text="Occurred at: "
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
-		    android:textSize="16sp">
+		    android:textSize="16sp"
+		    android:layout_marginTop="2dp"
+		    android:layout_marginBottom="2dp"
+		    android:layout_marginLeft="3dp">
 		</TextView>
 	</LinearLayout>
 </LinearLayout>

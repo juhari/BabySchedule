@@ -7,14 +7,15 @@ import utils.ConsumedTime;
 import utils.ScheduleDatabase;
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import fi.vincit.babyschedule.MainTabWidget.StaticContext;
 import fi.vincit.babyschedule.MainTabWidget;
+import fi.vincit.babyschedule.MainTabWidget.StaticContext;
 import fi.vincit.babyschedule.R;
 import fi.vincit.babyschedule.activities.Settings;
 
@@ -107,16 +108,23 @@ public class AllEventsListAdapter extends BaseAdapter {
 		return actionView;
 	}
 	
+	private String getTimeAndDateString(BabyEvent event) {
+	    return mRes.getString(R.string.list_date) + " " + event.getDateString() + "\n" +
+	           mRes.getString(R.string.list_time) + " " + event.getTimeString();
+	}
+	
 	private String getTimeTextForMilk(BabyEvent event) {
 		int amount = event.getFreeValue();
-		return (event.getActionDate().toLocaleString() + "\n" + 
+		String retVal =  (getTimeAndDateString(event) + "\n" + 
 				mRes.getString(R.string.amount) + 
-				": " + amount + mRes.getString(R.string.ml)); 
+				" " + amount + mRes.getString(R.string.ml)); 
+		//Log.d("Babyschedule", retVal);
+		return retVal;
 	}
 	
 	private String getTimeTextForNursing(BabyEvent event) {
 		ConsumedTime duration = new ConsumedTime(event.getDurationInSeconds());
-		return (event.getActionDate().toLocaleString() + "\n" + 
+		return (getTimeAndDateString(event) + "\n" +  
 				mRes.getString(R.string.duration) + 
 				" " + duration.toString());
 	}
@@ -124,7 +132,7 @@ public class AllEventsListAdapter extends BaseAdapter {
 	private String getTimeTextForSleepOrNap(BabyEvent event) {
 		ConsumedTime duration = ScheduleDatabase.getDurationOfSleepStartedAt(Settings.getCurrentBabyName(), event.getActionDate());
 		if( duration != null ) {
-			return (event.getActionDate().toLocaleString() + "\n" + 
+			return (getTimeAndDateString(event) + "\n" +  
 					mRes.getString(R.string.duration) + 
 					duration.toStringWithoutSeconds());
 		} else {

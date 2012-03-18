@@ -83,7 +83,7 @@ public class EventMarkingListAdapter extends BaseAdapter {
 	private String getFormattedTimeTextForNormalEvent(String eventName) {
 		Date date = ScheduleDatabase.getLastActionOfType(Settings.getCurrentBabyName(), eventName);
 		if( date != null ) {	
-			String time = mContext.getString(R.string.last_occurred) + " " + date.toLocaleString() + "\n";								
+			String time = mContext.getString(R.string.last_occurred) + " ";								
 			String timeDiff = getTimeDiffFromDate(date);				
 			return time + timeDiff + " " + mContext.getString(R.string.ago);
 		} else {
@@ -111,7 +111,7 @@ public class EventMarkingListAdapter extends BaseAdapter {
 		}
 
 		if( date != null ) {	
-			String time = mContext.getString(R.string.last_occurred) + " " + date.toLocaleString() + "\n";								
+			String time = mContext.getString(R.string.last_occurred) + " ";								
 			String timeDiff = getTimeDiffFromDate(date);		
 			int durSeconds = ScheduleDatabase.getDurationOfNursingStartedAt(Settings.getCurrentBabyName(), date);
 			ConsumedTime duration = new ConsumedTime(durSeconds);
@@ -137,11 +137,11 @@ public class EventMarkingListAdapter extends BaseAdapter {
 	private String getFormattedTimeTextForMilkEvent() {
 		Date date = ScheduleDatabase.getLastActionOfType(Settings.getCurrentBabyName(), mContext.getString(R.string.milk));
 		if( date != null ) {	
-			String time = mContext.getString(R.string.last_occurred) + " " + date.toLocaleString() + "\n";								
+			String time = mContext.getString(R.string.last_occurred) + " ";								
 			String timeDiff = getTimeDiffFromDate(date);		
 			int amount = ScheduleDatabase.getFreeValueAttachedToEvent(Settings.getCurrentBabyName(), date);
 			return (time + timeDiff + " " + mContext.getString(R.string.ago) + "\n" + 
-				   mContext.getString(R.string.amount)+ ": " + amount +
+				   mContext.getString(R.string.amount)+ " " + amount +
 				   mContext.getString(R.string.ml)
 				   );
 		} else {
