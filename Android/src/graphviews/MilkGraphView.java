@@ -43,10 +43,10 @@ public class MilkGraphView extends LinearLayout {
 		Date oldest = dates.get(0);
 		Date now = new Date();
 		long numberOfDays = (now.getTime() - oldest.getTime());
-		Log.i("BabySchedule", "BarStatistics: how many ms ago: " + numberOfDays);
-		numberOfDays /= 24*60*60*1000;
-		Log.i("BabySchedule", "BarStatistics: how many days ago: " + numberOfDays);
+		Log.d("Babyschedule", "BarStatistics: how many ms ago: " + numberOfDays);
+		numberOfDays /= 24*60*60*1000;		
 		numberOfDays++;
+		Log.d("Babyschedule", "BarStatistics: how many days ago: " + numberOfDays);
 		
 		mMilkDays = (int)numberOfDays;
 		if( mMilkDays < 7 )
@@ -61,11 +61,13 @@ public class MilkGraphView extends LinearLayout {
 																mContext.getString(R.string.milk_activity), i);
 			int daysCombined = 0;
 			for(BabyEvent event : events ) {
-				daysCombined += event.getFreeValue();
-				if( mMaxMilk < event.getFreeValue() ) 
-					mMaxMilk = event.getFreeValue();
+				daysCombined += event.getFreeValue();				
 			}
 			
+			if( mMaxMilk < daysCombined ) 
+                mMaxMilk = daysCombined;
+			
+			Log.d("Babyschedule", "data for day #" + i + ": " + daysCombined);
 			mMilkData[indexForValueArray] = new GraphViewData(i, daysCombined);
 			
 			indexForValueArray++;

@@ -133,31 +133,31 @@
    	
     <!-- Activity arrays -->
     <string-array name="activity_names">
-    	<item name="eat">@string/eat_activity</item>
-    	<item name="go_to_sleep">@string/go_to_sleep_activity</item>
-    	<item name="go_to_nap">@string/go_to_nap_activity</item>
-    	<item name="woke_up">@string/woke_up_activity</item>
-    	<item name="bath">@string/bath_activity</item>
-    	<item name="milk">@string/milk_activity</item>
-    	<item name="nurse_left">@string/nurse_left_activity</item>
-    	<item name="nurse_right">@string/nurse_right_activity</item>
-    	<item name="woke_up_during_night">@string/woke_up_during_night_activity</item>
-    	<item name="changed_diaper">@string/changed_diaper_activity</item>
-    	<item name="made_poop">@string/made_poop_activity</item>    	
-   	</string-array>
-   	<string-array name="sleep_activities">
-    	<item name="woke_up">@string/woke_up_activity</item>
-    	<item name="milk">@string/milk_activity</item>
-    	<item name="nursing">@string/nursing_activity</item>
-    	<item name="woke_up_during_night">@string/woke_up_during_night_activity</item>    	
-   	</string-array>
-   	<string-array name="awake_activities">
-   		<item name="eat">@string/eat_activity</item>
-    	<item name="go_to_sleep">@string/go_to_sleep_activity</item>
-    	<item name="bath">@string/bath_activity</item>
-    	<item name="milk">@string/milk_activity</item>
-    	<item name="nursing">@string/nursing_activity</item>
-    	<item name="changed_diaper">@string/changed_diaper_activity</item>
-    	<item name="made_poop">@string/made_poop_activity</item>    	
-   	</string-array>
+        <!-- <item name="eat">@string/eat_activity</item> -->
+        <item name="go_to_sleep">@string/go_to_sleep_activity</item>
+        <item name="go_to_nap">@string/go_to_nap_activity</item>
+        <item name="woke_up">@string/woke_up_activity</item>
+        <!-- <item name="bath">@string/bath_activity</item> -->
+        <item name="milk">@string/milk_activity</item>
+        <item name="nurse_left">@string/nurse_left_activity</item>
+        <item name="nurse_right">@string/nurse_right_activity</item>
+        <!-- <item name="woke_up_during_night">@string/woke_up_during_night_activity</item>
+        <item name="changed_diaper">@string/changed_diaper_activity</item>
+        <item name="made_poop">@string/made_poop_activity</item> -->        
+    </string-array>
+    <string-array name="sleep_activities">
+        <item name="woke_up">@string/woke_up_activity</item>
+        <item name="milk">@string/milk_activity</item>
+        <item name="nursing">@string/nursing_activity</item>
+        <!-- <item name="woke_up_during_night">@string/woke_up_during_night_activity</item> -->     
+    </string-array>
+    <string-array name="awake_activities">
+        <!-- <item name="eat">@string/eat_activity</item> -->
+        <item name="go_to_sleep">@string/go_to_sleep_activity</item>
+        <!-- <item name="bath">@string/bath_activity</item> -->
+        <item name="milk">@string/milk_activity</item>
+        <item name="nursing">@string/nursing_activity</item>
+        <!-- <item name="changed_diaper">@string/changed_diaper_activity</item>
+        <item name="made_poop">@string/made_poop_activity</item>         -->
+    </string-array>
 </resources>
