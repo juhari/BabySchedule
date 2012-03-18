@@ -69,27 +69,27 @@ public class ConsumedTime {
 	
 	public String toStringWithoutSeconds() {
 		if( this.getDays() > 0 ) {
-			return this.getDays() + " " + dayString + ", " + this.getHours() + " " + hourString + ", " + 
-				   this.getMinutes() + " " + minuteString;
+			return this.getDays() + dayString + " " + this.getHours() + hourString + " " + 
+				   this.getMinutes() + minuteString;
 		} else if( this.getHours() > 0 ) {
-			return this.getHours() + " " + hourString + ", " + 
-			   	   this.getMinutes() + " " + minuteString;
+			return this.getHours() + hourString + " " + 
+			   	   this.getMinutes() + minuteString;
 		} else {
-			return this.getMinutes() + " " + minuteString;
+			return this.getMinutes() + minuteString;
 		}
 	}
 	
 	public String toString() {
 		if( this.getDays() > 0 ) {
-			return this.getDays() + " " + dayString + ", " + this.getHours() + " " + hourString + ", " + 
-				   this.getMinutes() + " " + minuteString + ", " + this.getSeconds() + " " + secondString;
+			return this.getDays() + dayString + " " + this.getHours() + hourString + " " + 
+				   this.getMinutes() + minuteString + " " + this.getSeconds() + secondString;
 		} else if( this.getHours() > 0 ) {
-			return this.getHours() + " " + hourString + ", " + 
-			   	   this.getMinutes() + " " + minuteString + ", " + this.getSeconds() + " " + secondString;
+			return this.getHours() + hourString + " " + 
+			   	   this.getMinutes() + minuteString + " " + this.getSeconds() + secondString;
 		} else if( this.getMinutes() > 0 ) {
-			return this.getMinutes() + " " + minuteString + ", " + this.getSeconds() + " " + secondString;
+			return this.getMinutes() + minuteString + " " + this.getSeconds() + secondString;
 		} else {
-			return this.getSeconds() + " " + secondString;
+			return this.getSeconds() + secondString;
 		}
 	}
 	
