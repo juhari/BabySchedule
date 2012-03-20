@@ -2,6 +2,7 @@ package graphviews;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import utils.BabyEvent;
 import utils.ConsumedTime;
@@ -13,25 +14,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-
-import com.jjoe64.graphview.GraphView.GraphViewData;
-
 import fi.vincit.babyschedule.R;
 import fi.vincit.babyschedule.activities.Settings;
 
-public class SleepGraphView extends LinearLayout implements OnClickListener {
-	LinearLayout mLayout;
-	Context mContext;
-	
-	private LinearLayout mGraphLayout;	
-	private LinearLayout mNapLayout;
-	private LinearLayout mSleepLayout;
-	private LinearLayout mCombinedLayout;
-	
-	
-	private GraphViewData[] mSleepData = null;
-	private GraphViewData[] mNapData = null;
-	private GraphViewData[] mCombinedSleepData = null;
+public class SleepGraphView extends LinearLayout {
+	Context mContext;	
+		
+	private double[] mSleepData = null;
+	private double[] mNapData = null;
+	private double[] mCombinedSleepData = null;
 	private double mMaxNapTime = 0.0;
 	private double mMaxSleepTime = 0.0;
 	private double mMaxCombinedSleepTime = 0.0;
@@ -43,26 +34,19 @@ public class SleepGraphView extends LinearLayout implements OnClickListener {
 		mContext = context;
 		
 		initializeGraphData();
-
-		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View sleepView = inflater.inflate(R.layout.sleepstatisticsgraphview, null);
 		
-		addView(sleepView);
+		List<double[]> sleepData = new ArrayList<double[]>();
+		sleepData.add(mCombinedSleepData);
+		sleepData.add(mSleepData);
+		sleepData.add(mNapData);
+        
+		String[] seriesTitles = new String[] {
+	            mContext.getString(R.string.allsleeptimes),
+	            mContext.getString(R.string.sleeptimes),
+	            mContext.getString(R.string.naptimes)
+	        };
 		
-		findViewById(R.id.sleepSelection).setOnClickListener(this);
-		findViewById(R.id.napSelection).setOnClickListener(this);
-		findViewById(R.id.allSleepSelection).setOnClickListener(this);
-		
-		mGraphLayout = (LinearLayout)(findViewById(R.id.sleepbargraphlayout));
-		mNapLayout = (LinearLayout)(findViewById(R.id.naplayout));
-		mSleepLayout = (LinearLayout)(findViewById(R.id.sleeplayout));
-		mCombinedLayout = (LinearLayout)(findViewById(R.id.combinedlayout));
-		
-		mCombinedLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, mCombinedSleepData, mMaxCombinedSleepTime, mSleepDays, mContext.getString(R.string.allsleeptimes)));
-		mNapLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, mNapData, mMaxCombinedSleepTime, mSleepDays, mContext.getString(R.string.naptimes)));
-		mSleepLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, mSleepData, mMaxCombinedSleepTime, mSleepDays, mContext.getString(R.string.sleeptimes)));
-		
-		updateWhatSleepIsShown();
+		addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, seriesTitles, sleepData, mMaxCombinedSleepTime, mSleepDays, ""));
 	}
 
 	public void initializeGraphData() {
@@ -97,9 +81,9 @@ public class SleepGraphView extends LinearLayout implements OnClickListener {
 		
 		if( mSleepDays < 7 )
 			mSleepDays = 7;
-		mNapData = new GraphViewData[mSleepDays];
-		mSleepData = new GraphViewData[mSleepDays];
-		mCombinedSleepData = new GraphViewData[mSleepDays];
+		mNapData = new double[mSleepDays];
+		mSleepData = new double[mSleepDays];
+		mCombinedSleepData = new double[mSleepDays];
 		int indexForValueArray = 0;
 		
 		for( int i = (int)mSleepDays-1; i >= 0; i-- ) {				
@@ -127,9 +111,9 @@ public class SleepGraphView extends LinearLayout implements OnClickListener {
 			double combinedSleepToday = daysCombined.getHoursDecimals();
 			double napToday = daysNap.getHoursDecimals();
 			double sleepToday = daysSleep.getHoursDecimals();
-			mCombinedSleepData[indexForValueArray] = new GraphViewData(i, combinedSleepToday);
-			mNapData[indexForValueArray] = new GraphViewData(i, napToday);
-			mSleepData[indexForValueArray] = new GraphViewData(i, sleepToday);
+			mCombinedSleepData[indexForValueArray] = combinedSleepToday;
+			mNapData[indexForValueArray] = napToday;
+			mSleepData[indexForValueArray] = sleepToday;
 			
 			if( mMaxCombinedSleepTime < combinedSleepToday ) mMaxCombinedSleepTime = combinedSleepToday;
 			if( mMaxNapTime < napToday ) mMaxNapTime = napToday;
@@ -139,35 +123,4 @@ public class SleepGraphView extends LinearLayout implements OnClickListener {
 		}
 		
 	}	
-
-	private void updateWhatSleepIsShown() {
-		Log.i("BabySchedule", "updateWhatSleepIsShown()");
-		CheckBox napCheckBox = (CheckBox) findViewById(R.id.napSelection);
-		CheckBox sleepCheckBox = (CheckBox) findViewById(R.id.sleepSelection);
-		CheckBox combinedCheckBox = (CheckBox) findViewById(R.id.allSleepSelection);
-		mGraphLayout.removeAllViews();
-		
-		if( !napCheckBox.isChecked() && !sleepCheckBox.isChecked() && !combinedCheckBox.isChecked() ) {
-			mGraphLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, null, 0, 0, ""));
-			return;
-		}
-		
-		if(combinedCheckBox.isChecked() ) {
-			mGraphLayout.addView(mCombinedLayout);
-		}
-		if( napCheckBox.isChecked() ) {
-			mGraphLayout.addView(mNapLayout);
-		}
-		if( sleepCheckBox.isChecked() ) {
-			mGraphLayout.addView(mSleepLayout);
-		}
-		
-	}
-
-	@Override
-	public void onClick(View v) {
-		if( v.getId() == R.id.napSelection || v.getId() == R.id.sleepSelection || v.getId() == R.id.allSleepSelection )
-			updateWhatSleepIsShown();
-		
-	}
 }

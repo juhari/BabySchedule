@@ -2,25 +2,22 @@ package graphviews;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import utils.BabyEvent;
 import utils.ScheduleDatabase;
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
-
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GraphView.GraphViewData;
-
 import fi.vincit.babyschedule.R;
 import fi.vincit.babyschedule.activities.Settings;
 
 public class MilkGraphView extends LinearLayout {
 
-	LinearLayout mLayout;
 	Context mContext;
 	
-	private GraphViewData[] mMilkData = null;
+	private double[] mMilkData = null;
 	private double mMaxMilk = 0.0;
 	private int mMilkDays = 0;
 	
@@ -29,8 +26,11 @@ public class MilkGraphView extends LinearLayout {
 		mContext = context;		
 	
 		initializeGraphData();
-		GraphView gv = StatisticsGraphViewUtils.createGraphViewFromData(
-				mContext, mMilkData, mMaxMilk, mMilkDays, mContext.getString(R.string.milk_per_day));
+		List<double[]> milkData = new ArrayList<double[]>();
+		milkData.add(mMilkData);
+		String[] seriesTitles = new String[] { mContext.getString(R.string.milk_per_day) };
+		View gv = StatisticsGraphViewUtils.createGraphViewFromData(
+				mContext, seriesTitles, milkData, mMaxMilk, mMilkDays, "");
 		addView(gv);
 	}
 
@@ -51,7 +51,8 @@ public class MilkGraphView extends LinearLayout {
 		mMilkDays = (int)numberOfDays;
 		if( mMilkDays < 7 )
 			mMilkDays = 7;
-		mMilkData = new GraphViewData[mMilkDays];
+		mMilkDays++;
+		mMilkData = new double[mMilkDays];
 		mMaxMilk = 0;
 		// Acquire milk data for milk / day
 		int indexForValueArray = 0;
@@ -68,7 +69,7 @@ public class MilkGraphView extends LinearLayout {
                 mMaxMilk = daysCombined;
 			
 			Log.d("Babyschedule", "data for day #" + i + ": " + daysCombined);
-			mMilkData[indexForValueArray] = new GraphViewData(i, daysCombined);
+			mMilkData[indexForValueArray] = daysCombined;
 			
 			indexForValueArray++;
 		}			

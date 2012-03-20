@@ -41,6 +41,7 @@
     <string name="avg_nap">Päiväunien keskipituus:</string>
     <string name="sleep_per_day">Montako tuntia unta päivässä</string>
     <string name="milk_per_day">Maitoa annettu päivässä (ml)</string>
+    <string name="no_data">Ei tietoja</string>
     
     <!-- Settings screen -->
     <string name="choose_baby">Valitse vauva</string>

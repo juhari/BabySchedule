@@ -40,7 +40,7 @@ public class BabyEvent implements Comparable<BabyEvent>
 	 * @return the date as dd.mm.yyyy
 	 */
 	public String getDateString() {
-	    return getActionDate().getDate() + "." + getActionDate().getMonth() + "." + (getActionDate().getYear()+1900);
+	    return getActionDate().getDate() + "." + (getActionDate().getMonth()+1) + "." + (getActionDate().getYear()+1900);
 	}
 	
 	/**

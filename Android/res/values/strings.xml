@@ -41,6 +41,7 @@
     <string name="avg_nap">Average length of nap:</string>
     <string name="sleep_per_day">How many hours of sleep per day</string>
     <string name="milk_per_day">Milk given per day (ml)</string>
+    <string name="no_data">No data</string>
     
     <!-- Settings screen -->
     <string name="choose_baby">Choose baby</string>

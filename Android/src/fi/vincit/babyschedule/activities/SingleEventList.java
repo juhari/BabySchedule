@@ -2,7 +2,6 @@ package fi.vincit.babyschedule.activities;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 
 import utils.BabyEvent;
 import utils.ScheduleDatabase;
@@ -94,7 +93,7 @@ public class SingleEventList extends ListActivity
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-		BabyEvent event = new BabyEvent(mActionName, (Date)info.targetView.getTag());
+		BabyEvent event = (BabyEvent)info.targetView.getTag();
 		switch (item.getItemId()) {
 		case R.id.delete_activity:			
 			ScheduleDatabase.deleteEntryBasedOnDate(Settings.getCurrentBabyName(), event.getActionDate());

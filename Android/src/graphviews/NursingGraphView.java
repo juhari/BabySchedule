@@ -2,36 +2,22 @@ package graphviews;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import utils.BabyEvent;
-import utils.ConsumedTime;
 import utils.ScheduleDatabase;
 import android.content.Context;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
-
-import com.jjoe64.graphview.GraphView.GraphViewData;
-
 import fi.vincit.babyschedule.R;
 import fi.vincit.babyschedule.activities.Settings;
 
-public class NursingGraphView extends LinearLayout implements OnClickListener {
-	LinearLayout mLayout;
-	Context mContext;
+public class NursingGraphView extends LinearLayout {
+	Context mContext;	
 	
-	private LinearLayout mGraphLayout;	
-	private LinearLayout mLeftLayout;
-	private LinearLayout mRightLayout;
-	private LinearLayout mBothLayout;
-	
-	
-	private GraphViewData[] mLeftData = null;
-	private GraphViewData[] mRightData = null;
-	private GraphViewData[] mBothData = null;
+	private double[] mLeftData = null;
+	private double[] mRightData = null;
+	private double[] mBothData = null;
 	private double mMaxLeftTime = 0.0;
 	private double mMaxRightTime = 0.0;
 	private double mMaxBothTime = 0.0;
@@ -44,28 +30,18 @@ public class NursingGraphView extends LinearLayout implements OnClickListener {
 		
 		initializeGraphData();
 		
-		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View nursingView = inflater.inflate(R.layout.nursingstatisticsgraphview, null);
+		List<double[]> nursingData = new ArrayList<double[]>();
+		nursingData.add(mBothData);
+		nursingData.add(mRightData);
+		nursingData.add(mLeftData);
 		
-		addView(nursingView);
+		String[] seriesTitles = new String[] {
+	        mContext.getString(R.string.bothtimes),
+	        mContext.getString(R.string.righttimes),
+	        mContext.getString(R.string.lefttimes)
+		};
 		
-		findViewById(R.id.leftSelection).setOnClickListener(this);
-		findViewById(R.id.rightSelection).setOnClickListener(this);
-		findViewById(R.id.bothSelection).setOnClickListener(this);
-		
-		mGraphLayout = (LinearLayout)(findViewById(R.id.nursingBarGraphLayout));
-		mLeftLayout = (LinearLayout)(findViewById(R.id.leftLayout));
-		mRightLayout = (LinearLayout)(findViewById(R.id.rightLayout));
-		mBothLayout = (LinearLayout)(findViewById(R.id.bothLayout));
-		
-		double maxSingle = mMaxLeftTime;
-		if( mMaxRightTime > mMaxLeftTime ) maxSingle = mMaxRightTime;
-		
-		mBothLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, mBothData, mMaxBothTime, mNursingDays, mContext.getString(R.string.bothtimes)));
-		mLeftLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, mRightData, maxSingle, mNursingDays, mContext.getString(R.string.lefttimes)));
-		mRightLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, mLeftData, maxSingle, mNursingDays, mContext.getString(R.string.righttimes)));
-		
-		updateWhatSleepIsShown();
+		addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, seriesTitles, nursingData, mMaxBothTime, mNursingDays, ""));
 	}
 
 	public void initializeGraphData() {
@@ -100,9 +76,9 @@ public class NursingGraphView extends LinearLayout implements OnClickListener {
 		
 		if( mNursingDays < 7 )
 			mNursingDays = 7;
-		mRightData = new GraphViewData[mNursingDays];
-		mLeftData = new GraphViewData[mNursingDays];
-		mBothData = new GraphViewData[mNursingDays];
+		mRightData = new double[mNursingDays];
+		mLeftData = new double[mNursingDays];
+		mBothData = new double[mNursingDays];
 		int indexForValueArray = 0;
 		
 		for( int i = (int)mNursingDays-1; i >= 0; i-- ) {				
@@ -125,9 +101,9 @@ public class NursingGraphView extends LinearLayout implements OnClickListener {
 					daysRight += eventDuration;
 				}
 			}
-			mBothData[indexForValueArray] = new GraphViewData(i, daysCombined);
-			mRightData[indexForValueArray] = new GraphViewData(i, daysLeft);
-			mLeftData[indexForValueArray] = new GraphViewData(i, daysRight);
+			mBothData[indexForValueArray] = daysCombined;
+			mRightData[indexForValueArray] = daysLeft;
+			mLeftData[indexForValueArray] = daysRight;
 			
 			if( mMaxBothTime < daysCombined ) mMaxBothTime = daysCombined;
 			if( mMaxLeftTime < daysLeft ) mMaxLeftTime = daysLeft;
@@ -137,35 +113,4 @@ public class NursingGraphView extends LinearLayout implements OnClickListener {
 		}
 		
 	}	
-
-	private void updateWhatSleepIsShown() {
-		Log.i("BabySchedule", "updateWhatSleepIsShown()");
-		CheckBox napCheckBox = (CheckBox) findViewById(R.id.leftSelection);
-		CheckBox sleepCheckBox = (CheckBox) findViewById(R.id.rightSelection);
-		CheckBox combinedCheckBox = (CheckBox) findViewById(R.id.bothSelection);
-		mGraphLayout.removeAllViews();
-		
-		if( !napCheckBox.isChecked() && !sleepCheckBox.isChecked() && !combinedCheckBox.isChecked() ) {
-			mGraphLayout.addView(StatisticsGraphViewUtils.createGraphViewFromData(mContext, null, 0, 0, ""));
-			return;
-		}
-		
-		if(combinedCheckBox.isChecked() ) {
-			mGraphLayout.addView(mBothLayout);
-		}
-		if( napCheckBox.isChecked() ) {
-			mGraphLayout.addView(mLeftLayout);
-		}
-		if( sleepCheckBox.isChecked() ) {
-			mGraphLayout.addView(mRightLayout);
-		}
-		
-	}
-
-	@Override
-	public void onClick(View v) {
-		if( v.getId() == R.id.leftSelection || v.getId() == R.id.rightSelection || v.getId() == R.id.bothSelection )
-			updateWhatSleepIsShown();
-		
-	}
 }
