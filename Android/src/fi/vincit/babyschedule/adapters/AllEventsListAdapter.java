@@ -7,7 +7,6 @@ import utils.ConsumedTime;
 import utils.ScheduleDatabase;
 import android.content.Context;
 import android.content.res.Resources;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,7 +97,7 @@ public class AllEventsListAdapter extends BaseAdapter {
 			actionTime.setText(getTimeTextForMilk(action));
 		}
 		else {			
-			actionTime.setText(action.getActionDate().toLocaleString());
+			actionTime.setText(getTimeAndDateString(action));
 		}
 		
 		ImageView img = (ImageView)actionView.findViewById(R.id.events_list_icon);
@@ -118,7 +117,6 @@ public class AllEventsListAdapter extends BaseAdapter {
 		String retVal =  (getTimeAndDateString(event) + "\n" + 
 				mRes.getString(R.string.amount) + 
 				" " + amount + mRes.getString(R.string.ml)); 
-		//Log.d("Babyschedule", retVal);
 		return retVal;
 	}
 	
@@ -136,7 +134,7 @@ public class AllEventsListAdapter extends BaseAdapter {
 					mRes.getString(R.string.duration) + 
 					duration.toStringWithoutSeconds());
 		} else {
-			return (event.getActionDate().toLocaleString());
+			return getTimeAndDateString(event);
 		}
 	}
 
