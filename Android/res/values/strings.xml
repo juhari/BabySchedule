@@ -54,7 +54,8 @@
     <string name="manage_babies">Manage babies</string>
     <string name="manage_babies_summary">Rename and delete babies</string>
     <string name="delete_baby">Remove baby</string>
-    <string name="edit_baby">Edit baby</string>
+    <string name="edit_baby">Rename baby</string>
+    <string name="edit_baby_instruction">Give the new name of the baby</string>
     <string name="baby_exists">Unable to add, baby with the same name already exists!</string>
     <string name="no_babies">No babies exist, give baby name to start using application.</string>
     

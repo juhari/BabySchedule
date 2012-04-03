@@ -3,7 +3,9 @@ package fi.vincit.babyschedule.activities;
 import java.util.ArrayList;
 
 import utils.ScheduleDatabase;
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -13,7 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 import fi.vincit.babyschedule.R;
 
 public class ManageBabies extends ListActivity 
@@ -60,10 +64,45 @@ public class ManageBabies extends ListActivity
 			populateListContents();
 			return true;
 		case R.id.edit_baby:
-			// TODO: add baby edit view
+			showRenameBabyDialog(babyName);			
 			return true;
 		default:
 			return super.onContextItemSelected(item);
 		}
 	}
+	
+	private void showRenameBabyDialog(final String oldName) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+        alert.setTitle(getString(R.string.edit_baby));
+        alert.setMessage(getString(R.string.edit_baby_instruction));
+
+        // Set an EditText view to get user input 
+        final EditText input = new EditText(this);
+        input.setText(oldName);
+        alert.setView(input);
+        
+        alert.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {
+          String newName = input.getText().toString();
+          if( ScheduleDatabase.getBabyNames().contains(newName) ) {
+              Log.w("Babyschedule", "Settings::addBaby, unable to add, already exists with the same name.");
+              Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.baby_exists), 1000);
+              toast.show();
+              return;
+          }
+          ScheduleDatabase.renameBaby(oldName, newName);
+          populateListContents();
+          }
+        });
+
+        alert.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int whichButton) {
+              // do nothing
+          }
+        });
+
+        alert.show();
+        
+    }
 }

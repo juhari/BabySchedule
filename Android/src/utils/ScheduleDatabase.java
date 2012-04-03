@@ -161,6 +161,21 @@ public class ScheduleDatabase {
 		nameCursor.close();
 	}
 	
+	public static void renameBaby(String oldName, String newName) {
+	    Log.w("Babyschedule", "Renaming baby: " + oldName + " -> " + newName);
+	    Cursor oldNameCursor = getBabyNameCursor(oldName);
+	    Cursor newNameCursor = getBabyNameCursor(newName);
+	    
+	    if( oldNameCursor.getCount() > 0 && newNameCursor.getCount() == 0 ) {
+	        mDb.delete(TABLE_BABY_NAMES, "babyname = '" + oldName + "'", null);
+	        ContentValues values = new ContentValues();
+            values.put("babyname", newName);
+            mDb.insert(TABLE_BABY_NAMES, null, values);
+            
+            mDb.execSQL("ALTER TABLE " + oldName + " RENAME TO " + newName);
+	    }        
+	}
+	
 	private static Cursor getBabyNameCursor(String babyName) {
 		return mDb.query(TABLE_BABY_NAMES, new String[] {"_id", "babyname"}, 
 				"babyname = '" + babyName + "'", null, null, null, null);

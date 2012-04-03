@@ -54,7 +54,8 @@
     <string name="manage_babies">Hallinnoi vauvoja</string>
     <string name="manage_babies_summary">Uudelleennimeä ja poista vauvoja</string>
     <string name="delete_baby">Poista vauva</string>
-    <string name="edit_baby">Muokkaa vauvaa</string>
+    <string name="edit_baby">Vaihda vauvan nimeä</string>
+    <string name="edit_baby_instruction">Anna vauvan uusi nimi</string>
     <string name="baby_exists">Ei voi lisätä, sovelluksessa on jo vauva samalla nimellä!</string>
     <string name="no_babies">Sovellukseen ei ole lisätty yhtään vauvoja. Anna vauvan nimi aloittaaksesi sovelluksen käytön.</string>
     
