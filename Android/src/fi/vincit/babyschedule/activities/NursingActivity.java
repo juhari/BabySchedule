@@ -2,7 +2,6 @@ package fi.vincit.babyschedule.activities;
 
 import java.util.Date;
 
-import utils.ScheduleDatabase;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Chronometer;
 import android.widget.TextView;
 import fi.vincit.babyschedule.R;
+import fi.vincit.babyschedule.utils.ScheduleDatabase;
 
 public class NursingActivity extends Activity 
 							 implements OnClickListener {

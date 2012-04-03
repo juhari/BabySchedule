@@ -2,7 +2,6 @@ package fi.vincit.babyschedule.activities;
 
 import java.util.ArrayList;
 
-import utils.ScheduleDatabase;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +16,7 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 import fi.vincit.babyschedule.MainTabWidget.StaticContext;
+import fi.vincit.babyschedule.utils.ScheduleDatabase;
 import fi.vincit.babyschedule.R;
 
 public class Settings extends PreferenceActivity {

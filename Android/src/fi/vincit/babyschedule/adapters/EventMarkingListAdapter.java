@@ -2,9 +2,6 @@ package fi.vincit.babyschedule.adapters;
 
 import java.util.Date;
 
-import utils.BabyEvent;
-import utils.ConsumedTime;
-import utils.ScheduleDatabase;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import fi.vincit.babyschedule.R;
 import fi.vincit.babyschedule.activities.Settings;
+import fi.vincit.babyschedule.utils.BabyEvent;
+import fi.vincit.babyschedule.utils.ConsumedTime;
+import fi.vincit.babyschedule.utils.ScheduleDatabase;
 
 public class EventMarkingListAdapter extends BaseAdapter {
 

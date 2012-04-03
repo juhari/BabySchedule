@@ -2,9 +2,6 @@ package fi.vincit.babyschedule.adapters;
 
 import java.util.ArrayList;
 
-import utils.BabyEvent;
-import utils.ConsumedTime;
-import utils.ScheduleDatabase;
 import android.content.Context;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
@@ -17,6 +14,9 @@ import fi.vincit.babyschedule.MainTabWidget;
 import fi.vincit.babyschedule.MainTabWidget.StaticContext;
 import fi.vincit.babyschedule.R;
 import fi.vincit.babyschedule.activities.Settings;
+import fi.vincit.babyschedule.utils.BabyEvent;
+import fi.vincit.babyschedule.utils.ConsumedTime;
+import fi.vincit.babyschedule.utils.ScheduleDatabase;
 
 public class AllEventsListAdapter extends BaseAdapter {
 

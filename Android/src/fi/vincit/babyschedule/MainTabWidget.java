@@ -2,7 +2,6 @@ package fi.vincit.babyschedule;
 
 import java.util.ArrayList;
 
-import utils.ScheduleDatabase;
 import android.app.AlertDialog;
 import android.app.TabActivity;
 import android.content.Context;
@@ -22,6 +21,7 @@ import fi.vincit.babyschedule.activities.BarStatistics;
 import fi.vincit.babyschedule.activities.EventAdder;
 import fi.vincit.babyschedule.activities.EventMarkingList;
 import fi.vincit.babyschedule.activities.Settings;
+import fi.vincit.babyschedule.utils.ScheduleDatabase;
 
 public class MainTabWidget extends TabActivity {
 	

@@ -2,7 +2,6 @@ package fi.vincit.babyschedule.activities;
 
 import java.util.Date;
 
-import utils.ScheduleDatabase;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +17,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import fi.vincit.babyschedule.R;
+import fi.vincit.babyschedule.utils.ScheduleDatabase;
 
 public class EventDetailsEditor extends Activity
 							   implements OnClickListener

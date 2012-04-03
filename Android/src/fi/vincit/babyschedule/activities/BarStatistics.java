@@ -9,9 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import fi.vincit.babyschedule.R;
-import graphviews.MilkGraphView;
-import graphviews.NursingGraphView;
-import graphviews.SleepGraphView;
+import fi.vincit.babyschedule.graphviews.MilkGraphView;
+import fi.vincit.babyschedule.graphviews.NursingGraphView;
+import fi.vincit.babyschedule.graphviews.SleepGraphView;
 
 public class BarStatistics extends Activity implements OnItemSelectedListener {
 	

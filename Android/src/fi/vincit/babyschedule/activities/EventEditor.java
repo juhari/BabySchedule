@@ -1,11 +1,11 @@
 package fi.vincit.babyschedule.activities;
 
-import utils.BabyEvent;
-import utils.ScheduleDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import fi.vincit.babyschedule.R;
+import fi.vincit.babyschedule.utils.BabyEvent;
+import fi.vincit.babyschedule.utils.ScheduleDatabase;
 
 public class EventEditor extends EventDetailsEditor {
 

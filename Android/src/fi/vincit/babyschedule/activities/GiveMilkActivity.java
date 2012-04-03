@@ -2,13 +2,13 @@ package fi.vincit.babyschedule.activities;
 
 import java.util.Date;
 
-import utils.ScheduleDatabase;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import fi.vincit.babyschedule.R;
+import fi.vincit.babyschedule.utils.ScheduleDatabase;
 
 public class GiveMilkActivity extends Activity 
 							  implements OnClickListener {

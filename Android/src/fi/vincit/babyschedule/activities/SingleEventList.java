@@ -3,8 +3,6 @@ package fi.vincit.babyschedule.activities;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import utils.BabyEvent;
-import utils.ScheduleDatabase;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +16,8 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
 import fi.vincit.babyschedule.R;
 import fi.vincit.babyschedule.adapters.AllEventsListAdapter;
+import fi.vincit.babyschedule.utils.BabyEvent;
+import fi.vincit.babyschedule.utils.ScheduleDatabase;
 
 public class SingleEventList extends ListActivity 
 						      implements View.OnCreateContextMenuListener {
