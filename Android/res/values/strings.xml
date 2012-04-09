@@ -2,6 +2,7 @@
 <resources>
 
 	<!-- Event marking and showing UI -->
+	<string name="dateSliderTitle">Selected date</string>
 	<string name="ok">Ok</string>
     <string name="hello">Hello World, BabyScheduleMain!</string>
     <string name="app_name">BabySchedule</string>
@@ -31,6 +32,10 @@
     <string name="nursing_instruction">How many minutes nursed?</string>
     <string name="forgot_milk_amount">Please enter how much milk was given.</string>
     <string name="forgot_nursing_time">Please enter how long the nursing lasted.</string>
+    
+    <!--  Event editor -->
+    <string name="editor_event">Event:</string>
+    <string name="editor_time">Time:</string>
     
     <!--  Main tabs -->
     <string name="tab_mark_events">Mark events</string>

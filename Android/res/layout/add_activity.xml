@@ -6,66 +6,93 @@
     android:layout_marginTop="2dp"
     android:orientation="vertical" >
 
-    <Spinner
-        android:id="@+id/actionsSpinner"
+    <LinearLayout android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:prompt="@string/add_event_prompt" >
-    </Spinner>
-
-    <DatePicker
-        android:id="@+id/datePick"
+        android:layout_height="wrap_content" 
+        android:alwaysDrawnWithCache="false" 
+        android:baselineAligned="true" 
+        android:clipChildren="true" 
+        android:background="@android:drawable/editbox_background"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    
+	    <Spinner
+	        android:id="@+id/actionsSpinner"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:prompt="@string/add_event_prompt" >
+	    </Spinner>    
+	
+	    
+    </LinearLayout>
+    
+    <LinearLayout android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-    </DatePicker>
+        android:layout_height="wrap_content" 
+        android:alwaysDrawnWithCache="false" 
+        android:baselineAligned="true" 
+        android:clipChildren="true" 
+        android:background="@android:drawable/editbox_background"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+	    
+        <TextView
+            android:id="@+id/eventDateTimeText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/editor_time"
+            android:textSize="16sp"
+            android:textStyle="bold" 
+            android:gravity="center" />
+        
+	    <DatePicker
+	        android:id="@+id/datePick"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" >
+	    </DatePicker>
+	
+	    <TimePicker
+	        android:id="@+id/timePick"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" >
+	    </TimePicker>
+    </LinearLayout>
 
-    <TimePicker
-        android:id="@+id/timePick"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-    </TimePicker>
-
+    
     <LinearLayout
         android:id="@+id/extraInputLayout"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.36" >
+        android:orientation="vertical"
+        android:layout_height="0dip"
+        android:layout_weight="0.36"
+        android:background="@android:drawable/editbox_background" >
 
         <TextView
             android:id="@+id/extraInputDescription"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.41"
-            android:text="Medium Text"
+            android:text="Ml or minutes"
+            android:gravity="center_vertical"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
         <EditText
             android:id="@+id/extraInput"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:gravity="center_vertical"
             android:inputType="number" />
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/descriptionText"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Event and Datetime"
-        android:textSize="16sp"
-        android:textStyle="bold" >
-    </TextView>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content" 
+        android:background="@android:drawable/editbox_background">
 
         <Button
             android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:gravity="left"
+            android:gravity="left|center_vertical"
             android:onClick="onClick"
             android:text="@string/save"
             android:textSize="16sp" >

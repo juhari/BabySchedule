@@ -12,6 +12,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -24,11 +25,10 @@ public class EventDetailsEditor extends Activity
 							   			  , DatePicker.OnDateChangedListener
 							   			  , TimePicker.OnTimeChangedListener
 							   			  , OnItemSelectedListener {
-
+    
 	private DatePicker mDatePicker;
 	private TimePicker mTimePicker;
 	private Spinner mSpinner;	
-	private TextView mDescription;
 	private TextView mExtraInputDescription;	
 	private EditText mExtraInput;
 	
@@ -55,8 +55,6 @@ public class EventDetailsEditor extends Activity
     	mDatePicker = (DatePicker)findViewById(R.id.datePick);
     	mTimePicker = (TimePicker)findViewById(R.id.timePick);
     	mTimePicker.setIs24HourView(true);
-    	
-    	mDescription = (TextView)findViewById(R.id.descriptionText);
     	    	
     	Date now = new Date();
     	mDatePicker.init(now.getYear() + 1900, now.getMonth(), now.getDate(), this);
@@ -65,8 +63,8 @@ public class EventDetailsEditor extends Activity
     	setTitle(R.string.add_activity);
     	
     	updateDescription();
-	}
-	
+	}  
+
 	@Override
 	public void onClick(View v) {
 		if( v.getId() == R.id.saveButton ) {		
@@ -91,27 +89,28 @@ public class EventDetailsEditor extends Activity
 	protected void updateDescription() {
 		Date dateTime = getDateTimeFromSpinners();
 		
-		mDescription.setText("Add event: " + 
-						   (String)mSpinner.getSelectedItem() + 
-						   ", " + 
+		TextView date = (TextView)findViewById(R.id.eventDateTimeText);
+		date.setText(getString(R.string.editor_time) + " " + 						  
 						   dateTime.toLocaleString());
 		updateExtraInputField();
 	}
 	
 	protected void updateExtraInputField() {
+	    LinearLayout extraInputLo = (LinearLayout)findViewById(R.id.extraInputLayout);
 		if( isMilkEventSelected() ) {
 			mExtraInputDescription.setText(R.string.milk_amount_instruction);
-			mExtraInputDescription.setVisibility(View.VISIBLE);
-			mExtraInput.setVisibility(View.VISIBLE);
+			
+			extraInputLo.setVisibility(View.VISIBLE);
+
 		}
 		else if( isNursingEventSelected() ) {
 			mExtraInputDescription.setText(R.string.nursing_instruction);
-			mExtraInputDescription.setVisibility(View.VISIBLE);
-			mExtraInput.setVisibility(View.VISIBLE);
+			extraInputLo.setVisibility(View.VISIBLE);
+
 		}
 		else {
-			mExtraInputDescription.setVisibility(View.INVISIBLE);
-			mExtraInput.setVisibility(View.INVISIBLE);
+		    extraInputLo.setVisibility(View.GONE);
+
 		}
 	}
 	
@@ -220,14 +219,6 @@ public class EventDetailsEditor extends Activity
 
 	protected void setmSpinner(Spinner mSpinner) {
 		this.mSpinner = mSpinner;
-	}
-
-	protected TextView getmDescription() {
-		return mDescription;
-	}
-
-	protected void setmDescription(TextView mDescription) {
-		this.mDescription = mDescription;
 	}
 	
 	protected TextView getmExtraInputDescription() {

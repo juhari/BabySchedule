@@ -2,6 +2,7 @@
 <resources>
 
 	<!-- Event marking and showing UI -->
+	<string name="dateSliderTitle">Valittu pvm</string>
 	<string name="ok">Ok</string>
     <string name="hello">Hello World, BabyScheduleMain!</string>
     <string name="app_name">BabySchedule</string>
@@ -31,6 +32,10 @@
     <string name="nursing_instruction">Kuinka monta minuuttia imetit?</string>
     <string name="forgot_milk_amount">Anna annetun maidon määrä ennen jatkamista.</string>
     <string name="forgot_nursing_time">Anna imetyksen kesto ennen jatkamista.</string>
+    
+    <!--  Event editor -->
+    <string name="editor_event">Tapahtuma:</string>
+    <string name="editor_time">Aika:</string>
     
     <!--  Main tabs -->
     <string name="tab_mark_events">Kirjaa tapahtumia</string>
