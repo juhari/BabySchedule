@@ -1,7 +1,11 @@
 package fi.vincit.babyschedule.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -59,5 +63,24 @@ public class BarStatistics extends Activity implements OnItemSelectedListener {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.statsmenu, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if( item.getItemId() == R.id.add_activity ) {
+            Intent showAddAction = new Intent(this, EventAdder.class);
+            startActivity(showAddAction);
+        } else if( item.getItemId() == R.id.show_settings ) {
+            Intent showSettingsAction = new Intent(this, Settings.class);
+            startActivity(showSettingsAction);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 	
 }

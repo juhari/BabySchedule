@@ -13,6 +13,9 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 import fi.vincit.babyschedule.MainTabWidget.StaticContext;
@@ -136,5 +139,24 @@ public class Settings extends PreferenceActivity {
 		alert.show();
 		
 	}
+	
+	@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settingsmenu, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if( item.getItemId() == R.id.add_activity ) {
+            Intent showAddAction = new Intent(this, EventAdder.class);
+            startActivity(showAddAction);
+        } else if( item.getItemId() == R.id.show_statistics ) {
+            Intent showAddAction = new Intent(this, BarStatistics.class);
+            startActivity(showAddAction);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

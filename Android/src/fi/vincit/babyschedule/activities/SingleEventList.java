@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -114,5 +115,27 @@ public class SingleEventList extends ListActivity
 		i.putExtras(b);
 		startActivity(i);
 	}
+	
+	@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mainlistmenu, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if( item.getItemId() == R.id.add_activity ) {
+            Intent showAddAction = new Intent(this, EventAdder.class);
+            startActivity(showAddAction);
+        } else if( item.getItemId() == R.id.show_statistics ) {
+            Intent showAddAction = new Intent(this, BarStatistics.class);
+            startActivity(showAddAction);
+        } else if( item.getItemId() == R.id.show_settings ) {
+            Intent showSettingsAction = new Intent(this, Settings.class);
+            startActivity(showSettingsAction);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }
