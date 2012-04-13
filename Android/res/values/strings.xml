@@ -36,6 +36,9 @@
     <!--  Event editor -->
     <string name="editor_event">Event:</string>
     <string name="editor_time">Time:</string>
+    <string name="add_wakeup">Edit wake up time</string>
+    <string name="no_wakeup_time">No time set</string>
+    <string name="invalid_wakeup">Wake up time cannot be earlier than go to sleep time</string>
     
     <!--  Main tabs -->
     <string name="tab_mark_events">Mark events</string>

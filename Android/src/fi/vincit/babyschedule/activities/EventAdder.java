@@ -12,9 +12,9 @@ public class EventAdder extends EventDetailsEditor {
 				finish();
 			}
 		}
-		else if( v.getId() == R.id.cancelButton ) {
-			finish();
-		}
+		else {
+            super.onClick(v);
+        }
 	}
 	
 }

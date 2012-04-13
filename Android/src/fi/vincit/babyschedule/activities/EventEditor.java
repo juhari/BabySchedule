@@ -1,5 +1,7 @@
 package fi.vincit.babyschedule.activities;
 
+import java.util.Date;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,6 +51,15 @@ public class EventEditor extends EventDetailsEditor {
     	if( isNursingEventSelected()) {
     		getmExtraInput().setText(""+mEvent.getDurationInSeconds()/60);
     	}
+    	if( isSleepEventSelected() ) {
+    	    Date wakeup = ScheduleDatabase.getWakeUpDateFromSleepDate(Settings.getCurrentBabyName(), mEvent.getActionDate());
+    	    if( wakeup != null ) {    	        
+    	        setmWakeUpDate(wakeup);
+    	        setWakeupDescription();
+    	        updateWakeupSpinnerValues();
+    	    }
+    	    setmOriginalWakeupDate(wakeup);
+    	}
     	
     	updateDescription();
 	}
@@ -59,11 +70,16 @@ public class EventEditor extends EventDetailsEditor {
 			if( saveEvent() ) {		
 				String babyName = Settings.getCurrentBabyName();
 				ScheduleDatabase.deleteEntryBasedOnDate(babyName, mEvent.getActionDate());
+				
+				// delete the wake up event only if it has been changed and it exists
+				if( getmOriginalWakeupDate() != null && !getmOriginalWakeupDate().equals(getmWakeUpDate()) ) {
+				    ScheduleDatabase.deleteEntryBasedOnDate(babyName, getmOriginalWakeupDate());
+				}
 				finish();
 			}
 		}
-		else if( v.getId() == R.id.cancelButton ) {
-			finish();
+		else {
+		    super.onClick(v);
 		}
 	}					
 }

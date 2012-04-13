@@ -36,6 +36,9 @@
     <!--  Event editor -->
     <string name="editor_event">Tapahtuma:</string>
     <string name="editor_time">Aika:</string>
+    <string name="add_wakeup">Muokkaa heräämisaikaa</string>
+    <string name="no_wakeup_time">Heräämisaikaa ei asetettu</string>
+    <string name="invalid_wakeup">Heräämisaika ei voi olla aikaisemmin kuin nukahtamisaika</string>
     
     <!--  Main tabs -->
     <string name="tab_mark_events">Kirjaa tapahtumia</string>
