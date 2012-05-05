@@ -1,0 +1,480 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9692002215550FF200796EEA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9692002115550FF200796EEA /* UIKit.framework */; };
+		9692002415550FF200796EEA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9692002315550FF200796EEA /* Foundation.framework */; };
+		9692002615550FF200796EEA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9692002515550FF200796EEA /* CoreGraphics.framework */; };
+		9692002C15550FF200796EEA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9692002A15550FF200796EEA /* InfoPlist.strings */; };
+		9692002E15550FF200796EEA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9692002D15550FF200796EEA /* main.m */; };
+		9692003215550FF200796EEA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9692003115550FF200796EEA /* AppDelegate.m */; };
+		9692003515550FF200796EEA /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9692003315550FF200796EEA /* MainStoryboard_iPhone.storyboard */; };
+		9692003815550FF200796EEA /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9692003615550FF200796EEA /* MainStoryboard_iPad.storyboard */; };
+		9692003B15550FF200796EEA /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9692003A15550FF200796EEA /* FirstViewController.m */; };
+		9692003D15550FF300796EEA /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 9692003C15550FF300796EEA /* first.png */; };
+		9692003F15550FF300796EEA /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9692003E15550FF300796EEA /* first@2x.png */; };
+		9692004215550FF300796EEA /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9692004115550FF300796EEA /* SecondViewController.m */; };
+		9692004415550FF300796EEA /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 9692004315550FF300796EEA /* second.png */; };
+		9692004615550FF300796EEA /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9692004515550FF300796EEA /* second@2x.png */; };
+		9692004E15550FF300796EEA /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9692004D15550FF300796EEA /* SenTestingKit.framework */; };
+		9692004F15550FF300796EEA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9692002115550FF200796EEA /* UIKit.framework */; };
+		9692005015550FF300796EEA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9692002315550FF200796EEA /* Foundation.framework */; };
+		9692005815550FF400796EEA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9692005615550FF400796EEA /* InfoPlist.strings */; };
+		9692005B15550FF400796EEA /* BabyScheduleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9692005A15550FF400796EEA /* BabyScheduleTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9692005115550FF300796EEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9692001415550FF100796EEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9692001C15550FF200796EEA;
+			remoteInfo = BabySchedule;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9692001D15550FF200796EEA /* BabySchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabySchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9692002115550FF200796EEA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9692002315550FF200796EEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9692002515550FF200796EEA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9692002915550FF200796EEA /* BabySchedule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BabySchedule-Info.plist"; sourceTree = "<group>"; };
+		9692002B15550FF200796EEA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9692002D15550FF200796EEA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9692002F15550FF200796EEA /* BabySchedule-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BabySchedule-Prefix.pch"; sourceTree = "<group>"; };
+		9692003015550FF200796EEA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9692003115550FF200796EEA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9692003415550FF200796EEA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		9692003715550FF200796EEA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		9692003915550FF200796EEA /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		9692003A15550FF200796EEA /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		9692003C15550FF300796EEA /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		9692003E15550FF300796EEA /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		9692004015550FF300796EEA /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		9692004115550FF300796EEA /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		9692004315550FF300796EEA /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		9692004515550FF300796EEA /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		9692004C15550FF300796EEA /* BabyScheduleTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyScheduleTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9692004D15550FF300796EEA /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		9692005515550FF400796EEA /* BabyScheduleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BabyScheduleTests-Info.plist"; sourceTree = "<group>"; };
+		9692005715550FF400796EEA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9692005915550FF400796EEA /* BabyScheduleTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BabyScheduleTests.h; sourceTree = "<group>"; };
+		9692005A15550FF400796EEA /* BabyScheduleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BabyScheduleTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9692001A15550FF200796EEA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9692002215550FF200796EEA /* UIKit.framework in Frameworks */,
+				9692002415550FF200796EEA /* Foundation.framework in Frameworks */,
+				9692002615550FF200796EEA /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9692004815550FF300796EEA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9692004E15550FF300796EEA /* SenTestingKit.framework in Frameworks */,
+				9692004F15550FF300796EEA /* UIKit.framework in Frameworks */,
+				9692005015550FF300796EEA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9692001215550FF100796EEA = {
+			isa = PBXGroup;
+			children = (
+				9692002715550FF200796EEA /* BabySchedule */,
+				9692005315550FF300796EEA /* BabyScheduleTests */,
+				9692002015550FF200796EEA /* Frameworks */,
+				9692001E15550FF200796EEA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9692001E15550FF200796EEA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9692001D15550FF200796EEA /* BabySchedule.app */,
+				9692004C15550FF300796EEA /* BabyScheduleTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9692002015550FF200796EEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9692002115550FF200796EEA /* UIKit.framework */,
+				9692002315550FF200796EEA /* Foundation.framework */,
+				9692002515550FF200796EEA /* CoreGraphics.framework */,
+				9692004D15550FF300796EEA /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9692002715550FF200796EEA /* BabySchedule */ = {
+			isa = PBXGroup;
+			children = (
+				9692003015550FF200796EEA /* AppDelegate.h */,
+				9692003115550FF200796EEA /* AppDelegate.m */,
+				9692003315550FF200796EEA /* MainStoryboard_iPhone.storyboard */,
+				9692003615550FF200796EEA /* MainStoryboard_iPad.storyboard */,
+				9692003915550FF200796EEA /* FirstViewController.h */,
+				9692003A15550FF200796EEA /* FirstViewController.m */,
+				9692003C15550FF300796EEA /* first.png */,
+				9692003E15550FF300796EEA /* first@2x.png */,
+				9692004015550FF300796EEA /* SecondViewController.h */,
+				9692004115550FF300796EEA /* SecondViewController.m */,
+				9692004315550FF300796EEA /* second.png */,
+				9692004515550FF300796EEA /* second@2x.png */,
+				9692002815550FF200796EEA /* Supporting Files */,
+			);
+			path = BabySchedule;
+			sourceTree = "<group>";
+		};
+		9692002815550FF200796EEA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9692002915550FF200796EEA /* BabySchedule-Info.plist */,
+				9692002A15550FF200796EEA /* InfoPlist.strings */,
+				9692002D15550FF200796EEA /* main.m */,
+				9692002F15550FF200796EEA /* BabySchedule-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9692005315550FF300796EEA /* BabyScheduleTests */ = {
+			isa = PBXGroup;
+			children = (
+				9692005915550FF400796EEA /* BabyScheduleTests.h */,
+				9692005A15550FF400796EEA /* BabyScheduleTests.m */,
+				9692005415550FF400796EEA /* Supporting Files */,
+			);
+			path = BabyScheduleTests;
+			sourceTree = "<group>";
+		};
+		9692005415550FF400796EEA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9692005515550FF400796EEA /* BabyScheduleTests-Info.plist */,
+				9692005615550FF400796EEA /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9692001C15550FF200796EEA /* BabySchedule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9692005E15550FF400796EEA /* Build configuration list for PBXNativeTarget "BabySchedule" */;
+			buildPhases = (
+				9692001915550FF200796EEA /* Sources */,
+				9692001A15550FF200796EEA /* Frameworks */,
+				9692001B15550FF200796EEA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BabySchedule;
+			productName = BabySchedule;
+			productReference = 9692001D15550FF200796EEA /* BabySchedule.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9692004B15550FF300796EEA /* BabyScheduleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9692006115550FF400796EEA /* Build configuration list for PBXNativeTarget "BabyScheduleTests" */;
+			buildPhases = (
+				9692004715550FF300796EEA /* Sources */,
+				9692004815550FF300796EEA /* Frameworks */,
+				9692004915550FF300796EEA /* Resources */,
+				9692004A15550FF300796EEA /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9692005215550FF300796EEA /* PBXTargetDependency */,
+			);
+			name = BabyScheduleTests;
+			productName = BabyScheduleTests;
+			productReference = 9692004C15550FF300796EEA /* BabyScheduleTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9692001415550FF100796EEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 9692001715550FF100796EEA /* Build configuration list for PBXProject "BabySchedule" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9692001215550FF100796EEA;
+			productRefGroup = 9692001E15550FF200796EEA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9692001C15550FF200796EEA /* BabySchedule */,
+				9692004B15550FF300796EEA /* BabyScheduleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9692001B15550FF200796EEA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9692002C15550FF200796EEA /* InfoPlist.strings in Resources */,
+				9692003515550FF200796EEA /* MainStoryboard_iPhone.storyboard in Resources */,
+				9692003815550FF200796EEA /* MainStoryboard_iPad.storyboard in Resources */,
+				9692003D15550FF300796EEA /* first.png in Resources */,
+				9692003F15550FF300796EEA /* first@2x.png in Resources */,
+				9692004415550FF300796EEA /* second.png in Resources */,
+				9692004615550FF300796EEA /* second@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9692004915550FF300796EEA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9692005815550FF400796EEA /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9692004A15550FF300796EEA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9692001915550FF200796EEA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9692002E15550FF200796EEA /* main.m in Sources */,
+				9692003215550FF200796EEA /* AppDelegate.m in Sources */,
+				9692003B15550FF200796EEA /* FirstViewController.m in Sources */,
+				9692004215550FF300796EEA /* SecondViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9692004715550FF300796EEA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9692005B15550FF400796EEA /* BabyScheduleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9692005215550FF300796EEA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9692001C15550FF200796EEA /* BabySchedule */;
+			targetProxy = 9692005115550FF300796EEA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9692002A15550FF200796EEA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9692002B15550FF200796EEA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9692003315550FF200796EEA /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9692003415550FF200796EEA /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		9692003615550FF200796EEA /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9692003715550FF200796EEA /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		9692005615550FF400796EEA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9692005715550FF400796EEA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9692005C15550FF400796EEA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9692005D15550FF400796EEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9692005F15550FF400796EEA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BabySchedule/BabySchedule-Prefix.pch";
+				INFOPLIST_FILE = "BabySchedule/BabySchedule-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		9692006015550FF400796EEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BabySchedule/BabySchedule-Prefix.pch";
+				INFOPLIST_FILE = "BabySchedule/BabySchedule-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		9692006215550FF400796EEA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BabySchedule.app/BabySchedule";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BabySchedule/BabySchedule-Prefix.pch";
+				INFOPLIST_FILE = "BabyScheduleTests/BabyScheduleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		9692006315550FF400796EEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BabySchedule.app/BabySchedule";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BabySchedule/BabySchedule-Prefix.pch";
+				INFOPLIST_FILE = "BabyScheduleTests/BabyScheduleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9692001715550FF100796EEA /* Build configuration list for PBXProject "BabySchedule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9692005C15550FF400796EEA /* Debug */,
+				9692005D15550FF400796EEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9692005E15550FF400796EEA /* Build configuration list for PBXNativeTarget "BabySchedule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9692005F15550FF400796EEA /* Debug */,
+				9692006015550FF400796EEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9692006115550FF400796EEA /* Build configuration list for PBXNativeTarget "BabyScheduleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9692006215550FF400796EEA /* Debug */,
+				9692006315550FF400796EEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9692001415550FF100796EEA /* Project object */;
+}
