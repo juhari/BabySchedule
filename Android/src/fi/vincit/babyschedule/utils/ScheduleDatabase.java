@@ -49,8 +49,39 @@ public class ScheduleDatabase {
 	    	mDb = mDbHelper.getWritableDatabase();
 	    	Log.w("Babyschedule", "database at: " + mDb.getPath());
 	    	backupDbToSdCard();
+	    	//restoreBackupDb();
 	    	mOpen = true; 
 		}
+	}
+	
+	private static void restoreBackupDb() {
+		try {
+			File sd = Environment.getExternalStorageDirectory();
+
+	        if (sd.canWrite()) {
+	            Date date = new Date();
+	            String backupFileStr = "backupDbBabySched";
+	            String currentDBPath = mDb.getPath();
+	            File currentDB = new File(currentDBPath);
+	            File backupDB = new File(sd, backupFileStr);
+	            //backupDB.mkdirs();	
+	            	            
+	            if (currentDB.exists()) {
+	                Log.w("Babyschedule", "Restoring db from " + backupDB.getAbsolutePath() + "\nto " + currentDB.getAbsolutePath());
+	                FileChannel src = new FileInputStream(backupDB).getChannel();
+	                FileChannel dst = new FileOutputStream(currentDB).getChannel();
+	                dst.transferFrom(src, 0, src.size());
+	                src.close();
+	                dst.close();
+	                Log.w("Babyschedule", "Restore successfull!");
+	            }
+	            
+	            
+	        }
+	    } catch (Exception e) {
+	        
+	        Log.w("Babyschedule", e.getMessage());
+	    }
 	}
 	
 	private static void backupDbToSdCard() {
