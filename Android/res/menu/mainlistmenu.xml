@@ -6,4 +6,6 @@
 		  android:title="@string/show_stats" />
 	<item android:id="@+id/show_settings"
 		  android:title="@string/settings" />
+    <item android:id="@+id/test_stats"
+          android:title="Test" />
 </menu>

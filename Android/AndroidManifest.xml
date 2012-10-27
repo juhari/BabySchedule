@@ -61,6 +61,10 @@
 				  android:label="@string/show_stats"
 				  android:screenOrientation="portrait">
 		</activity>
+        <activity android:name=".activities.BarTestActivity"
+                  android:label="@string/show_stats"
+                  android:screenOrientation="portrait">
+        </activity>
 		
     </application>
 </manifest>

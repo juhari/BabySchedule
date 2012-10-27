@@ -136,12 +136,14 @@
    	<string name="milk_stats_str">Maitotilastot</string>
    	<string name="sleep_stats_str">Unitilastot</string>
    	<string name="nursing_stats_str">Imetystilastot</string>
-   	
+    <string name="sleep_range_stats_str">Uniajat</string>
+
    	<!--  Statistics arrays -->
    	<string-array name="statistics_types">
    	    <item name="sleep_stats">@string/sleep_stats_str</item>
    	    <item name="milk_stats">@string/milk_stats_str</item>   	    
    	    <item name="nursing_stats">@string/nursing_stats_str</item>
+        <item name="sleep_range_states">@string/sleep_range_stats_str</item>
    	</string-array>
    	
     <!-- Activity arrays -->

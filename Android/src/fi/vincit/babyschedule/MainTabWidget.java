@@ -16,11 +16,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TabHost;
 import android.widget.TextView;
-import fi.vincit.babyschedule.activities.AllEventsList;
-import fi.vincit.babyschedule.activities.BarStatistics;
-import fi.vincit.babyschedule.activities.EventAdder;
-import fi.vincit.babyschedule.activities.EventMarkingList;
-import fi.vincit.babyschedule.activities.Settings;
+import fi.vincit.babyschedule.activities.*;
 import fi.vincit.babyschedule.utils.ScheduleDatabase;
 
 public class MainTabWidget extends TabActivity {
@@ -130,7 +126,11 @@ public class MainTabWidget extends TabActivity {
     	} else if( item.getItemId() == R.id.show_settings ) {
     		Intent showSettingsAction = new Intent(this, Settings.class);
     		startActivity(showSettingsAction);
-    	}
+    	} else if( item.getItemId() == R.id.test_stats ) {
+            Intent showTestsAction = new Intent(this, BarTestActivity.class);
+            startActivity(showTestsAction);
+        }
+
     	return super.onOptionsItemSelected(item);
     }
 }

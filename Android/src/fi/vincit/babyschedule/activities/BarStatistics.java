@@ -16,6 +16,7 @@ import fi.vincit.babyschedule.R;
 import fi.vincit.babyschedule.graphviews.MilkGraphView;
 import fi.vincit.babyschedule.graphviews.NursingGraphView;
 import fi.vincit.babyschedule.graphviews.SleepGraphView;
+import fi.vincit.babyschedule.graphviews.SleepRangeGraphView;
 
 public class BarStatistics extends Activity implements OnItemSelectedListener {
 	
@@ -56,6 +57,10 @@ public class BarStatistics extends Activity implements OnItemSelectedListener {
 			mGraphLayout.removeAllViews();
 			mGraphLayout.addView(new NursingGraphView(this));
 		}
+        else if( item.equalsIgnoreCase(getString(R.string.sleep_range_stats_str)) ) {
+            mGraphLayout.removeAllViews();
+            mGraphLayout.addView(new SleepRangeGraphView(this));
+        }
 	}
 
 	@Override

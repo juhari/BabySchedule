@@ -1,11 +1,14 @@
 package fi.vincit.babyschedule.graphviews;
 
-import java.util.Date;
-import java.util.List;
-
+import android.content.Context;
+import android.graphics.Color;
+import android.view.View;
+import android.widget.TextView;
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.chart.BarChart;
+import org.achartengine.chart.RangeBarChart;
+import org.achartengine.chart.XYChart;
 import org.achartengine.model.CategorySeries;
 import org.achartengine.model.TimeSeries;
 import org.achartengine.model.XYMultipleSeriesDataset;
@@ -13,10 +16,8 @@ import org.achartengine.renderer.SimpleSeriesRenderer;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYMultipleSeriesRenderer.Orientation;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.view.View;
-import android.widget.TextView;
+import java.util.Date;
+import java.util.List;
 
 public class StatisticsGraphViewUtils {
 
@@ -49,6 +50,36 @@ public class StatisticsGraphViewUtils {
         XYMultipleSeriesDataset dataSet = buildBarDataset(seriesTitles, data);
         GraphicalView view = ChartFactory.getBarChartView(context, dataSet, renderer, BarChart.Type.DEFAULT);
         return view;
+    }
+
+    public static View createRangeGraphViewFromData(Context context, String[] seriesTitles, List<double[]> data, double maxYValue, int numberOfDays, String title) {
+        if( numberOfDays == 0 || data.size() == 0 || seriesTitles.length == 0) {
+            TextView empty = new TextView(context);
+            return empty;
+        }
+
+        int[] colors = new int[] { Color.CYAN, Color.BLUE, Color.RED };
+        XYMultipleSeriesRenderer renderer = buildBarRenderer(colors, seriesTitles.length);
+        renderer.setOrientation(Orientation.HORIZONTAL);
+        setChartSettings(renderer, title, "", "",
+                numberOfDays-7, numberOfDays,
+                0, maxYValue,
+                Color.GRAY, Color.BLACK);
+
+        renderer.setXLabels(0);
+        setDateLabels(renderer, numberOfDays);
+        renderer.setYLabels(10);
+        renderer.setMarginsColor(0xb0b0ff);
+        int length = renderer.getSeriesRendererCount();
+        for (int i = 0; i < length; i++) {
+            SimpleSeriesRenderer seriesRenderer = renderer.getSeriesRendererAt(i);
+            seriesRenderer.setDisplayChartValues(true);
+        }
+
+        XYMultipleSeriesDataset dataSet = buildBarDataset(seriesTitles, data);
+
+        XYChart chart = new RangeBarChart(dataSet, renderer, BarChart.Type.DEFAULT);
+        return new GraphicalView(context, chart);
     }
 
     private static void setDateLabels(XYMultipleSeriesRenderer renderer, int numberOfDays) {

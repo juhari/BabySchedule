@@ -136,12 +136,14 @@
    	<string name="milk_stats_str">Milk statistics</string>
    	<string name="sleep_stats_str">Sleep statistics</string>
    	<string name="nursing_stats_str">Nursing statistics</string>
+    <string name="sleep_range_stats_str">Sleep times statistics</string>
    	
    	<!--  Statistics arrays -->
    	<string-array name="statistics_types">
    	    <item name="sleep_stats">@string/sleep_stats_str</item>
    	    <item name="milk_stats">@string/milk_stats_str</item>   	    
    	    <item name="nursing_stats">@string/nursing_stats_str</item>
+        <item name="sleep_range_states">@string/sleep_range_stats_str</item>
    	</string-array>
    	
     <!-- Activity arrays -->
