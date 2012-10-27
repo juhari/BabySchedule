@@ -7,19 +7,13 @@ import fi.vincit.babyschedule.R;
 import fi.vincit.babyschedule.activities.Settings;
 import fi.vincit.babyschedule.chartengine.PeriodBarChartData;
 import fi.vincit.babyschedule.chartengine.PeriodBarChartView;
+import fi.vincit.babyschedule.utils.BabyEvent;
 import fi.vincit.babyschedule.utils.ScheduleDatabase;
+import org.achartengine.renderer.XYMultipleSeriesRenderer;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Juha Riippi
- * Date: 13.10.2012
- * Time: 9:04
- * To change this template use File | Settings | File Templates.
- */
 public class SleepRangeGraphView extends LinearLayout {
 
     private Context mContext;
@@ -28,11 +22,12 @@ public class SleepRangeGraphView extends LinearLayout {
     private double[] mNapData = null;
     private int mSleepDays = 0;
     private Date mNow;
-    private int mCurrentShownDayIndex = 0;
+    private int mShowingEventsFromDaysAgo = 7;
     private PeriodBarChartView mChart;
 
     public SleepRangeGraphView(Context context) {
         super(context);
+        mContext = context;
 
         mNow = new Date();
         mNow.setHours(0);
@@ -40,17 +35,17 @@ public class SleepRangeGraphView extends LinearLayout {
         mNow.setSeconds(0);
         mNow.setTime(mNow.getTime()+24*60*60*1000);
 
-        mContext = context;
+        initGraphHistoryLength();
 
         mChart = new PeriodBarChartView(context);
-        PeriodBarChartData data = loadData();
+        PeriodBarChartData data = loadData(mShowingEventsFromDaysAgo);
+        updateChartHorizontalLabels();
         mChart.setData(data);
-        mChart.setDataShownStartIndex(mCurrentShownDayIndex);
 
         addView(mChart);
     }
 
-    public PeriodBarChartData loadData() {
+    private void initGraphHistoryLength() {
         ArrayList<Date> dates = ScheduleDatabase.getActionDatesForAction(Settings.getCurrentBabyName(), mContext.getString(R.string.go_to_sleep));
         ArrayList<Date> napDates = ScheduleDatabase.getActionDatesForAction(Settings.getCurrentBabyName(), mContext.getString(R.string.go_to_nap));
 
@@ -60,7 +55,7 @@ public class SleepRangeGraphView extends LinearLayout {
         if( napDates.size() > 0 ) oldestNap  = napDates.get(0);
 
         if( oldest == null && oldestNap == null ) {
-            return null;
+            return;
         }
         else if( oldest == null && oldestNap != null ) {
             oldest = oldestNap;
@@ -69,7 +64,20 @@ public class SleepRangeGraphView extends LinearLayout {
             oldest = oldestNap;
         }
         mSleepDays = howManyDaysAgo(oldest);
-        mCurrentShownDayIndex = mSleepDays - 7;
+    }
+
+    public PeriodBarChartData loadData(int fromDaysAgo) {
+        ArrayList<BabyEvent> dates = new ArrayList<BabyEvent>();
+        ArrayList<BabyEvent> napDates = new ArrayList<BabyEvent>();
+
+        String babyName = Settings.getCurrentBabyName();
+        String sleepActionName = mContext.getString(R.string.go_to_sleep);
+        String napActionName = mContext.getString(R.string.go_to_nap);
+        for( int i = fromDaysAgo-7; i <= fromDaysAgo; i++ ) {
+            dates.addAll(ScheduleDatabase.getAllDbActionsFromNumberOfDaysAgo(babyName, sleepActionName, i));
+            napDates.addAll(ScheduleDatabase.getAllDbActionsFromNumberOfDaysAgo(babyName, napActionName, i));
+        }
+
         PeriodBarChartData data = new PeriodBarChartData();
 
         addSleepDatesToData(dates, data);
@@ -79,12 +87,13 @@ public class SleepRangeGraphView extends LinearLayout {
         return data;
     }
 
-    private void addSleepDatesToData(ArrayList<Date> dates, PeriodBarChartData data) {
+    private void addSleepDatesToData(ArrayList<BabyEvent> dates, PeriodBarChartData data) {
         String babyName = Settings.getCurrentBabyName();
-        for( Date date : dates ) {
+        for( BabyEvent event : dates ) {
+            Date date = event.getActionDate();
             Date wakeUpDate = ScheduleDatabase.getWakeUpDateFromSleepDate(babyName, date);
-            int dayIndexForSleep = mSleepDays - howManyDaysAgo(date);
-            int dayIndexForWakeUp = mSleepDays - howManyDaysAgo(wakeUpDate);
+            int dayIndexForSleep = mShowingEventsFromDaysAgo - howManyDaysAgo(date);
+            int dayIndexForWakeUp = mShowingEventsFromDaysAgo - howManyDaysAgo(wakeUpDate);
             if( dayIndexForSleep == dayIndexForWakeUp ) {
                 data.addItem(dayIndexForSleep, hourDecimalFromDate(date), hourDecimalFromDate(wakeUpDate));
             }
@@ -113,20 +122,38 @@ public class SleepRangeGraphView extends LinearLayout {
     }
 
     public void loadPreviousItems() {
-        mCurrentShownDayIndex -= 7;
-        if( mCurrentShownDayIndex < 0 ) {
-            mCurrentShownDayIndex = 0;
+        mShowingEventsFromDaysAgo += 7;
+        if( mShowingEventsFromDaysAgo > mSleepDays) {
+            mShowingEventsFromDaysAgo = mSleepDays;
         }
 
-        mChart.setDataShownStartIndex(mCurrentShownDayIndex);
+        PeriodBarChartData data = loadData(mShowingEventsFromDaysAgo);
+
+        updateChartHorizontalLabels();
+        mChart.setData(data);
     }
 
     public void loadNextItems() {
-        mCurrentShownDayIndex += 7;
-        if( mCurrentShownDayIndex > mSleepDays - 7) {
-            mCurrentShownDayIndex = mSleepDays -7;
+        mShowingEventsFromDaysAgo -= 7;
+        if( mShowingEventsFromDaysAgo < 7 ) {
+            mShowingEventsFromDaysAgo = 7;
         }
 
-        mChart.setDataShownStartIndex(mCurrentShownDayIndex);
+        PeriodBarChartData data = loadData(mShowingEventsFromDaysAgo);
+
+        updateChartHorizontalLabels();
+        mChart.setData(data);
+    }
+
+    private void updateChartHorizontalLabels() {
+        Date date = (Date)mNow.clone();
+        long dateAdjust = 24*60*60*1000*(long)mShowingEventsFromDaysAgo;
+        date.setTime(date.getTime()-dateAdjust);
+        String labels[] = new String[7];
+        for( int i = 0; i < 7; i++) {
+            labels[i] = (""+date.getDate()+"."+(date.getMonth()+1));
+            date.setTime(date.getTime()+24*60*60*1000);
+        }
+        mChart.setHorizontalLabels(labels);
     }
 }

@@ -18,8 +18,8 @@ public class PeriodBarChartView extends View {
     private boolean mDrawHorizontalLines = true;
     private boolean mDrawVerticalLines = true;
 
-    private int mDataShownStartIndex = 0;
     private int mDataWindowSize = 7;
+    private String[] mHorizontalLabels = null;
 
     final static int VERTICAL_OFFSET_TOP = 10;
     final static int VERTICAL_OFFSET_BOTTOM = 20;
@@ -68,11 +68,6 @@ public class PeriodBarChartView extends View {
 
     }
 
-    public void setDataShownStartIndex(int index) {
-        mDataShownStartIndex = index;
-        invalidate();
-    }
-
     public void setDataWindowSize(int size) {
         mDataWindowSize = size;
         invalidate();
@@ -81,6 +76,10 @@ public class PeriodBarChartView extends View {
     public void setData(PeriodBarChartData data) {
         mData = data;
         invalidate();
+    }
+
+    public void setHorizontalLabels(String[] labels) {
+        mHorizontalLabels = labels;
     }
 
     @Override
@@ -127,16 +126,18 @@ public class PeriodBarChartView extends View {
         int stepSize = (width - (HORIZONTAL_OFFSET_LEFT+HORIZONTAL_OFFSET_RIGHT))/mDataWindowSize;
         int y = height - (VERTICAL_OFFSET_BOTTOM - OFFSET_FOR_TEXT);
 
-        int counter = mDataShownStartIndex+7;
+        int labelIndex = 0;
         for( int x = HORIZONTAL_OFFSET_LEFT; x <= width - HORIZONTAL_OFFSET_RIGHT; x += stepSize ) {
-            canvas.drawText(""+counter, x, y, mTextPaint);
+            if( mHorizontalLabels != null && labelIndex < mDataWindowSize) {
+                canvas.drawText(mHorizontalLabels[labelIndex], x, y, mTextPaint);
+                labelIndex++;
+            }
 
             if( mDrawVerticalLines ) {
                 canvas.drawLine(x, VERTICAL_OFFSET_TOP,
                                 x, height - VERTICAL_OFFSET_BOTTOM,
                                 mGraphLinePaint);
             }
-            counter--;
         }
     }
 
@@ -154,7 +155,7 @@ public class PeriodBarChartView extends View {
         int y = height - (VERTICAL_OFFSET_BOTTOM - OFFSET_FOR_TEXT);
 
         int xOffset = 0;
-        for( int i = mDataShownStartIndex; i < mDataShownStartIndex+mDataWindowSize; i++ ) {
+        for( int i = 0; i < mDataWindowSize; i++ ) {
             if( mData.getItemsAt(i) != null ) {
                 for( PeriodBarChartData.PeriodBarChartDataItem item : mData.getItemsAt(i) ) {
                     float xStart = HORIZONTAL_OFFSET_LEFT + stepSizeX*xOffset + 3;
